@@ -1,0 +1,88 @@
+@keyframes bgcolor {
+    0% {
+        background-color: #45a3e5
+    }
+    30% {
+        background-color: #66bf39
+    }
+    60% {
+        background-color: #eb670f
+    }
+    90% {
+        background-color: #f35
+    }
+    100% {
+        background-color: #864cbf
+    }
+}
+
+body {
+    -webkit-animation: bgcolor 20s infinite;
+    animation: bgcolor 10s infinite;
+    -webkit-animation-direction: alternate;
+    animation-direction: alternate;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+
+}
+
+input[type="text"], input[type="password"]{
+    margin: auto;
+    display: block;
+    border-radius: 15px;
+    width: 300px;
+    height: 35px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: medium;
+    padding-left: 10px;
+}
+
+input[type="button"]{
+    margin: auto;
+    display: block;
+    border-radius: 15px;
+    width: 200px;
+    height: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: medium;
+    color: white;
+    background-color: #89CFF0;
+    border-color: #89CFF0;
+    
+}
+input[type="button"]:hover{
+    background-color: #00688B;
+    border-color: #00688B;
+    transition: 0.2s;
+}
+
+
+
+.wrapper{
+    background-color: aliceblue;
+    width: 400px;
+    height: 370px;
+    border-radius: 20px;
+    padding-top: 20px;
+    
+}
+
+.button-box{
+    display: flex;
+    align-items: center;
+    justify-content:center;
+}
+
+
+.logintitle{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(152, 152, 152);
+}
+
+#page{
+    margin: auto;
+    width: 100%;
+}
+
