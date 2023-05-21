@@ -58,6 +58,23 @@ input[type="button"]:hover{
     cursor: pointer;
 }
 
+.toggle-btn{
+    width: 100px;
+    height: 35px;
+    border-radius: 15px;
+    background-color: #89CFF0; 
+    border-color: #89CFF0;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: medium;
+}
+
+.toggle-btn:hover{
+    background-color: #00688B;
+    border-color: #00688B;
+    transition: 0.2s;
+    cursor: pointer;
+}
 
 
 .wrapper{
