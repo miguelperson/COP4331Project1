@@ -1,0 +1,229 @@
+@keyframes bgcolor {
+    0% {
+        background-color: #45a3e5
+    }
+    30% {
+        background-color: #66bf39
+    }
+    60% {
+        background-color: #eb670f
+    }
+    90% {
+        background-color: #f35
+    }
+    100% {
+        background-color: #864cbf
+    }
+}
+
+body {
+    -webkit-animation: bgcolor 20s infinite;
+    -webkit-animation-direction: alternate;
+    animation: bgcolor 10s infinite;
+    animation-direction: alternate;
+}
+
+header {
+    background-color: rgba(0, 0, 0, 0.8);
+    margin: 5px 5px 0px 5px;
+    box-shadow: 0 -.1rem .8rem black;
+    border-radius: 10px 10px 0px 0px;
+}
+
+#headerText {
+    color: rgb(255, 255, 255);
+    font-size: clamp(50px, 8vw, 100px);
+    font-weight: 500;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 10px 0px 10px 20px;
+    margin: 0px 5px 0px 5px;
+}
+
+section {
+    margin: 0px 5px 0px 5px;
+    display: flex;
+    height: 100vh;
+    box-shadow: 0 .4rem .8rem black;
+    border-radius: 0px 0px 10px 10px;
+}
+
+/* options panel ------------------------------------------------- */
+
+.buttons {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: clamp(10px, 2vw, 18px);
+    width: 100%;
+    text-align: left;
+    transition: 0.3s;
+    box-shadow: 0 .4rem .8rem black;
+}
+
+.buttons:hover {
+    background-color: #0cceff;
+    color: white;
+    cursor: pointer;
+}
+
+#options {
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 40px;
+    border-radius: 0px 0px 0px 10px;
+}
+
+.searchContact {
+    padding: 0;
+    margin: 20px 20px 0px 20px;
+    box-shadow: 0 .4rem .8rem black;
+}
+
+#form1 {
+    display: flex;
+}
+
+#form2 {
+    display: flex;
+    margin: 20px;
+    max-width: 300px;
+}
+
+.searchBox {
+    width: 100%;
+    height: 35px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: clamp(12px, 1.3vw, 20px);
+}
+
+.searchButton {
+    max-width: 25%;
+    min-width: 45px;
+    transition: 0.3s;
+}
+
+.searchButton:hover {
+    background-color: #0cceff;
+    color: white;
+    cursor: pointer;
+}
+
+.searchIcon {
+    width: 30px;
+}
+
+#addContact {
+    margin: 0px 20px 0px 20px;
+}
+
+#editContact {
+    margin: 0px 20px 0px 20px;
+}
+
+#removeContact {
+    margin: 0px 20px 0px 20px;
+}
+
+#logout {
+    margin-top: auto;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 800px) {
+    #form1 {
+        display: none;
+    }
+
+    #form2 {
+        display: flex;
+        box-shadow: 0 .4rem .8rem black;
+    }
+}
+
+@media (min-width: 801px) {
+    #form1 {
+        display: flex;
+    }
+
+    #form2 {
+        display: none;
+    }
+}
+
+/* contacts panel ------------------------------------------------- */
+
+#contacts {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 0px 0px 10px 0px;
+    width: 100%;
+}
+
+table {
+    width: 100%;
+    background: rgb(226, 226, 226);
+    border-collapse: collapse;
+}
+
+th, td {
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 20px;
+}
+
+th {
+    font-size: clamp(12px, 2vw, 20px);
+    top: 0px;
+    position: sticky;
+    text-align: left;
+    background: rgb(158, 158, 158);
+}
+
+tr:nth-of-type(2n)
+{
+    background: rgb(209, 209, 209);
+}
+
+tr:hover {
+    background-color: rgb(170, 170, 170);
+}
+
+.tableWrap {
+    margin: 20px;
+    max-height: 96vh;
+    overflow-y: auto;
+}
+
+@media (max-width: 800px) {
+    table {
+        width: 100%;
+    }
+
+    th {
+        display: none;
+    }
+
+    .tableWrap {
+        margin: 20px;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+     
+    td {
+        display: block;
+        padding: 8px;
+    }
+
+    td::before {
+        content: attr(data-cell) ": ";
+        font-weight: 700;
+    }
+
+    td:first-child {
+        padding-top: 20px;
+    }
+
+    td:last-child {
+        padding-bottom: 20px;
+    }
+}

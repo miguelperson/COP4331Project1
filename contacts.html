@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Contacts</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0">
+
+    <link href="css/contacts.css" rel="stylesheet" type="text/css">
+
+    <script type="application/javascript" src="js/contacts.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1 id="headerText">Contacts</h1>
+    </header>
+    <section>
+        <!-- this panel displays the options to the user -->
+        <div id="options">
+            <div class="searchContact">
+                <form id="form1" action="javascript:doSomething()">
+                    <button class="searchButton"> <img class="searchIcon" src="/images/searching.png"></button>
+                    <input type="text" class="searchBox" placeholder="Search Contacts">
+                </form>
+            </div>
+            <div id="addContact">
+                <button class="buttons"><img class="searchIcon" src="/images/add-user.png"> Add&nbsp;Contact</button>
+            </div>
+            <div id="editContact">
+                <button class="buttons"><img class="searchIcon" src="/images/edit.png"> Edit&nbsp;Contact</button>
+            </div>
+            <div id="removeContact">
+                <button class="buttons"><img class="searchIcon" src="/images/remove-user.png"> Remove Contact</button>
+            </div>
+            <div id="logout">
+                <button class="buttons"><img class="searchIcon" src="/images/logout.png"> Log&nbsp;Out</button>
+            </div>
+        </div>
+
+        <!-- this panel displays info of all added/searched contacts -->
+        <div id="contacts">
+            <form id="form2" action="javascript:doSomething()">
+                <button class="searchButton"> <img class="searchIcon" src="/images/searching.png"></button>
+                <input type="text" class="searchBox" placeholder="Search Contacts">
+            </form>
+            <div id="contactInfo">
+                <div class="tableWrap">
+                    <table>
+                        <tr id="header">
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Date Created</th>
+                        </tr>
+                        <!-- placeholder records -->
+                        <tr>
+                            <td data-cell="First Name">Ryan</td>
+                            <td data-cell="Last Name">Kolano</td>
+                            <td data-cell="Phone">1234567890</td>
+                            <td data-cell="Email">rkolano@gmail.com</td>
+                            <td data-cell="Date Created">May 22, 2023</td>
+                        </tr>
+                        <tr>
+                            <td data-cell="First Name">Ryan</td>
+                            <td data-cell="Last Name">Kolano</td>
+                            <td data-cell="Phone">1234567890</td>
+                            <td data-cell="Email">rkolano@gmail.com</td>
+                            <td data-cell="Date Created">May 22, 2023</td>
+                        </tr>
+                        <tr>
+                            <td data-cell="First Name">Ryan</td>
+                            <td data-cell="Last Name">Kolano</td>
+                            <td data-cell="Phone">1234567890</td>
+                            <td data-cell="Email">rkolano@gmail.com</td>
+                            <td data-cell="Date Created">May 22, 2023</td>
+                        </tr>
+                        <tr>
+                            <td data-cell="First Name">Ryan</td>
+                            <td data-cell="Last Name">Kolano</td>
+                            <td data-cell="Phone">1234567890</td>
+                            <td data-cell="Email">rkolano@gmail.com</td>
+                            <td data-cell="Date Created">May 22, 2023</td>
+                        </tr>
+                        <tr>
+                            <td data-cell="First Name">Ryan</td>
+                            <td data-cell="Last Name">Kolano</td>
+                            <td data-cell="Phone">1234567890</td>
+                            <td data-cell="Email">rkolano@gmail.com</td>
+                            <td data-cell="Date Created">May 22, 2023</td>
+                        </tr>
+                        <tr>
+                            <td data-cell="First Name">Ryan</td>
+                            <td data-cell="Last Name">Kolano</td>
+                            <td data-cell="Phone">1234567890</td>
+                            <td data-cell="Email">rkolano@gmail.com</td>
+                            <td data-cell="Date Created">May 22, 2023</td>
+                        </tr>
+                        <tr>
+                            <td data-cell="First Name">Ryan</td>
+                            <td data-cell="Last Name">Kolano</td>
+                            <td data-cell="Phone">1234567890</td>
+                            <td data-cell="Email">rkolano@gmail.com</td>
+                            <td data-cell="Date Created">May 22, 2023</td>
+                        </tr>
+                        <tr>
+                            <td data-cell="First Name">Ryan</td>
+                            <td data-cell="Last Name">Kolano</td>
+                            <td data-cell="Phone">1234567890</td>
+                            <td data-cell="Email">rkolano@gmail.com</td>
+                            <td data-cell="Date Created">May 22, 2023</td>
+                        </tr>
+                        <tr>
+                            <td data-cell="First Name">Ryan</td>
+                            <td data-cell="Last Name">Kolano</td>
+                            <td data-cell="Phone">1234567890</td>
+                            <td data-cell="Email">rkolano@gmail.com</td>
+                            <td data-cell="Date Created">May 22, 2023</td>
+                        </tr>
+                        <tr>
+                            <td data-cell="First Name">Ryan</td>
+                            <td data-cell="Last Name">Kolano</td>
+                            <td data-cell="Phone">1234567890</td>
+                            <td data-cell="Email">rkolano@gmail.com</td>
+                            <td data-cell="Date Created">May 22, 2023</td>
+                        </tr>
+                        <tr>
+                            <td data-cell="First Name">Ryan</td>
+                            <td data-cell="Last Name">Kolano</td>
+                            <td data-cell="Phone">1234567890</td>
+                            <td data-cell="Email">rkolano@gmail.com</td>
+                            <td data-cell="Date Created">May 22, 2023</td>
+                        </tr>
+                        <tr>
+                            <td data-cell="First Name">Ryan</td>
+                            <td data-cell="Last Name">Kolano</td>
+                            <td data-cell="Phone">1234567890</td>
+                            <td data-cell="Email">rkolano@gmail.com</td>
+                            <td data-cell="Date Created">May 22, 2023</td>
+                        </tr>
+                                            <tr>
+                            <td data-cell="First Name">Ryan</td>
+                            <td data-cell="Last Name">Kolano</td>
+                            <td data-cell="Phone">1234567890</td>
+                            <td data-cell="Email">rkolano@gmail.com</td>
+                            <td data-cell="Date Created">May 22, 2023</td>
+                        </tr>
+                        <tr>
+                            <td data-cell="First Name">Ryan</td>
+                            <td data-cell="Last Name">Kolano</td>
+                            <td data-cell="Phone">1234567890</td>
+                            <td data-cell="Email">rkolano@gmail.com</td>
+                            <td data-cell="Date Created">May 22, 2023</td>
+                        </tr>
+                        <tr>
+                            <td data-cell="First Name">Ryan</td>
+                            <td data-cell="Last Name">Kolano</td>
+                            <td data-cell="Phone">1234567890</td>
+                            <td data-cell="Email">rkolano@gmail.com</td>
+                            <td data-cell="Date Created">May 22, 2023</td>
+                        </tr>
+                        <tr>
+                            <td data-cell="First Name">Ryan</td>
+                            <td data-cell="Last Name">Kolano</td>
+                            <td data-cell="Phone">1234567890</td>
+                            <td data-cell="Email">rkolano@gmail.com</td>
+                            <td data-cell="Date Created">May 22, 2023</td>
+                        </tr>
+                        <tr>
+                            <td data-cell="First Name">Ryan</td>
+                            <td data-cell="Last Name">Kolano</td>
+                            <td data-cell="Phone">1234567890</td>
+                            <td data-cell="Email">rkolano@gmail.com</td>
+                            <td data-cell="Date Created">May 22, 2023</td>
+                        </tr>
+                        <tr>
+                            <td data-cell="First Name">Ryan</td>
+                            <td data-cell="Last Name">Kolano</td>
+                            <td data-cell="Phone">1234567890</td>
+                            <td data-cell="Email">rkolano@gmail.com</td>
+                            <td data-cell="Date Created">May 22, 2023</td>
+                        </tr>
+                        <tr>
+                            <td data-cell="First Name">Ryan</td>
+                            <td data-cell="Last Name">Kolano</td>
+                            <td data-cell="Phone">1234567890</td>
+                            <td data-cell="Email">rkolano@gmail.com</td>
+                            <td data-cell="Date Created">May 22, 2023</td>
+                        </tr>
+                        <tr>
+                            <td data-cell="First Name">Ryan</td>
+                            <td data-cell="Last Name">Kolano</td>
+                            <td data-cell="Phone">1234567890</td>
+                            <td data-cell="Email">rkolano@gmail.com</td>
+                            <td data-cell="Date Created">May 22, 2023</td>
+                        </tr>
+                        <tr>
+                            <td data-cell="First Name">Ryan</td>
+                            <td data-cell="Last Name">Kolano</td>
+                            <td data-cell="Phone">1234567890</td>
+                            <td data-cell="Email">rkolano@gmail.com</td>
+                            <td data-cell="Date Created">May 22, 2023</td>
+                        </tr>
+                        <tr>
+                            <td data-cell="First Name">Ryan</td>
+                            <td data-cell="Last Name">Kolano</td>
+                            <td data-cell="Phone">1234567890</td>
+                            <td data-cell="Email">rkolano@gmail.com</td>
+                            <td data-cell="Date Created">May 22, 2023</td>
+                        </tr>
+                        <tr>
+                            <td data-cell="First Name">Ryan</td>
+                            <td data-cell="Last Name">Kolano</td>
+                            <td data-cell="Phone">1234567890</td>
+                            <td data-cell="Email">rkolano@gmail.com</td>
+                            <td data-cell="Date Created">May 22, 2023</td>
+                        </tr>
+                        <tr>
+                            <td data-cell="First Name">Ryan</td>
+                            <td data-cell="Last Name">Kolano</td>
+                            <td data-cell="Phone">1234567890</td>
+                            <td data-cell="Email">rkolano@gmail.com</td>
+                            <td data-cell="Date Created">May 22, 2023</td>
+                        </tr>
+                        <tr>
+                            <td data-cell="First Name">Ryan</td>
+                            <td data-cell="Last Name">Kolano</td>
+                            <td data-cell="Phone">1234567890</td>
+                            <td data-cell="Email">rkolano@gmail.com</td>
+                            <td data-cell="Date Created">May 22, 2023</td>
+                        </tr>
+                        <tr>
+                            <td data-cell="First Name">Ryan</td>
+                            <td data-cell="Last Name">Kolano</td>
+                            <td data-cell="Phone">1234567890</td>
+                            <td data-cell="Email">rkolano@gmail.com</td>
+                            <td data-cell="Date Created">May 22, 2023</td>
+                        </tr>
+                        <tr>
+                            <td data-cell="First Name">Ryan</td>
+                            <td data-cell="Last Name">Kolano</td>
+                            <td data-cell="Phone">1234567890</td>
+                            <td data-cell="Email">rkolano@gmail.com</td>
+                            <td data-cell="Date Created">May 22, 2023</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>           
+        </div>
+    </section>
+</body>
+</html>
