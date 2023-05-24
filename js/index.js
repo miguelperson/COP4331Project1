@@ -46,9 +46,9 @@ signupBtn.addEventListener('click', ()=>{
 });
 
 loginBtn.addEventListener('click', ()=>{
-    let login = {};
-    login.username = document.getElementById('username').value;
-    login.password = document.getElementById('password').value;
+    let userLogin = {};
+    userLogin.login = document.getElementById('username').value;
+    userLogin.password = document.getElementById('password').value;
 
     fetch("PHPFiles/Login.php", {
         "method": "POST",
