@@ -23,10 +23,25 @@ switchSignupBtn.addEventListener('click', ()=>{
 
 signupBtn.addEventListener('click', ()=>{
     let signup = {};
-    signup.username = document.getElementById('username').value;
+    signup.login = document.getElementById('username').value;
     signup.password = document.getElementById('password').value;
     signup.firstname = document.getElementById('firstname').value;
     signup.lastname = document.getElementById('lastname').value;
+
+    fetch("PHPFiles/Registration.php",{
+        "method": "POST",
+        "headers": {
+            "Content-Type" : "application/json; charset=utf-8"
+        },
+
+        "body" : JSON.stringify(signup)
+    }).then(function(response){
+        return response.json();
+    }).then(function(data){
+        console.log(data);
+    });
+
+
 
 });
 
@@ -34,6 +49,24 @@ loginBtn.addEventListener('click', ()=>{
     let login = {};
     login.username = document.getElementById('username').value;
     login.password = document.getElementById('password').value;
+
+    fetch("PHPFiles/Login.php", {
+        "method": "POST",
+        "headers" :{
+            "Content-Type" : "application/json; charset=utf-8" 
+        },
+
+        "body": JSON.stringify(login)
+
+    }).then(function(response){
+
+        return response.json();
+
+    }).then(function(data){
+
+        console.log(data);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+    });
+
 });
 
 

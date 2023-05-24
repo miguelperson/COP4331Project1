@@ -1,40 +1,58 @@
+
 <?php
-// MySQL database credentials
-$servername = "localhost";
-$username = "TheBeast";
-$password = "WeLoveCOP4331";
-$dbname = "COP4331";
 
-// Create a connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+	$inData = getRequestInfo();
 
-// Check the connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+	$id = 0;
+	$firstName = "";
+	$lastName = "";
 
-// SQL query to retrieve ID, FirstName, and LastName
-$sql = "SELECT ID, FirstName, LastName FROM Users";
-$result = $conn->query($sql);
+	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331"); 	
+	if( $conn->connect_error )
+	{
+		returnWithError( $conn->connect_error );
+	}
+	else
+	{
+		$stmt = $conn->prepare("SELECT ID,FirstName,LastName FROM Users WHERE (Login=? AND Password=?)");
+		$stmt->bind_param("ss", $inData["login"], $inData["password"]);
+		$stmt->execute();
+		$result = $stmt->get_result();
 
-if ($result->num_rows > 0) {
-    $data = array();
+		if( $row = $result->fetch_assoc()  )
+		{
+			returnWithInfo( $row['FirstName'], $row['LastName'], $row['ID'] );
+		}
+		else
+		{
+			returnWithError("No Records Found");
+		}
 
-    // Fetch the rows and add them to the data array
-    while ($row = $result->fetch_assoc()) {
-        $data[] = $row;
-    }
+		$stmt->close();
+		$conn->close();
+	}
 
-    // Convert the data array to JSON
-    $json = json_encode($data);
+	function getRequestInfo()
+	{
+		return json_decode(file_get_contents('php://input'), true);
+	}
 
-    // Output the JSON data
-    header('Content-type: application/json');
-    echo $json;
-} else {
-    echo "No results found.";
-}
+	function sendResultInfoAsJson( $obj )
+	{
+		header('Content-type: application/json');
+		echo $obj;
+	}
 
-// Close the connection
-$conn->close();
+	function returnWithError( $err )
+	{
+		$retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
+		sendResultInfoAsJson( $retValue );
+	}
+
+	function returnWithInfo( $firstName, $lastName, $id )
+	{
+		$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
+		sendResultInfoAsJson( $retValue );
+	}
+
 ?>
