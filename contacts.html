@@ -8,7 +8,6 @@
 
     <link href="css/contacts.css" rel="stylesheet" type="text/css">
 
-    <script type="application/javascript" src="js/contacts.js"></script>
 </head>
 
 <body>
@@ -19,28 +18,28 @@
         <!-- this panel displays the options to the user -->
         <div id="options">
             <div class="searchContact">
-                <form id="form1" action="javascript:doSomething()">
-                    <button class="searchButton"> <img class="searchIcon" src="/images/searching.png"></button>
+                <form id="form1" action="javascript:searchContact()">
+                    <button class="searchButton"> <img class="icon" src="/images/searching.png"></button>
                     <input type="text" class="searchBox" placeholder="Search Contacts">
                 </form>
             </div>
             <div id="addContact">
-                <button class="buttons"><img class="searchIcon" src="/images/add-user.png"> Add&nbsp;Contact</button>
+                <button class="buttons" id="addContactButton"><img class="icon" src="/images/add-user.png"> Add&nbsp;Contact</button>
             </div>
             <div id="editContact">
-                <button class="buttons"><img class="searchIcon" src="/images/edit.png"> Edit&nbsp;Contact</button>
+                <button class="buttons"><img class="icon" src="/images/edit.png"> Edit&nbsp;Contact</button>
             </div>
             <div id="removeContact">
-                <button class="buttons"><img class="searchIcon" src="/images/remove-user.png"> Remove Contact</button>
+                <button class="buttons"><img class="icon" src="/images/remove-user.png"> Remove Contact</button>
             </div>
             <div id="logout">
-                <button class="buttons"><img class="searchIcon" src="/images/logout.png"> Log&nbsp;Out</button>
+                <button class="buttons"><img class="icon" src="/images/logout.png"> Log&nbsp;Out</button>
             </div>
         </div>
 
         <!-- this panel displays info of all added/searched contacts -->
         <div id="contacts">
-            <form id="form2" action="javascript:doSomething()">
+            <form id="form2" action="javascript:searchContact()">
                 <button class="searchButton"> <img class="searchIcon" src="/images/searching.png"></button>
                 <input type="text" class="searchBox" placeholder="Search Contacts">
             </form>
@@ -248,6 +247,37 @@
                 </div>
             </div>           
         </div>
+
+        <!-- pop up forms for adding/deleting contacts -->
+        <div class="addContactForm">
+            <button id="addContactCloseButton">X</button>
+            <div class="form">
+                <h2 id="addContactFormTitle">Add Contact</h2>
+                <div class="formElement">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName" placeholder="Enter First Name">
+                </div>
+                <div class="formElement">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" placeholder="Enter Last Name">
+                </div>
+                <div class="formElement">
+                    <label for="phone">Phone</label>
+                    <input type="text" id="phone" placeholder="Enter Phone">
+                </div>
+                <div class="formElement">
+                    <label for="email">Email</label>
+                    <input type="text" id="email" placeholder="Enter Email">
+                </div>
+                <div class="formElement">
+                    <button id="addContactFormButton">Add Contact</button>
+                </div>
+            </div>
+        </div>
+
     </section>
+
+    <script type="application/javascript" src="js/contacts.js"></script>
+
 </body>
 </html>
