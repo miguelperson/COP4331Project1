@@ -2,8 +2,8 @@
 	$userInfo = getRequestInfo();
 
 	$id = 0;
-	$firstName = $userInfo["firstName"];
-	$lastName = $userInfo["lastName"];
+	$firstName = $userInfo["firstname"];
+	$lastName = $userInfo["lastname"];
 	$username = $userInfo["username"];
 	$password = $userInfo["password"];
 
