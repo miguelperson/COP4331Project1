@@ -12,8 +12,7 @@
 	{
 		returnWithError( $conn->connect_error );
 	}else{
-
-
+		$statement = $conn->prepare("INSERT INTO,firstName,lastName");
 	}
 
 
