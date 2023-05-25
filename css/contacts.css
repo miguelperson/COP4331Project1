@@ -51,7 +51,7 @@ section {
 
 .buttons {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: clamp(10px, 2vw, 18px);
+    font-size: clamp(6px, 1.5vw, 18px);
     width: 100%;
     text-align: left;
     transition: 0.3s;
@@ -108,7 +108,7 @@ section {
     cursor: pointer;
 }
 
-.searchIcon {
+.icon {
     width: 30px;
 }
 
@@ -226,4 +226,81 @@ tr:hover {
     td:last-child {
         padding-bottom: 20px;
     }
+}
+
+/* Button functionality css -------------------------------------------------- */
+
+.addContactForm {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 380px;
+    padding: 20px;
+    background: rgb(224, 224, 224);
+    box-shadow: 0 -.1rem .8rem black;
+    border-radius: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    display: none;
+}
+
+#addContactCloseButton {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 15x;
+    height: 15px;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+#addContactFormTitle {
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 20px;
+}
+
+.formElement {
+    margin: 10px;
+    width: 100%;
+}
+
+input[id="firstName"] {
+    padding: 15px;
+    display: block;
+    width: 80%;
+}
+
+input[id="lastName"] {
+    padding: 15px;
+    display: block;
+    width: 80%;
+}
+
+input[id="phone"] {
+    padding: 15px;
+    display: block;
+    width: 80%;
+}
+
+input[id="email"] {
+    padding: 15px;
+    display: block;
+    width: 80%;
+}
+
+#addContactFormButton {
+    padding: 15px;
+    margin: 15px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: rgb(187, 187, 187);
+    width: 80%;
+}
+
+#addContactFormButton:hover {
+    background-color: #54fd00;
+    transition: 0.20s;
 }
