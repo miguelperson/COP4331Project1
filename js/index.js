@@ -81,7 +81,7 @@ function loginFunction(info){
         localStorage.setItem("id", info.id);
         localStorage.setItem("firstName", info.firstName);
         localStorage.setItem("lastName", info.lastName);
-        location.href = 'cop4331group9.xyz/contacts.html';
+        location.href = 'contacts.html';
     }else{
         console.log(info.error);
     }
