@@ -1,49 +1,44 @@
 <?php
 	
 	$contactInfo = getRequestInfo();
-	echo "got request";
+
 	$name = $contactInfo["name"];
 	$email = $contactInfo["email"];
 	$phoneNumber = $contactInfo["phoneNumber"];
 	$userID = $contactInfo["userID"];
-	echo "line 9";
+
 	// create connection
 	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331"); 	
 	// check connection 
 	if( $conn->connect_error )
 	{
-		echo "not connect";
 		returnWithError( $conn->connect_error );
 	}
 	
 	else 
 	{
-		echo "connected";
-		$sql = $conn -> prepare("INSERT INTO Contacts (ID, Name, Phone, Email, UserID) VALUES (?, ?, ?, ?, ?) ");
-		echo "line 23";
-		$insertID = $sql->insert_id;
-		$sql->bind_param("sssss", $insertID, $name, $phoneNumber, $email, $userID);
-		echo "line 25";
-		$sql->execute();
-		
-        
-		echo "line 28";
-		
+		$sql = $conn -> prepare("INSERT INTO Contacts (Name, Phone, Email, UserID) VALUES (?, ?, ?, ?) ");
 	
+		$insertID = $sql->insert_id;
+		$sql->bind_param("ssss", $name, $phoneNumber, $email, $userID);
+
+		$inserted = $sql->execute();
+		
 		// check if successfully added
-		if (($result = $conn->query($sql)) === TRUE)
+		if ($inserted)
 		{  
-			echo "line 35";
 			returnWithInfo($name, $phoneNumber, $userID, $email);
 		}
 		else 
 		{
-			echo "line 35";
+			echo "line 40";
 			returnWithError("ERROR: DID NOT ADD");
 		}
 		$sql->close();
 		$conn->close();
 	}
+	
+
 
 	function getRequestInfo()
 	{
@@ -62,8 +57,7 @@
 	}
 	function returnWithInfo($name, $phoneNumber, $userID, $email) 
 	{
-		$retValue = '{","name":"' . $name . ',"userID":"'. 
-			$userID. ',"Phone":"'. $phoneNumber. ',"email":"'. $email. '"}';
+		$retValue = '{"name":"' . $name . '","userID":"' . $userID . '","Phone":"' . $phoneNumber . '","email":"' . $email . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
 ?>
