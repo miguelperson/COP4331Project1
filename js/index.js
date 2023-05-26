@@ -85,6 +85,6 @@ function loginFunction(info){
     }else{
         console.log(info.error);
         let node = document.getElementById("error-message");
-        node.innerHTML = "<p>No Record Found.</p>"
+        node.innerHTML = "No Record Found."
     }
 }
