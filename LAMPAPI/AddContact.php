@@ -19,10 +19,10 @@
 	else 
 	{
 		echo "connected";
-		$sql = $conn -> prepare("INSERT INTO Contacts (ID, Name, Phone, Email, UserID) VALUES (?, ?, ?, ?, ?) ");
+		$sql = $conn -> prepare("INSERT INTO Contacts (Name, Phone, Email, UserID) VALUES (?, ?, ?, ?) ");
 		echo "line 23";
 		$insertID = $sql->insert_id;
-		$sql->bind_param("sssss", $insertID, $name, $phoneNumber, $email, $userID);
+		$sql->bind_param("ssss", $name, $phoneNumber, $email, $userID);
 		echo "line 25";
 		$sql->execute();
 		
