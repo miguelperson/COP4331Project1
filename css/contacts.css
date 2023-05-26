@@ -522,3 +522,12 @@ input[id="email"] {
     background-color: rgb(255, 32, 32);
     width: 40%;
 }
+
+label.validationError{
+    color:   red;
+    margin-left: 5px;
+}
+
+.hide{
+    display:none;
+}
