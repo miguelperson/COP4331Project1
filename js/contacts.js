@@ -26,20 +26,21 @@ addContactButton.addEventListener("click", function() {
 })
 
 addContactFormButton.addEventListener("click", function() {
-
-    var formData = readFormData();
-    if (selectedRow == null) {
-        insertNewRecord(formData);
-    }
-    else {
-        updateRecord(formData);
-    }
+    if (addValidate()) {
+        var formData = readFormData();
+        if (selectedRow == null) {
+            insertNewRecord(formData);
+        }
+        else {
+            updateRecord(formData);
+        }
+        
+        resetAddContactForm();
     
-    resetAddContactForm();
-
-    document.querySelector(".addContactForm").style.display = "none";
-    document.querySelector("#addContactButton").disabled = false;
-    document.querySelector("#addContactButton").style.cursor = "pointer";
+        document.querySelector(".addContactForm").style.display = "none";
+        document.querySelector("#addContactButton").disabled = false;
+        document.querySelector("#addContactButton").style.cursor = "pointer";
+    }
 })
 
 
@@ -96,7 +97,6 @@ closeAddContactButton.addEventListener("click", function() {
 })
 
 // editing a contact functions
-
 editContactCloseButton.addEventListener("click", function() {
     document.querySelector(".editContactForm").style.display = "none";
     document.querySelector("#addContactButton").disabled = false;
@@ -104,20 +104,22 @@ editContactCloseButton.addEventListener("click", function() {
 })
 
 editContactFormButton.addEventListener("click", function() {
-
-    var formData = readFormData2();
-    if (selectedRow == null) {
-        insertNewRecord(formData);
-    }
-    else {
-        updateRecord(formData);
-    }
+    if (editValidate()) {
+        var formData = readFormData2();
+        if (selectedRow == null) {
+            insertNewRecord(formData);
+        }
+        else {
+            updateRecord(formData);
+        }
+        
+        resetAddContactForm();
     
-    resetAddContactForm();
+        document.querySelector(".editContactForm").style.display = "none";
+        document.querySelector("#addContactButton").disabled = false;
+        document.querySelector("#addContactButton").style.cursor = "pointer";
+    }
 
-    document.querySelector(".editContactForm").style.display = "none";
-    document.querySelector("#addContactButton").disabled = false;
-    document.querySelector("#addContactButton").style.cursor = "pointer";
 })
 
 function edit(td) {
@@ -146,7 +148,7 @@ function removeContact(td) {
     //document.querySelector("#addContactButton").disabled = true;
     //document.querySelector("#addContactButton").style.cursor = "default";
 
-    if (confirm("asd")) {
+    if (confirm("Are you sure you want to remove this contact")) {
         row = td.parentElement.parentElement;
         document.getElementById("contactsList").deleteRow(row.rowIndex);
         selectedRow = null;
@@ -174,3 +176,86 @@ removeContactFormButton.addEventListener("click", function() {
 logoutButton.addEventListener("click", function() {
     window.location.href = "/index.html";
 })
+
+// misc functions
+function addValidate() {
+    isValid = true;
+
+    if (document.getElementById("firstName").value == "") {
+        isValid = false;
+        document.getElementById("firstNameValidationError").classList.remove("hide");
+    } 
+    else {
+        if (!document.getElementById("firstNameValidationError").classList.contains("hide"))
+            document.getElementById("firstNameValidationError").classList.add("hide");
+    }
+
+    if (document.getElementById("lastName").value == "") {
+        isValid = false;
+        document.getElementById("lastNameValidationError").classList.remove("hide");
+    } 
+    else {
+        if (!document.getElementById("lastNameValidationError").classList.contains("hide"))
+            document.getElementById("lastNameValidationError").classList.add("hide");
+    }
+
+    if (document.getElementById("phone").value == "") {
+        isValid = false;
+        document.getElementById("phoneValidationError").classList.remove("hide");
+    } 
+    else {
+        if (!document.getElementById("phoneValidationError").classList.contains("hide"))
+            document.getElementById("phoneValidationError").classList.add("hide");
+    }
+
+    if (document.getElementById("email").value == "") {
+        isValid = false;
+        document.getElementById("emailValidationError").classList.remove("hide");
+    } 
+    else {
+        if (!document.getElementById("emailValidationError").classList.contains("hide"))
+            document.getElementById("emailValidationError").classList.add("hide");
+    }
+    return isValid;
+}
+
+function editValidate() {
+    isValid = true;
+
+    if (document.getElementById("firstName2").value == "") {
+        isValid = false;
+        document.getElementById("firstNameValidationError2").classList.remove("hide");
+    } 
+    else {
+        if (!document.getElementById("firstNameValidationError2").classList.contains("hide"))
+            document.getElementById("firstNameValidationError2").classList.add("hide");
+    }
+
+    if (document.getElementById("lastName2").value == "") {
+        isValid = false;
+        document.getElementById("lastNameValidationError2").classList.remove("hide");
+    } 
+    else {
+        if (!document.getElementById("lastNameValidationError2").classList.contains("hide"))
+            document.getElementById("lastNameValidationError2").classList.add("hide");
+    }
+
+    if (document.getElementById("phone2").value == "") {
+        isValid = false;
+        document.getElementById("phoneValidationError2").classList.remove("hide");
+    } 
+    else {
+        if (!document.getElementById("phoneValidationError2").classList.contains("hide"))
+            document.getElementById("phoneValidationError2").classList.add("hide");
+    }
+
+    if (document.getElementById("email2").value == "") {
+        isValid = false;
+        document.getElementById("emailValidationError2").classList.remove("hide");
+    } 
+    else {
+        if (!document.getElementById("emailValidationError2").classList.contains("hide"))
+            document.getElementById("emailValidationError2").classList.add("hide");
+    }
+    return isValid;
+}
