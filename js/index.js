@@ -62,9 +62,9 @@ loginBtn.addEventListener('click', ()=>{
         "body": JSON.stringify(userLogin)
 
     }).then(function(response){
-
+        console.log("hello");
         return response.text();
-
+        
     }).then(function(data){
         console.log("hello");
         console.log(data);
