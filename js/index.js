@@ -28,7 +28,7 @@ signupBtn.addEventListener('click', ()=>{
     signup.firstname = document.getElementById('firstname').value;
     signup.lastname = document.getElementById('lastname').value;
 
-    fetch("PHPFiles/Registration.php",{
+    fetch("LAMPAPI/Registration.php",{
         "method": "POST",
         "headers": {
             "Content-Type" : "application/json; charset=utf-8"
@@ -50,7 +50,7 @@ loginBtn.addEventListener('click', ()=>{
     userLogin.login = document.getElementById('username').value;
     userLogin.password = document.getElementById('password').value;
 
-    fetch("PHPFiles/Login.php", {
+    fetch("LAMPAPI/Login.php", {
         "method": "POST",
         "headers" :{
             "Content-Type" : "application/json; charset=utf-8" 
