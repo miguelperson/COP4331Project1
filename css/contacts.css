@@ -54,13 +54,9 @@ section {
     font-size: clamp(6px, 1.5vw, 18px);
     width: 100%;
     text-align: left;
-    transition: 0.3s;
-    box-shadow: 0 .4rem .8rem black;
 }
 
 .buttons:hover {
-    background-color: #0cceff;
-    color: white;
     cursor: pointer;
 }
 
@@ -76,7 +72,6 @@ section {
 .searchContact {
     padding: 0;
     margin: 20px 20px 0px 20px;
-    box-shadow: 0 .4rem .8rem black;
 }
 
 #form1 {
@@ -96,14 +91,13 @@ section {
     font-size: clamp(12px, 1.3vw, 20px);
 }
 
-.searchButton {
+.searchContactButton {
     max-width: 25%;
     min-width: 45px;
     transition: 0.3s;
 }
 
-.searchButton:hover {
-    background-color: #0cceff;
+.searchContactButton:hover {
     color: white;
     cursor: pointer;
 }
@@ -118,9 +112,11 @@ section {
 
 #editContact {
     margin: 0px 20px 0px 20px;
+    display: none;
 }
 
 #removeContact {
+    display: none;
     margin: 0px 20px 0px 20px;
 }
 
@@ -138,7 +134,6 @@ section {
 
     #form2 {
         display: flex;
-        box-shadow: 0 .4rem .8rem black;
     }
 }
 
@@ -153,6 +148,17 @@ section {
 }
 
 /* contacts panel ------------------------------------------------- */
+
+a {
+    color: blue;
+    text-decoration: underline;
+    font-weight: 700;
+    padding: 0px 15px 0px 0px;
+}
+
+a:hover {
+    cursor: pointer;
+}
 
 #contacts {
     background-color: rgba(255, 255, 255, 0.5);
@@ -179,8 +185,7 @@ th {
     background: rgb(158, 158, 158);
 }
 
-tr:nth-of-type(2n)
-{
+tr:nth-of-type(2n) {
     background: rgb(209, 209, 209);
 }
 
@@ -215,16 +220,32 @@ tr:hover {
     }
 
     td::before {
-        content: attr(data-cell) ": ";
         font-weight: 700;
     }
 
-    td:first-child {
+    td:nth-child(1)::before {
+        content: "First Name: ";
         padding-top: 20px;
     }
 
-    td:last-child {
-        padding-bottom: 20px;
+    td:nth-child(2)::before {
+        content: "Last Name: ";
+    }
+
+    td:nth-child(3)::before {
+        content: "Phone: ";
+    }
+
+    td:nth-child(4)::before {
+        content: "Email: ";
+    }
+
+    td:nth-child(5)::before {
+        content: "Date Created: ";
+    }
+
+    td:nth-child(6)::before {
+        padding-top: 20px;
     }
 }
 
@@ -303,4 +324,201 @@ input[id="email"] {
 #addContactFormButton:hover {
     background-color: #54fd00;
     transition: 0.20s;
+}
+
+.editContactForm {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 380px;
+    padding: 20px;
+    background: rgb(224, 224, 224);
+    box-shadow: 0 -.1rem .8rem black;
+    border-radius: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    display: none;
+}
+
+#editContactCloseButton {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 15x;
+    height: 15px;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+#editContactFormTitle {
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 20px;
+}
+
+.formElement {
+    margin: 10px;
+    width: 100%;
+}
+
+input[id="firstName2"] {
+    padding: 15px;
+    display: block;
+    width: 80%;
+}
+
+input[id="lastName2"] {
+    padding: 15px;
+    display: block;
+    width: 80%;
+}
+
+input[id="phone2"] {
+    padding: 15px;
+    display: block;
+    width: 80%;
+}
+
+input[id="email2"] {
+    padding: 15px;
+    display: block;
+    width: 80%;
+}
+
+#editContactFormButton {
+    padding: 15px;
+    margin: 15px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: rgb(187, 187, 187);
+    width: 80%;
+}
+
+#editContactFormButton:hover {
+    background-color: #54fd00;
+    transition: 0.20s;
+}
+
+.editContactForm {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 380px;
+    padding: 20px;
+    background: rgb(224, 224, 224);
+    box-shadow: 0 -.1rem .8rem black;
+    border-radius: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    display: none;
+}
+
+#editContactCloseButton {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 15x;
+    height: 15px;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+#editContactFormTitle {
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 20px;
+}
+
+.formElement {
+    margin: 10px;
+    width: 100%;
+}
+
+input[id="firstName"] {
+    padding: 15px;
+    display: block;
+    width: 80%;
+}
+
+input[id="lastName"] {
+    padding: 15px;
+    display: block;
+    width: 80%;
+}
+
+input[id="phone"] {
+    padding: 15px;
+    display: block;
+    width: 80%;
+}
+
+input[id="email"] {
+    padding: 15px;
+    display: block;
+    width: 80%;
+}
+
+#editContactFormButton {
+    padding: 15px;
+    margin: 15px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: rgb(187, 187, 187);
+    width: 80%;
+}
+
+#editContactFormButton:hover {
+    background-color: #54fd00;
+    transition: 0.20s;
+}
+
+.removeContactPopup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 380px;
+    padding: 20px;
+    background: rgb(224, 224, 224);
+    box-shadow: 0 -.1rem .8rem black;
+    border-radius: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    display: none;
+}
+
+#removeContactFormTitle {
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 20px;
+}
+
+#removeMessage {
+    text-align: center;
+}
+
+#removeOptions {
+    display: flex;
+}
+
+#cancelButton {
+    cursor: pointer;
+    border: none;
+    padding: 15px;
+    margin: 15px;
+    width: 40%;
+    font-size: 16px;
+    background: rgb(224, 224, 224);
+}
+
+#removeContactFormButton {
+    padding: 15px;
+    margin: 15px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: rgb(255, 32, 32);
+    width: 40%;
 }
