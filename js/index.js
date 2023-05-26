@@ -66,7 +66,7 @@ loginBtn.addEventListener('click', ()=>{
         return response.text();
 
     }).then(function(data){
-
+        console.log("hello");
         console.log(data);
         let info = JSON.parse(data);
         console.log("hello");
