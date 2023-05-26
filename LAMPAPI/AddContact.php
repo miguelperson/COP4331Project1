@@ -22,7 +22,7 @@
 		$sql = $conn -> prepare("INSERT INTO Contacts (Name, Phone, Email, UserID) VALUES (?, ?, ?, ?) ");
 		echo "line 23";
 		$insertID = $sql->insert_id;
-		$sql->bind_param("ssss", $name, $phoneNumber, $email, $userID);
+		$sql->bind_param("sssi", $name, $phoneNumber, $email, $userID);
 		echo "line 25";
 		$sql->execute();
 		
