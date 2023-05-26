@@ -75,7 +75,7 @@ loginBtn.addEventListener('click', ()=>{
 });
 
 const loginFunction = (info) =>{
-    
+    console.log(info);
     if (info.error == ""){
         localStorage.setItem("id", info.id);
         localStorage.setItem("firstName", info.firstName);
