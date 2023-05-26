@@ -25,8 +25,8 @@ signupBtn.addEventListener('click', ()=>{
     let signup = {};
     signup.login = document.getElementById('username').value;
     signup.password = document.getElementById('password').value;
-    signup.firstname = document.getElementById('firstname').value;
-    signup.lastname = document.getElementById('lastname').value;
+    signup.firstName = document.getElementById('firstname').value;
+    signup.lastName = document.getElementById('lastname').value;
 
     fetch("LAMPAPI/Registration.php",{
         "method": "POST",
