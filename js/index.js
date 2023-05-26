@@ -53,27 +53,44 @@ loginBtn.addEventListener('click', ()=>{
     userLogin.login = document.getElementById('username').value;
     userLogin.password = document.getElementById('password').value;
 
-    fetch("LAMPAPI/Login.php", {
-        "method": "POST",
-        "headers" :{
-            "Content-Type" : "application/json; charset=utf-8" 
-        },
+    if(userLogin.login == ""){
+        if(userLogin.password == ""){
+            let node = document.getElementById("error-message");
+            node.innerHTML = "All Fields Empty";
+        }
+        else{
+            let node = document.getElementById("error-message");
+            node.innerHTML = "Username Field Empty.";
+        }
+    }
+    else if(userLogin.password == ""){
+        let node = document.getElementById("error-message");
+        node.innerHTML = "Password Field Empty.";
+    }
+    else{
 
-        "body": JSON.stringify(userLogin)
+        fetch("LAMPAPI/Login.php", {
+            "method": "POST",
+            "headers" :{
+                "Content-Type" : "application/json; charset=utf-8" 
+            },
 
-    }).then(function(response){
+            "body": JSON.stringify(userLogin)
 
-        return response.text();
-        
-    }).then(function(data){
+        }).then(function(response){
 
-        console.log(data);
-        let info = JSON.parse(data);
+            return response.text();
+            
+        }).then(function(data){
 
-        loginFunction(info);    
-    });
+            console.log(data);
+            let info = JSON.parse(data);
 
+            loginFunction(info);    
+        });
+    }
 });
+
 
 function loginFunction(info){
     console.log("hello");
