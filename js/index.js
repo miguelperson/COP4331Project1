@@ -63,7 +63,7 @@ loginBtn.addEventListener('click', ()=>{
 
     }).then(function(response){
 
-        return response.json();
+        return response.text();
 
     }).then(function(data){
 
