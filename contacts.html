@@ -19,7 +19,7 @@
         <div id="options">
             <div class="searchContact">
                 <form id="form1" action="javascript:searchContact()">
-                    <button class="searchButton"> <img class="icon" src="/images/searching.png"></button>
+                    <button class="searchContactButton"> <img class="icon" src="/images/searching.png"></button>
                     <input type="text" class="searchBox" placeholder="Search Contacts">
                 </form>
             </div>
@@ -27,231 +27,48 @@
                 <button class="buttons" id="addContactButton"><img class="icon" src="/images/add-user.png"> Add&nbsp;Contact</button>
             </div>
             <div id="editContact">
-                <button class="buttons"><img class="icon" src="/images/edit.png"> Edit&nbsp;Contact</button>
+                <button class="buttons" id="editContactButton"><img class="icon" src="/images/edit.png"> Edit&nbsp;Contact</button>
             </div>
             <div id="removeContact">
-                <button class="buttons"><img class="icon" src="/images/remove-user.png"> Remove Contact</button>
+                <button class="buttons" id="removeContactButton"><img class="icon" src="/images/remove-user.png"> Remove Contact</button>
             </div>
             <div id="logout">
-                <button class="buttons"><img class="icon" src="/images/logout.png"> Log&nbsp;Out</button>
+                <button class="buttons" id="logoutButton"><img class="icon" src="/images/logout.png"> Log&nbsp;Out</button>
             </div>
         </div>
 
         <!-- this panel displays info of all added/searched contacts -->
         <div id="contacts">
             <form id="form2" action="javascript:searchContact()">
-                <button class="searchButton"> <img class="searchIcon" src="/images/searching.png"></button>
+                <button class="searchContactButton"> <img class="icon" src="/images/searching.png"></button>
                 <input type="text" class="searchBox" placeholder="Search Contacts">
             </form>
             <div id="contactInfo">
                 <div class="tableWrap">
-                    <table>
-                        <tr id="header">
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Phone</th>
-                            <th>Email</th>
-                            <th>Date Created</th>
-                        </tr>
-                        <!-- placeholder records -->
-                        <tr>
-                            <td data-cell="First Name">Ryan</td>
-                            <td data-cell="Last Name">Kolano</td>
-                            <td data-cell="Phone">1234567890</td>
-                            <td data-cell="Email">rkolano@gmail.com</td>
-                            <td data-cell="Date Created">May 22, 2023</td>
-                        </tr>
-                        <tr>
-                            <td data-cell="First Name">Ryan</td>
-                            <td data-cell="Last Name">Kolano</td>
-                            <td data-cell="Phone">1234567890</td>
-                            <td data-cell="Email">rkolano@gmail.com</td>
-                            <td data-cell="Date Created">May 22, 2023</td>
-                        </tr>
-                        <tr>
-                            <td data-cell="First Name">Ryan</td>
-                            <td data-cell="Last Name">Kolano</td>
-                            <td data-cell="Phone">1234567890</td>
-                            <td data-cell="Email">rkolano@gmail.com</td>
-                            <td data-cell="Date Created">May 22, 2023</td>
-                        </tr>
-                        <tr>
-                            <td data-cell="First Name">Ryan</td>
-                            <td data-cell="Last Name">Kolano</td>
-                            <td data-cell="Phone">1234567890</td>
-                            <td data-cell="Email">rkolano@gmail.com</td>
-                            <td data-cell="Date Created">May 22, 2023</td>
-                        </tr>
-                        <tr>
-                            <td data-cell="First Name">Ryan</td>
-                            <td data-cell="Last Name">Kolano</td>
-                            <td data-cell="Phone">1234567890</td>
-                            <td data-cell="Email">rkolano@gmail.com</td>
-                            <td data-cell="Date Created">May 22, 2023</td>
-                        </tr>
-                        <tr>
-                            <td data-cell="First Name">Ryan</td>
-                            <td data-cell="Last Name">Kolano</td>
-                            <td data-cell="Phone">1234567890</td>
-                            <td data-cell="Email">rkolano@gmail.com</td>
-                            <td data-cell="Date Created">May 22, 2023</td>
-                        </tr>
-                        <tr>
-                            <td data-cell="First Name">Ryan</td>
-                            <td data-cell="Last Name">Kolano</td>
-                            <td data-cell="Phone">1234567890</td>
-                            <td data-cell="Email">rkolano@gmail.com</td>
-                            <td data-cell="Date Created">May 22, 2023</td>
-                        </tr>
-                        <tr>
-                            <td data-cell="First Name">Ryan</td>
-                            <td data-cell="Last Name">Kolano</td>
-                            <td data-cell="Phone">1234567890</td>
-                            <td data-cell="Email">rkolano@gmail.com</td>
-                            <td data-cell="Date Created">May 22, 2023</td>
-                        </tr>
-                        <tr>
-                            <td data-cell="First Name">Ryan</td>
-                            <td data-cell="Last Name">Kolano</td>
-                            <td data-cell="Phone">1234567890</td>
-                            <td data-cell="Email">rkolano@gmail.com</td>
-                            <td data-cell="Date Created">May 22, 2023</td>
-                        </tr>
-                        <tr>
-                            <td data-cell="First Name">Ryan</td>
-                            <td data-cell="Last Name">Kolano</td>
-                            <td data-cell="Phone">1234567890</td>
-                            <td data-cell="Email">rkolano@gmail.com</td>
-                            <td data-cell="Date Created">May 22, 2023</td>
-                        </tr>
-                        <tr>
-                            <td data-cell="First Name">Ryan</td>
-                            <td data-cell="Last Name">Kolano</td>
-                            <td data-cell="Phone">1234567890</td>
-                            <td data-cell="Email">rkolano@gmail.com</td>
-                            <td data-cell="Date Created">May 22, 2023</td>
-                        </tr>
-                        <tr>
-                            <td data-cell="First Name">Ryan</td>
-                            <td data-cell="Last Name">Kolano</td>
-                            <td data-cell="Phone">1234567890</td>
-                            <td data-cell="Email">rkolano@gmail.com</td>
-                            <td data-cell="Date Created">May 22, 2023</td>
-                        </tr>
-                                            <tr>
-                            <td data-cell="First Name">Ryan</td>
-                            <td data-cell="Last Name">Kolano</td>
-                            <td data-cell="Phone">1234567890</td>
-                            <td data-cell="Email">rkolano@gmail.com</td>
-                            <td data-cell="Date Created">May 22, 2023</td>
-                        </tr>
-                        <tr>
-                            <td data-cell="First Name">Ryan</td>
-                            <td data-cell="Last Name">Kolano</td>
-                            <td data-cell="Phone">1234567890</td>
-                            <td data-cell="Email">rkolano@gmail.com</td>
-                            <td data-cell="Date Created">May 22, 2023</td>
-                        </tr>
-                        <tr>
-                            <td data-cell="First Name">Ryan</td>
-                            <td data-cell="Last Name">Kolano</td>
-                            <td data-cell="Phone">1234567890</td>
-                            <td data-cell="Email">rkolano@gmail.com</td>
-                            <td data-cell="Date Created">May 22, 2023</td>
-                        </tr>
-                        <tr>
-                            <td data-cell="First Name">Ryan</td>
-                            <td data-cell="Last Name">Kolano</td>
-                            <td data-cell="Phone">1234567890</td>
-                            <td data-cell="Email">rkolano@gmail.com</td>
-                            <td data-cell="Date Created">May 22, 2023</td>
-                        </tr>
-                        <tr>
-                            <td data-cell="First Name">Ryan</td>
-                            <td data-cell="Last Name">Kolano</td>
-                            <td data-cell="Phone">1234567890</td>
-                            <td data-cell="Email">rkolano@gmail.com</td>
-                            <td data-cell="Date Created">May 22, 2023</td>
-                        </tr>
-                        <tr>
-                            <td data-cell="First Name">Ryan</td>
-                            <td data-cell="Last Name">Kolano</td>
-                            <td data-cell="Phone">1234567890</td>
-                            <td data-cell="Email">rkolano@gmail.com</td>
-                            <td data-cell="Date Created">May 22, 2023</td>
-                        </tr>
-                        <tr>
-                            <td data-cell="First Name">Ryan</td>
-                            <td data-cell="Last Name">Kolano</td>
-                            <td data-cell="Phone">1234567890</td>
-                            <td data-cell="Email">rkolano@gmail.com</td>
-                            <td data-cell="Date Created">May 22, 2023</td>
-                        </tr>
-                        <tr>
-                            <td data-cell="First Name">Ryan</td>
-                            <td data-cell="Last Name">Kolano</td>
-                            <td data-cell="Phone">1234567890</td>
-                            <td data-cell="Email">rkolano@gmail.com</td>
-                            <td data-cell="Date Created">May 22, 2023</td>
-                        </tr>
-                        <tr>
-                            <td data-cell="First Name">Ryan</td>
-                            <td data-cell="Last Name">Kolano</td>
-                            <td data-cell="Phone">1234567890</td>
-                            <td data-cell="Email">rkolano@gmail.com</td>
-                            <td data-cell="Date Created">May 22, 2023</td>
-                        </tr>
-                        <tr>
-                            <td data-cell="First Name">Ryan</td>
-                            <td data-cell="Last Name">Kolano</td>
-                            <td data-cell="Phone">1234567890</td>
-                            <td data-cell="Email">rkolano@gmail.com</td>
-                            <td data-cell="Date Created">May 22, 2023</td>
-                        </tr>
-                        <tr>
-                            <td data-cell="First Name">Ryan</td>
-                            <td data-cell="Last Name">Kolano</td>
-                            <td data-cell="Phone">1234567890</td>
-                            <td data-cell="Email">rkolano@gmail.com</td>
-                            <td data-cell="Date Created">May 22, 2023</td>
-                        </tr>
-                        <tr>
-                            <td data-cell="First Name">Ryan</td>
-                            <td data-cell="Last Name">Kolano</td>
-                            <td data-cell="Phone">1234567890</td>
-                            <td data-cell="Email">rkolano@gmail.com</td>
-                            <td data-cell="Date Created">May 22, 2023</td>
-                        </tr>
-                        <tr>
-                            <td data-cell="First Name">Ryan</td>
-                            <td data-cell="Last Name">Kolano</td>
-                            <td data-cell="Phone">1234567890</td>
-                            <td data-cell="Email">rkolano@gmail.com</td>
-                            <td data-cell="Date Created">May 22, 2023</td>
-                        </tr>
-                        <tr>
-                            <td data-cell="First Name">Ryan</td>
-                            <td data-cell="Last Name">Kolano</td>
-                            <td data-cell="Phone">1234567890</td>
-                            <td data-cell="Email">rkolano@gmail.com</td>
-                            <td data-cell="Date Created">May 22, 2023</td>
-                        </tr>
-                        <tr>
-                            <td data-cell="First Name">Ryan</td>
-                            <td data-cell="Last Name">Kolano</td>
-                            <td data-cell="Phone">1234567890</td>
-                            <td data-cell="Email">rkolano@gmail.com</td>
-                            <td data-cell="Date Created">May 22, 2023</td>
-                        </tr>
+                    <table class="list" id="contactsList">
+                        <thead>
+                            <tr id="header">
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                                <th>Date Created</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- holds records -->
+
+                        </tbody>                       
                     </table>
                 </div>
             </div>           
         </div>
 
-        <!-- pop up forms for adding/deleting contacts -->
+        <!-- pop up form for adding contacts -->
         <div class="addContactForm">
             <button id="addContactCloseButton">X</button>
-            <div class="form">
+            <div class="form3">
                 <h2 id="addContactFormTitle">Add Contact</h2>
                 <div class="formElement">
                     <label for="firstName">First Name</label>
@@ -274,7 +91,47 @@
                 </div>
             </div>
         </div>
+        
+        <!-- pop up form for editing contacts -->
+        <div class="editContactForm">
+            <button id="editContactCloseButton">X</button>
+            <div class="form4">
+                <h2 id="editContactFormTitle">Edit Contact</h2>
+                <div class="formElement">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName2">
+                </div>
+                <div class="formElement">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName2">
+                </div>
+                <div class="formElement">
+                    <label for="phone">Phone</label>
+                    <input type="text" id="phone2">
+                </div>
+                <div class="formElement">
+                    <label for="email">Email</label>
+                    <input type="text" id="email2">
+                </div>
+                <div class="formElement">
+                    <button id="editContactFormButton">Edit Contact</button>
+                </div>
+            </div>
+        </div>
 
+        <!-- pop up for removing contacts -->
+        <div class="removeContactPopup">
+            <div>
+                <h2 id="removeContactFormTitle">Remove Contact</h2>
+            </div>
+            <div>
+                <p id="removeMessage">Are you sure you want to remove this contact?</p>
+            </div>
+            <div id="removeOptions">
+                <button id="cancelButton">Cancel</button>
+                <button id="removeContactFormButton">Remove Contact</button>
+            </div> 
+        </div>
     </section>
 
     <script type="application/javascript" src="js/contacts.js"></script>
