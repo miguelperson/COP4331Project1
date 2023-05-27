@@ -528,6 +528,11 @@ label.validationError{
     margin-left: 5px;
 }
 
+label.invalidPhoneNumber{
+    color:   red;
+    margin-left: 5px;
+}
+
 .hide{
     display:none;
 }
