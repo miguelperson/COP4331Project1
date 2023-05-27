@@ -166,9 +166,9 @@ a:hover {
     width: 100%;
 }
 
-table {
+#contactsList {
     width: 100%;
-    background: rgb(226, 226, 226);
+    background: rgb(255, 255, 255);
     border-collapse: collapse;
 }
 
@@ -199,8 +199,25 @@ tr:hover {
     overflow-y: auto;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
+
+    .buttons {
+        font-size: 0;
+    }
+
     table {
+        width: 100%;
+    }
+
+    header {
+        width: 90%;
+    }
+
+    section {
+        width: 90%;
+    }
+
+    #contactsList {
         width: 100%;
     }
 
