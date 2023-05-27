@@ -206,6 +206,16 @@ function addValidate() {
     else {
         if (!document.getElementById("phoneValidationError").classList.contains("hide"))
             document.getElementById("phoneValidationError").classList.add("hide");
+
+        // if there is input, validate the phone number
+        if (validatePhoneNumber(document.getElementById("phone").value)) {
+            if (!document.getElementById("invalidPhoneNumber").classList.contains("hide"))
+                document.getElementById("invalidPhoneNumber").classList.add("hide");
+        }
+        else {
+            isValid = false;
+            document.getElementById("invalidPhoneNumber").classList.remove("hide");
+        }
     }
 
     if (document.getElementById("email").value == "") {
@@ -216,6 +226,7 @@ function addValidate() {
         if (!document.getElementById("emailValidationError").classList.contains("hide"))
             document.getElementById("emailValidationError").classList.add("hide");
     }
+
     return isValid;
 }
 
@@ -247,6 +258,16 @@ function editValidate() {
     else {
         if (!document.getElementById("phoneValidationError2").classList.contains("hide"))
             document.getElementById("phoneValidationError2").classList.add("hide");
+
+        // if there is input, validate the phone number
+        if (validatePhoneNumber(document.getElementById("phone2").value)) {
+            if (!document.getElementById("invalidPhoneNumber2").classList.contains("hide"))
+                document.getElementById("invalidPhoneNumber2").classList.add("hide");
+        }
+        else {
+            isValid = false;
+            document.getElementById("invalidPhoneNumber2").classList.remove("hide");
+        }
     }
 
     if (document.getElementById("email2").value == "") {
@@ -257,5 +278,14 @@ function editValidate() {
         if (!document.getElementById("emailValidationError2").classList.contains("hide"))
             document.getElementById("emailValidationError2").classList.add("hide");
     }
+
+
+    
     return isValid;
+}
+
+function validatePhoneNumber(phoneNumber) {
+    
+    const phoneRegex = /^[2-9]\d{2}-\d{3}-\d{4}$/;
+    return phoneRegex.test(phoneNumber);
 }
