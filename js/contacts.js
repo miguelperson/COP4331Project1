@@ -225,6 +225,16 @@ function addValidate() {
     else {
         if (!document.getElementById("emailValidationError").classList.contains("hide"))
             document.getElementById("emailValidationError").classList.add("hide");
+
+        // if there is input, validate the phone number
+        if (validateEmail(document.getElementById("email").value)) {
+            if (!document.getElementById("invalidEmail").classList.contains("hide"))
+                document.getElementById("invalidEmail").classList.add("hide");
+        }
+        else {
+            isValid = false;
+            document.getElementById("invalidEmail").classList.remove("hide");
+        }
     }
 
     return isValid;
@@ -270,6 +280,7 @@ function editValidate() {
         }
     }
 
+
     if (document.getElementById("email2").value == "") {
         isValid = false;
         document.getElementById("emailValidationError2").classList.remove("hide");
@@ -277,6 +288,16 @@ function editValidate() {
     else {
         if (!document.getElementById("emailValidationError2").classList.contains("hide"))
             document.getElementById("emailValidationError2").classList.add("hide");
+
+        // if there is input, validate the phone number
+        if (validateEmail(document.getElementById("email2").value)) {
+            if (!document.getElementById("invalidEmail2").classList.contains("hide"))
+                document.getElementById("invalidEmail2").classList.add("hide");
+        }
+        else {
+            isValid = false;
+            document.getElementById("invalidEmail2").classList.remove("hide");
+        }
     }
 
 
@@ -288,4 +309,9 @@ function validatePhoneNumber(phoneNumber) {
     
     const phoneRegex = /^[2-9]\d{2}-\d{3}-\d{4}$/;
     return phoneRegex.test(phoneNumber);
+}
+
+function validateEmail(email) {
+    const emailRegex = /^.+@[^\.].*\.[a-z]{2,}$/;
+    return emailRegex.test(email);
 }
