@@ -26,7 +26,7 @@ var selectedRow = null;
 // searching a contact functions -------------------------------------------------------------------------------------------------
 function searchContact() {
     var table = document.getElementById("contactsList").getElementsByTagName('tbody')[0];
-    console.log(sessionStorage.getItem("id"));
+    
     // get the input from the search form
     var searchInput = document.getElementById("search1").value;
 
@@ -57,6 +57,10 @@ addContactFormButton.addEventListener("click", function() {
         addContactRecord.phoneNumber = formData.phone;
         addContactRecord.email = formData.email;
         addContactRecord.dateCreated = new Date().toLocaleString().split(',')[0];
+        addContactRecord.id = sessionStorage.getItem("id");
+
+        console.log(addContactRecord["name"]);
+        console.log(addContactRecord["phoneNumber"]);
 
         fetch("LAMPAPI/AddContact.php", {
             "method": "POST",
