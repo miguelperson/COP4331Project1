@@ -6,7 +6,7 @@
 // -removing functions / event listeners
 // -logging off functions / event listeners
 
-let id = sessionStorage('id');
+let id = localStorage('id');
 alert(id);
 
 // form/option buttons
