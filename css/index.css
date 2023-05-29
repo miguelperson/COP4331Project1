@@ -110,3 +110,9 @@ input[type="button"]:hover{
     width: 100%;
 }
 
+.useradded{
+    color: rgb(152, 152, 152);
+    margin: auto;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
