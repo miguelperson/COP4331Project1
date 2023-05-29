@@ -37,9 +37,9 @@ signupBtn.addEventListener('click', ()=>{
         "body" : JSON.stringify(signup)
 
     }).then(function(response){
-
+        console.log(response.text());
         return response.text();
-
+        
     }).then(function(data){
 
         console.log(data);
