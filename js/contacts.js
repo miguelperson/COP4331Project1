@@ -26,7 +26,7 @@ var selectedRow = null;
 // searching a contact functions -------------------------------------------------------------------------------------------------
 function searchContact() {
     var table = document.getElementById("contactsList").getElementsByTagName('tbody')[0];
-    
+    console.log("yay");
     // get the input from the search form
     var searchInput = document.getElementById("search1").value;
 
@@ -36,7 +36,6 @@ function searchContact() {
 
 // adding a contact functions -------------------------------------------------------------------------------------------------
 addContactButton.addEventListener("click", function() {
-    console.log("yay");
     document.querySelector(".addContactForm").style.display = "block";
     document.querySelector("#addContactButton").disabled = true;
     document.querySelector("#addContactButton").style.cursor = "default";
