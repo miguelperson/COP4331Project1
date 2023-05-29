@@ -23,8 +23,8 @@ switchSignupBtn.addEventListener('click', ()=>{
 
 signupBtn.addEventListener('click', ()=>{
     let signup = {};
-    signup.login = document.getElementById('username').value;
-    signup.password = document.getElementById('password').value;
+    signup.login = document.getElementById('createusername').value;
+    signup.password = document.getElementById('createpassword').value;
     signup.firstName = document.getElementById('firstname').value;
     signup.lastName = document.getElementById('lastname').value;
 
@@ -35,9 +35,13 @@ signupBtn.addEventListener('click', ()=>{
         },
 
         "body" : JSON.stringify(signup)
+
     }).then(function(response){
+
         return response.text();
+
     }).then(function(data){
+
         console.log(data);
         let info = JSON.parse(data);
         registerFunction(info);
