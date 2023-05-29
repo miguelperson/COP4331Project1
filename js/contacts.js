@@ -59,8 +59,7 @@ addContactFormButton.addEventListener("click", function() {
         addContactRecord.dateCreated = new Date().toLocaleString().split(',')[0];
         addContactRecord.id = sessionStorage.getItem("id");
 
-        console.log(addContactRecord["name"]);
-        console.log(addContactRecord["phoneNumber"]);
+        console.log(addContactRecord);
 
         fetch("LAMPAPI/AddContact.php", {
             "method": "POST",
