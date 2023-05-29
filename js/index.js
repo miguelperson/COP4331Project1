@@ -105,9 +105,9 @@ loginBtn.addEventListener('click', ()=>{
 function loginFunction(info){
     console.log("hello");
     if (info.error == ""){
-        localStorage.setItem("id", info.id);
-        localStorage.setItem("firstName", info.firstName);
-        localStorage.setItem("lastName", info.lastName);
+        sessionStorage.setItem("id", info.id);
+        sessionStorage.setItem("firstName", info.firstName);
+        sessionStorage.setItem("lastName", info.lastName);
         location.href = 'contacts.html';
     }else{
         console.log(info.error);
