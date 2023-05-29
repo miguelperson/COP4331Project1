@@ -27,7 +27,7 @@ addContactButton.addEventListener("click", function() {
     document.querySelector(".addContactForm").style.display = "block";
     document.querySelector("#addContactButton").disabled = true;
     document.querySelector("#addContactButton").style.cursor = "default";
-})
+});
 
 addContactFormButton.addEventListener("click", function() {
     // validate the input (non-empty/correct format)
@@ -46,7 +46,7 @@ addContactFormButton.addEventListener("click", function() {
         document.querySelector("#addContactButton").disabled = false;
         document.querySelector("#addContactButton").style.cursor = "pointer";
     }
-})
+});
 
 function addValidate() {
     // set to false if any condition is false
@@ -111,7 +111,6 @@ function addValidate() {
             document.getElementById("invalidEmail").classList.remove("hide");
         }
     }
-
     return isValid;
 }
 
@@ -171,7 +170,7 @@ closeAddContactButton.addEventListener("click", function() {
     document.querySelector(".addContactForm").style.display = "none";
     document.querySelector("#addContactButton").disabled = false;
     document.querySelector("#addContactButton").style.cursor = "pointer";
-})
+});
 
 // editing a contact functions
 editContactCloseButton.addEventListener("click", function() {
@@ -179,7 +178,7 @@ editContactCloseButton.addEventListener("click", function() {
     document.querySelector(".editContactForm").style.display = "none";
     document.querySelector("#addContactButton").disabled = false;
     document.querySelector("#addContactButton").style.cursor = "pointer";
-})
+});
 
 editContactFormButton.addEventListener("click", function() {
     // validate the input (non-empty/correct format)
@@ -198,67 +197,7 @@ editContactFormButton.addEventListener("click", function() {
         document.querySelector("#addContactButton").disabled = false;
         document.querySelector("#addContactButton").style.cursor = "pointer";
     }
-
-})
-
-function edit(td) {
-    // disable add contact button to prevent menu overlapping
-    document.querySelector("#addContactButton").disabled = true;
-    document.querySelector("#addContactButton").style.cursor = "default";
-
-    // get the data from the selected row
-    selectedRow = td.parentElement.parentElement;
-    document.getElementById("firstName2").value = selectedRow.cells[0].innerHTML;
-    document.getElementById("lastName2").value = selectedRow.cells[1].innerHTML;
-    document.getElementById("phone2").value = selectedRow.cells[2].innerHTML;
-    document.getElementById("email2").value = selectedRow.cells[3].innerHTML;
-
-    // display the edit contact form
-    document.querySelector(".editContactForm").style.display = "block";
-}
-
-function updateRecord(formData) {
-    // replace the data in the selected row with the new edit contact form data
-    selectedRow.cells[0].innerHTML = formData.firstName;
-    selectedRow.cells[1].innerHTML = formData.lastName;
-    selectedRow.cells[2].innerHTML = formData.phone;
-    selectedRow.cells[3].innerHTML = formData.email;
-}
-
-// removing a contact functions
-function removeContact(td) {
-    //document.querySelector(".removeContactPopup").style.display = "block";
-    //document.querySelector("#addContactButton").disabled = true;
-    //document.querySelector("#addContactButton").style.cursor = "default";
-
-    // ask if user is sure 
-    if (confirm("Are you sure you want to remove this contact")) {
-        row = td.parentElement.parentElement;
-        document.getElementById("contactsList").deleteRow(row.rowIndex);
-        selectedRow = null;
-    }
-}
-
-cancelButton.addEventListener("click", function() {
-    // close the delete contact popup
-    document.querySelector(".removeContactPopup").style.display = "none";
-    document.querySelector("#addContactButton").disabled = false;
-    document.querySelector("#addContactButton").style.cursor = "pointer";
-})
-
-removeContactFormButton.addEventListener("click", function() {
-    // close the delete contact popup
-    document.querySelector(".removeContactPopup").style.display = "none";
-    document.querySelector("#addContactButton").disabled = false;
-    document.querySelector("#addContactButton").style.cursor = "pointer";  
-})  
-
-// logging out functions
-logoutButton.addEventListener("click", function() {
-    // redirect the user to the login/register page
-    window.location.href = "/index.html";
-})
-
+});
 
 function editValidate() {
     // set the false if any of the conditions are false
@@ -323,8 +262,31 @@ function editValidate() {
             document.getElementById("invalidEmail2").classList.remove("hide");
         }
     }
-
     return isValid;
+}
+
+function edit(td) {
+    // disable add contact button to prevent menu overlapping
+    document.querySelector("#addContactButton").disabled = true;
+    document.querySelector("#addContactButton").style.cursor = "default";
+
+    // get the data from the selected row
+    selectedRow = td.parentElement.parentElement;
+    document.getElementById("firstName2").value = selectedRow.cells[0].innerHTML;
+    document.getElementById("lastName2").value = selectedRow.cells[1].innerHTML;
+    document.getElementById("phone2").value = selectedRow.cells[2].innerHTML;
+    document.getElementById("email2").value = selectedRow.cells[3].innerHTML;
+
+    // display the edit contact form
+    document.querySelector(".editContactForm").style.display = "block";
+}
+
+function updateRecord(formData) {
+    // replace the data in the selected row with the new edit contact form data
+    selectedRow.cells[0].innerHTML = formData.firstName;
+    selectedRow.cells[1].innerHTML = formData.lastName;
+    selectedRow.cells[2].innerHTML = formData.phone;
+    selectedRow.cells[3].innerHTML = formData.email;
 }
 
 function validatePhoneNumber(phoneNumber) {
@@ -338,3 +300,37 @@ function validateEmail(email) {
     const emailRegex = /^.+@[^\.].*\.[a-z]{2,}$/;
     return emailRegex.test(email);
 }
+
+// removing a contact functions
+function removeContact(td) {
+    document.querySelector(".removeContactPopup").style.display = "block";
+    document.querySelector("#addContactButton").disabled = true;
+    document.querySelector("#addContactButton").style.cursor = "default";
+
+    // ask if user is sure 
+    removeContactFormButton.addEventListener("click", function(e) {
+        // delete the row
+        e.stopImmediatePropagation();
+        row = td.parentElement.parentElement;
+        document.getElementById("contactsList").deleteRow(row.rowIndex);
+        selectedRow = null;
+
+        // close the delete contact popup
+        document.querySelector(".removeContactPopup").style.display = "none";
+        document.querySelector("#addContactButton").disabled = false;
+        document.querySelector("#addContactButton").style.cursor = "pointer";  
+    });
+}
+
+cancelButton.addEventListener("click", function() {
+    // close the delete contact popup
+    document.querySelector(".removeContactPopup").style.display = "none";
+    document.querySelector("#addContactButton").disabled = false;
+    document.querySelector("#addContactButton").style.cursor = "pointer";
+});
+
+// logging out functions
+logoutButton.addEventListener("click", function() {
+    // redirect the user to the login/register page
+    window.location.href = "/index.html";
+});
