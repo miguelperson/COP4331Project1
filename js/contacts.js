@@ -6,8 +6,6 @@
 // -removing functions / event listeners
 // -logging off functions / event listeners
 
-let id = localStorage('id');
-alert(id);
 
 // form/option buttons
 const addContactButton = document.getElementById("addContactButton");
@@ -38,6 +36,8 @@ function searchContact() {
 
 // adding a contact functions -------------------------------------------------------------------------------------------------
 addContactButton.addEventListener("click", function() {
+    let userId = localStorage.getItem('id');
+    alert(userId);
     document.querySelector(".addContactForm").style.display = "block";
     document.querySelector("#addContactButton").disabled = true;
     document.querySelector("#addContactButton").style.cursor = "default";
