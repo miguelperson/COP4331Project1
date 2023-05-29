@@ -22,20 +22,18 @@ if ($databaseConnection->connect_error) {
         $insertStatement->bind_param("ssss", $firstName, $lastName, $login, $password);
         $insertStatement->execute();
         $insertId = $insertStatement->insert_id;
-        $insertStatement->close();
-        $databaseConnection->close();
         http_response_code(200);
         $responseData = '{"id": "' . $insertId . '","error": ""}';
         header('Content-type: application/json');
         echo $responseData;
     } else {
-        $insertStatement->close();
-        $databaseConnection->close();
         http_response_code(409);
         $errorData = '{"id": "", "error":"Username taken"}';
         header('Content-type: application/json');
         echo $errorData;
     }
+        $insertStatement->close();
+        $databaseConnection->close();
 }
 
 function getRequestData()
