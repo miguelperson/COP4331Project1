@@ -32,7 +32,7 @@ if ($databaseConnection->connect_error) {
         $insertStatement->close();
         $databaseConnection->close();
         http_response_code(409);
-        $errorData = '{"error":"Username taken"}';
+        $errorData = '{"id": "", "error":"Username taken"}';
         header('Content-type: application/json');
         echo $errorData;
     }
