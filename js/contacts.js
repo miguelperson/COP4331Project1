@@ -6,6 +6,8 @@
 // -removing functions / event listeners
 // -logging off functions / event listeners
 
+let id = sessionStorage('id');
+alert(id);
 
 // form/option buttons
 const addContactButton = document.getElementById("addContactButton");
