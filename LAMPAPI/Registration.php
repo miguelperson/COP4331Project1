@@ -25,7 +25,7 @@ if ($databaseConnection->connect_error) {
         $insertStatement->close();
         $databaseConnection->close();
         http_response_code(200);
-        $responseData = '{"id": "' . $insertId . '"}';
+        $responseData = '{"id": "' . $insertId . '","error": ""}';
         header('Content-type: application/json');
         echo $responseData;
     } else {
