@@ -4,7 +4,7 @@
 
 	$name = $contactInfo["name"];
 	$email = $contactInfo["email"];
-	$phoneNumber = $contactInfo["phoneNumber"];
+	$phoneNumber = $contactInfo["phone"];
 	$userID = $contactInfo["userID"];
 
 	// create connection
@@ -31,7 +31,7 @@
 		}
 		else 
 		{
-			echo "line 40";
+			
 			returnWithError("ERROR: DID NOT ADD");
 		}
 		$sql->close();
@@ -57,7 +57,7 @@
 	}
 	function returnWithInfo($name, $phoneNumber, $userID, $email) 
 	{
-		$retValue = '{"name":"' . $name . '","userID":"' . $userID . '","Phone":"' . $phoneNumber . '","email":"' . $email . '"}';
+		$retValue = '{"name":"' . $name . '","userID":"' . $userID . '","phone":"' . $phoneNumber . '","email":"' . $email . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
 ?>
