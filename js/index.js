@@ -36,7 +36,7 @@ signupBtn.addEventListener('click', ()=>{
 
         "body" : JSON.stringify(signup)
     }).then(function(response){
-        return response.json();
+        return response.text();
     }).then(function(data){
         console.log(data);
         let info = JSON.parse(data);
@@ -103,5 +103,17 @@ function loginFunction(info){
         console.log(info.error);
         let node = document.getElementById("error-message");
         node.innerHTML = "No Record Found."
+    }
+}
+
+function registerFunction(info){
+    if(info.error == ""){
+        let node = document.getElementById("register-message");
+        node.innerHTML = "User Registration Successful."
+    }
+    else{
+        console.log(info.error);
+        let node = document.getElementById("error");
+        node.innerHTML = "Username Taken.";
     }
 }

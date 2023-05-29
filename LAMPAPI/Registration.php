@@ -16,7 +16,7 @@ if ($databaseConnection->connect_error) {
     $statement->bind_param("s", $login);
     $statement->execute();
     $result = $statement->get_result();
-    $rowCount = $result->num_rows;
+    $rowCount = mysqli_num_rows( $result );
     if ($rowCount == 0) {
         $insertStatement = $databaseConnection->prepare("INSERT INTO Users (FirstName, LastName, Login, Password) VALUES (?,?,?,?)");
         $insertStatement->bind_param("ssss", $firstName, $lastName, $login, $password);
@@ -25,7 +25,7 @@ if ($databaseConnection->connect_error) {
         $insertStatement->close();
         $databaseConnection->close();
         http_response_code(200);
-        $responseData = '{"id": "' . $insertId . '"}';
+        $responseData = '{"id": "' . $insertId . '","error": ""}';
         header('Content-type: application/json');
         echo $responseData;
     } else {
