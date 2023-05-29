@@ -26,7 +26,7 @@ var selectedRow = null;
 // searching a contact functions -------------------------------------------------------------------------------------------------
 function searchContact() {
     var table = document.getElementById("contactsList").getElementsByTagName('tbody')[0];
-    console.log("yay");
+    console.log(localStorage.getItem("id"));
     // get the input from the search form
     var searchInput = document.getElementById("search1").value;
 
