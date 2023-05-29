@@ -72,18 +72,24 @@
                 <h2 id="addContactFormTitle">Add Contact</h2>
                 <div class="formElement">
                     <label for="firstName">First Name</label>
+                    <label class="validationError hide" id="firstNameValidationError">This field is required.</label>
                     <input type="text" id="firstName" placeholder="Enter First Name">
                 </div>
                 <div class="formElement">
                     <label for="lastName">Last Name</label>
+                    <label class="validationError hide" id="lastNameValidationError">This field is required.</label>
                     <input type="text" id="lastName" placeholder="Enter Last Name">
                 </div>
                 <div class="formElement">
                     <label for="phone">Phone</label>
-                    <input type="text" id="phone" placeholder="Enter Phone">
+                    <label class="validationError hide" id="phoneValidationError">This field is required.</label>
+                    <label class="validationError hide" id="invalidPhoneNumber">Invalid phone number.</label>
+                    <input type="text" id="phone" placeholder="Enter Phone (XXX-XXX-XXXX)">
                 </div>
                 <div class="formElement">
                     <label for="email">Email</label>
+                    <label class="validationError hide" id="emailValidationError">This field is required.</label>
+                    <label class="validationError hide" id="invalidEmail">Invalid email.</label>
                     <input type="text" id="email" placeholder="Enter Email">
                 </div>
                 <div class="formElement">
@@ -99,19 +105,25 @@
                 <h2 id="editContactFormTitle">Edit Contact</h2>
                 <div class="formElement">
                     <label for="firstName">First Name</label>
-                    <input type="text" id="firstName2">
+                    <label class="validationError hide" id="firstNameValidationError2">This field is required.</label>
+                    <input type="text" id="firstName2" placeholder="Enter First Name">
                 </div>
                 <div class="formElement">
                     <label for="lastName">Last Name</label>
-                    <input type="text" id="lastName2">
+                    <label class="validationError hide" id="lastNameValidationError2">This field is required.</label>
+                    <input type="text" id="lastName2" placeholder="Enter Last Name">
                 </div>
                 <div class="formElement">
                     <label for="phone">Phone</label>
-                    <input type="text" id="phone2">
+                    <label class="validationError hide" id="phoneValidationError2">This field is required.</label>
+                    <label class="validationError hide" id="invalidPhoneNumber2">Invalid phone number.</label>
+                    <input type="text" id="phone2" placeholder="Enter Phone (XXX-XXX-XXXX)">
                 </div>
                 <div class="formElement">
                     <label for="email">Email</label>
-                    <input type="text" id="email2">
+                    <label class="validationError hide" id="emailValidationError2">This field is required.</label>
+                    <label class="validationError hide" id="invalidEmail2">Invalid email.</label>
+                    <input type="text" id="email2" placeholder="Enter Email">
                 </div>
                 <div class="formElement">
                     <button id="editContactFormButton">Edit Contact</button>
