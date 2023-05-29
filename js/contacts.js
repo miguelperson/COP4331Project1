@@ -1,3 +1,10 @@
+// table of contents:
+// -form/option buttons / declarations
+// -searching functions / event listeners
+// -adding functions / event listeners
+// -editing functions / event listeners
+// -removing functions / event listeners
+// -logging off functions / event listeners
 
 
 // form/option buttons
@@ -16,14 +23,21 @@ const logoutButton = document.getElementById('logoutButton');
 // selected table row for edit/delete
 var selectedRow = null;
 
-// searching a contact functions
+// searching a contact functions -------------------------------------------------------------------------------------------------
 function searchContact() {
     var table = document.getElementById("contactsList").getElementsByTagName('tbody')[0];
+    
+    // get the input from the search form
+    var searchInput = document.getElementById("search1").value;
+
+    // package it up into json and sent it to php
 
 }
 
-// adding a contact functions
+// adding a contact functions -------------------------------------------------------------------------------------------------
 addContactButton.addEventListener("click", function() {
+    let userId = localStorage.getItem('id');
+    console.log(userId);
     document.querySelector(".addContactForm").style.display = "block";
     document.querySelector("#addContactButton").disabled = true;
     document.querySelector("#addContactButton").style.cursor = "default";
@@ -39,6 +53,27 @@ addContactFormButton.addEventListener("click", function() {
         } else {
             updateRecord(formData);
         }
+
+        let addContactRecord = {};
+        addContactRecord.name = formData.firstName + " " + formData.lastName;
+        addContactRecord.phoneNumber = formData.phone;
+        addContactRecord.email = formData.email;
+        addContactRecord.dateCreated = new Date().toLocaleString().split(',')[0];
+
+        fetch("LAMPAPI/AddContact.php", {
+            "method": "POST",
+
+            "headers": {
+                "Content-Type": "application/json; charset=utf-8"
+            },
+
+            "body": JSON.stringify(addContactRecord)
+        }).then(function(response){
+            return response.text();
+        }).then(function(data){
+            console.log(data);
+        })
+
         resetAddContactForm();
     
         // close form
@@ -47,6 +82,17 @@ addContactFormButton.addEventListener("click", function() {
         document.querySelector("#addContactButton").style.cursor = "pointer";
     }
 });
+
+function readAddContactFormData() {
+    // get the input from the add contact form
+    var formData = {};
+    formData["firstName"] = document.getElementById("firstName").value;
+    formData["lastName"] = document.getElementById("lastName").value;
+    formData["phone"] = document.getElementById("phone").value;
+    formData["email"] = document.getElementById("email").value;
+    formData["dateCreated"] = new Date().toLocaleString().split(',')[0];
+    return formData;
+}
 
 function addValidate() {
     // set to false if any condition is false
@@ -114,28 +160,6 @@ function addValidate() {
     return isValid;
 }
 
-function readAddContactFormData() {
-    // get the input from the add contact form
-    var formData = {};
-    formData["firstName"] = document.getElementById("firstName").value;
-    formData["lastName"] = document.getElementById("lastName").value;
-    formData["phone"] = document.getElementById("phone").value;
-    formData["email"] = document.getElementById("email").value;
-    formData["dateCreated"] = new Date().toLocaleString().split(',')[0];
-    return formData;
-}
-
-function readEditContactFormData() {
-    // get the input from the edit contact form
-    var formData = {};
-    formData["firstName"] = document.getElementById("firstName2").value;
-    formData["lastName"] = document.getElementById("lastName2").value;
-    formData["phone"] = document.getElementById("phone2").value;
-    formData["email"] = document.getElementById("email2").value;
-    formData["dateCreated"] = new Date().toLocaleString().split(',')[0];
-    return formData;
-}
-
 function insertNewRecord(data) {
     // create a row in the table and add data into the cells
     var table = document.getElementById("contactsList").getElementsByTagName('tbody')[0];
@@ -156,7 +180,7 @@ function insertNewRecord(data) {
 }
 
 function resetAddContactForm() {
-    // remove user input from the form
+    // remove user input from the form fields
     document.getElementById("firstName").value = "";
     document.getElementById("lastName").value = "";
     document.getElementById("phone").value = "";
@@ -172,7 +196,7 @@ closeAddContactButton.addEventListener("click", function() {
     document.querySelector("#addContactButton").style.cursor = "pointer";
 });
 
-// editing a contact functions
+// editing a contact functions -------------------------------------------------------------------------------------------------
 editContactCloseButton.addEventListener("click", function() {
     // close the edit contact form
     document.querySelector(".editContactForm").style.display = "none";
@@ -198,6 +222,17 @@ editContactFormButton.addEventListener("click", function() {
         document.querySelector("#addContactButton").style.cursor = "pointer";
     }
 });
+
+function readEditContactFormData() {
+    // get the input from the edit contact form
+    var formData = {};
+    formData["firstName"] = document.getElementById("firstName2").value;
+    formData["lastName"] = document.getElementById("lastName2").value;
+    formData["phone"] = document.getElementById("phone2").value;
+    formData["email"] = document.getElementById("email2").value;
+    formData["dateCreated"] = new Date().toLocaleString().split(',')[0];
+    return formData;
+}
 
 function editValidate() {
     // set the false if any of the conditions are false
@@ -301,7 +336,7 @@ function validateEmail(email) {
     return emailRegex.test(email);
 }
 
-// removing a contact functions
+// removing a contact functions -------------------------------------------------------------------------------------------------
 function removeContact(td) {
     document.querySelector(".removeContactPopup").style.display = "block";
     document.querySelector("#addContactButton").disabled = true;
@@ -329,7 +364,7 @@ cancelButton.addEventListener("click", function() {
     document.querySelector("#addContactButton").style.cursor = "pointer";
 });
 
-// logging out functions
+// logging out functions -------------------------------------------------------------------------------------------------
 logoutButton.addEventListener("click", function() {
     // redirect the user to the login/register page
     window.location.href = "/index.html";
