@@ -36,8 +36,7 @@ function searchContact() {
 
 // adding a contact functions -------------------------------------------------------------------------------------------------
 addContactButton.addEventListener("click", function() {
-    let userId = localStorage.getItem('id');
-    console.log(userId);
+    console.log("yay");
     document.querySelector(".addContactForm").style.display = "block";
     document.querySelector("#addContactButton").disabled = true;
     document.querySelector("#addContactButton").style.cursor = "default";
