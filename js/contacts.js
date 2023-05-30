@@ -440,16 +440,18 @@ function loadContacts(){
 
 //function to split name into first and last and return the dataset
 function nameSplit(info){
-    let retval = [{}]; 
+    let retval = []; 
 
     for(let i = 0; i < info.results.length; i++){
         let arr = info.results[i].name.split(" ");
-        retval[i].firstName = arr[0];
-        retval[i].lastName = arr[1];
-        retval[i].email = info.results[i].email;
-        retval[i].phone = info.results[i].phone;
-        retval[i].UserID = info.results[i].UserID;
-        retval[i].ID = info.results[i].ID;
+        retval[i] = {
+            "firstName": arr[0],
+            "lastName": arr[1],
+            "email": info.results[i].email,
+            "phone": info.results[i].phone,
+            "UserID": info.results[i].UserID,
+            "ID": info.results[i].ID
+        }
     }
     return retval;
 }
