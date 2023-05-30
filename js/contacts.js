@@ -28,19 +28,23 @@ loadContacts();
 
 // searching a contact functions -------------------------------------------------------------------------------------------------
 function searchContact() {
-    var table = document.getElementById("contactsList").getElementsByTagName('tbody')[0];
-    
+    tableRows = document.querySelectorAll('tbody tr');
     // get the input from the search form
-    var searchInput = document.getElementById("search1").value;
+    var searchInput1 = document.getElementById("search1").value;
+    var searchInput2 = document.getElementById("search2").value;
 
-    // package it up into json and sent it to php
-
+    if (searchInput2 == "") {
+        tableRows.forEach((row,i)=> {
+            let tableData = row.textContent;
+            row.classList.toggle('hide');
+        })
+    } else {
+        
+    }
 }
 
 // adding a contact functions -------------------------------------------------------------------------------------------------
 addContactButton.addEventListener("click", function() {
-    let userId = localStorage.getItem('id');
-    console.log(userId);
     document.querySelector(".addContactForm").style.display = "block";
     document.querySelector("#addContactButton").disabled = true;
     document.querySelector("#addContactButton").style.cursor = "default";
@@ -62,8 +66,9 @@ addContactFormButton.addEventListener("click", function() {
         addContactRecord.phoneNumber = formData.phone;
         addContactRecord.email = formData.email;
         addContactRecord.dateCreated = new Date().toLocaleString().split(',')[0];
+        addContactRecord.id = sessionStorage.getItem("id");
 
-        fetch("LAMPAPI/AddContact.php", {
+        fetch("LAMPAPI/DeleteContact.php", {
             "method": "POST",
 
             "headers": {
@@ -337,12 +342,38 @@ function validateEmail(email) {
 
 // removing a contact functions -------------------------------------------------------------------------------------------------
 function removeContact(td) {
+    selectedRow = td.parentElement.parentElement;
+    let removeContactRecord = {};
+    removeContactRecord.name = selectedRow.cells[0].innerHTML + " " + selectedRow.cells[1].innerHTML;
+    removeContactRecord.phoneNumber = selectedRow.cells[2].innerHTML;
+    removeContactRecord.email = selectedRow.cells[3].innerHTML;
+    removeContactRecord.dateCreated = selectedRow.cells[4].innerHTML;
+    removeContactRecord.id = sessionStorage.getItem("id");
+
+    console.log(removeContactRecord);
+
+    fetch("LAMPAPI/AddContact.php", {
+        "method": "POST",
+
+        "headers": {
+            "Content-Type": "application/json; charset=utf-8"
+        },
+
+        "body": JSON.stringify(removeContactRecord)
+    }).then(function(response){
+        return response.text();
+    }).then(function(data){
+        console.log(data);
+    })
+
+
     document.querySelector(".removeContactPopup").style.display = "block";
     document.querySelector("#addContactButton").disabled = true;
     document.querySelector("#addContactButton").style.cursor = "default";
 
     // ask if user is sure 
     removeContactFormButton.addEventListener("click", function(e) {
+        
         // delete the row
         e.stopImmediatePropagation();
         row = td.parentElement.parentElement;
