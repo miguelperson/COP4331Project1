@@ -1,7 +1,8 @@
 <?php
 $inData = json_decode(file_get_contents('php://input'), true);
 $contactID = $inData["contactID"];
-    $name = $contactInfo["name"];
+    $firstName = $contactInfo["firstName"];
+	$lastName = $inData["lastName"];
 	$email = $contactInfo["email"];
 	$phoneNumber = $contactInfo["phone"];
 
