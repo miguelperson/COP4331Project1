@@ -1,43 +1,152 @@
-<html>
-    <head>
-        <link href="css/index.css" rel="stylesheet" type="text/css">
-        
-    </head>
-    <body>
-        
-        <div class="container">
-            
-            <div class="button-box">
-                <button type="button" class="toggle-btn" id="loginSlider">Login</button>
-                <button type="button" class="toggle-btn" id="registerSlider">Signup</button>
-            </div>
-            <div class="wrapper" id="login-block">
-                <div id="page">
-                    <form id="login-side" class="form">
-                        <h1 class="logintitle">Login</h1>
-                        <input type = "text" id="username" name="username" placeholder="username"><br>
-                        <input type = "password" id="password" name="password" placeholder="password"><br>
-                        <input type = "button" id="login" name="login" placeholder="login" value="login">
-                    </form>
-                    <p id="error-message" class="error-message"></p>
-                </div>
-                
-            </div>
-            <div class="wrapper" id="signup-block">
-                <form id="signup-side" class="form">
-                    <h1 class="logintitle">Signup</h1>
-                    <input type = "text" id="firstname" name="firstname" placeholder="firstname"><br>
-                    <input type = "text" id="lastname" name="lastname" placeholder="lastname"><br>
-                    <input type = "text" id="createusername" name="username" placeholder="username"><br>
-                    <input type = "password" id="createpassword" name="password" placeholder="password"><br>
-                    <input type = "button" id="signup" name="signup" placeholder="signup" value="signup">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>My Contacts</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0">
+
+    <link href="css/contacts.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+    <header>
+        <h1 id="headerText">My Contacts</h1>
+    </header>
+    <section>
+        <!-- this panel displays the options to the user -->
+        <div id="options">
+            <div class="searchContact">
+                <form id="form1" action="javascript:searchContact()">
+                    <button class="searchContactButton"> <img class="icon" src="/images/searching.png"></button>
+                    <input type="text" id="search1" class="searchBox" placeholder="Search Contacts">
                 </form>
-                <p id="register-message" class="useradded"></p>
-                <p id="error" class="error-message"></p>
             </div>
-            
-            
+            <div id="addContact">
+                <button class="buttons" id="addContactButton"><img class="icon" src="/images/add-user.png"> Add&nbsp;Contact</button>
+            </div>
+            <div id="editContact">
+                <button class="buttons" id="editContactButton"><img class="icon" src="/images/edit.png"> Edit&nbsp;Contact</button>
+            </div>
+            <div id="removeContact">
+                <button class="buttons" id="removeContactButton"><img class="icon" src="/images/remove-user.png"> Remove Contact</button>
+            </div>
+            <div id="logout">
+                <button class="buttons" id="logoutButton"><img class="icon" src="/images/logout.png"> Log&nbsp;Out</button>
+            </div>
         </div>
-        <script src = "js/index.js"></script>
-    </body>
+
+        <!-- this panel displays info of all added/searched contacts -->
+        <div id="contacts">
+            <!-- this search form is displayed if the width is too small -->
+            <form id="form2" action="javascript:searchContact()">
+                <button class="searchContactButton"> <img class="icon" src="/images/searching.png"></button>
+                <input type="text" id="search2" class="searchBox" placeholder="Search Contacts">
+            </form>
+            <div id="contactInfo">
+                <div class="tableWrap">
+                    <table class="list" id="contactsList">
+                        <thead>
+                            <tr id="header">
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                                <th>Date Created</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- holds records -->
+                        </tbody>                       
+                    </table>
+                </div>
+            </div>           
+        </div>
+
+        <!-- pop up form for adding contacts -->
+        <div class="addContactForm">
+            <button id="addContactCloseButton">X</button>
+            <div class="form3">
+                <h2 id="addContactFormTitle">Add Contact</h2>
+                <div class="formElement">
+                    <label for="firstName">First Name</label>
+                    <label class="validationError hide" id="firstNameValidationError">This field is required.</label>
+                    <input type="text" id="firstName" placeholder="Enter First Name">
+                </div>
+                <div class="formElement">
+                    <label for="lastName">Last Name</label>
+                    <label class="validationError hide" id="lastNameValidationError">This field is required.</label>
+                    <input type="text" id="lastName" placeholder="Enter Last Name">
+                </div>
+                <div class="formElement">
+                    <label for="phone">Phone</label>
+                    <label class="validationError hide" id="phoneValidationError">This field is required.</label>
+                    <label class="validationError hide" id="invalidPhoneNumber">Invalid phone number.</label>
+                    <input type="text" id="phone" placeholder="Enter Phone (XXX-XXX-XXXX)">
+                </div>
+                <div class="formElement">
+                    <label for="email">Email</label>
+                    <label class="validationError hide" id="emailValidationError">This field is required.</label>
+                    <label class="validationError hide" id="invalidEmail">Invalid email.</label>
+                    <input type="text" id="email" placeholder="Enter Email">
+                </div>
+                <div class="formElement">
+                    <button id="addContactFormButton">Add Contact</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- pop up form for editing contacts -->
+        <div class="editContactForm">
+            <button id="editContactCloseButton">X</button>
+            <div class="form4">
+                <h2 id="editContactFormTitle">Edit Contact</h2>
+                <div class="formElement">
+                    <label for="firstName">First Name</label>
+                    <label class="validationError hide" id="firstNameValidationError2">This field is required.</label>
+                    <input type="text" id="firstName2" placeholder="Enter First Name">
+                </div>
+                <div class="formElement">
+                    <label for="lastName">Last Name</label>
+                    <label class="validationError hide" id="lastNameValidationError2">This field is required.</label>
+                    <input type="text" id="lastName2" placeholder="Enter Last Name">
+                </div>
+                <div class="formElement">
+                    <label for="phone">Phone</label>
+                    <label class="validationError hide" id="phoneValidationError2">This field is required.</label>
+                    <label class="validationError hide" id="invalidPhoneNumber2">Invalid phone number.</label>
+                    <input type="text" id="phone2" placeholder="Enter Phone (XXX-XXX-XXXX)">
+                </div>
+                <div class="formElement">
+                    <label for="email">Email</label>
+                    <label class="validationError hide" id="emailValidationError2">This field is required.</label>
+                    <label class="validationError hide" id="invalidEmail2">Invalid email.</label>
+                    <input type="text" id="email2" placeholder="Enter Email">
+                </div>
+                <div class="formElement">
+                    <button id="editContactFormButton">Edit Contact</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- pop up for removing contacts -->
+        <div class="removeContactPopup">
+            <div>
+                <h2 id="removeContactFormTitle">Remove Contact</h2>
+            </div>
+            <div>
+                <p id="removeMessage">Are you sure you want to remove this contact?</p>
+            </div>
+            <div id="removeOptions">
+                <button id="cancelButton">Cancel</button>
+                <button id="removeContactFormButton">Remove Contact</button>
+            </div> 
+        </div>
+    </section>
+
+    <script type="application/javascript" src="js/contacts.js"></script>
+
+</body>
 </html>
