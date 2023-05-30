@@ -1,152 +1,103 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>My Contacts</title>
+//login/signin forms
+const loginForm = document.getElementById('login-block');
+const signupForm = document.getElementById('signup-block');
+//The buttons to switch between signin and login
+const switchLoginBtn = document.getElementById('loginSlider');
+const switchSignupBtn = document.getElementById('registerSlider');
+//signin and login buttons
+const signupBtn = document.getElementById('signup');
+const loginBtn = document.getElementById('login');
+signupForm.style.display = "none";
+switchLoginBtn.addEventListener('click', ()=>{
+    signupForm.style.display = "none";
+    loginForm.style.display = "block";
+});
+switchSignupBtn.addEventListener('click', ()=>{
+    loginForm.style.display = "none";
+    signupForm.style.display = "block";
+});
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale = 1.0">
+signupBtn.addEventListener('click', ()=>{
+    let signup = {};
+    signup.login = document.getElementById('username').value;
+    signup.password = document.getElementById('password').value;
+    signup.login = document.getElementById('createusername').value;
+    signup.password = document.getElementById('createpassword').value;
+    signup.firstName = document.getElementById('firstname').value;
+    signup.lastName = document.getElementById('lastname').value;
 
-    <link href="css/contacts.css" rel="stylesheet" type="text/css">
+@@ -35,9 +35,13 @@ signupBtn.addEventListener('click', ()=>{
+        },
 
-</head>
+        "body" : JSON.stringify(signup)
 
-<body>
-    <header>
-        <h1 id="headerText">My Contacts</h1>
-    </header>
-    <section>
-        <!-- this panel displays the options to the user -->
-        <div id="options">
-            <div class="searchContact">
-                <form id="form1" action="javascript:searchContact()">
-                    <button class="searchContactButton"> <img class="icon" src="/images/searching.png"></button>
-                    <input type="text" id="search1" class="searchBox" placeholder="Search Contacts">
-                </form>
-            </div>
-            <div id="addContact">
-                <button class="buttons" id="addContactButton"><img class="icon" src="/images/add-user.png"> Add&nbsp;Contact</button>
-            </div>
-            <div id="editContact">
-                <button class="buttons" id="editContactButton"><img class="icon" src="/images/edit.png"> Edit&nbsp;Contact</button>
-            </div>
-            <div id="removeContact">
-                <button class="buttons" id="removeContactButton"><img class="icon" src="/images/remove-user.png"> Remove Contact</button>
-            </div>
-            <div id="logout">
-                <button class="buttons" id="logoutButton"><img class="icon" src="/images/logout.png"> Log&nbsp;Out</button>
-            </div>
-        </div>
+    }).then(function(response){
 
-        <!-- this panel displays info of all added/searched contacts -->
-        <div id="contacts">
-            <!-- this search form is displayed if the width is too small -->
-            <form id="form2" action="javascript:searchContact()">
-                <button class="searchContactButton"> <img class="icon" src="/images/searching.png"></button>
-                <input type="text" id="search2" class="searchBox" placeholder="Search Contacts">
-            </form>
-            <div id="contactInfo">
-                <div class="tableWrap">
-                    <table class="list" id="contactsList">
-                        <thead>
-                            <tr id="header">
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Phone</th>
-                                <th>Email</th>
-                                <th>Date Created</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- holds records -->
-                        </tbody>                       
-                    </table>
-                </div>
-            </div>           
-        </div>
+        return response.text();
 
-        <!-- pop up form for adding contacts -->
-        <div class="addContactForm">
-            <button id="addContactCloseButton">X</button>
-            <div class="form3">
-                <h2 id="addContactFormTitle">Add Contact</h2>
-                <div class="formElement">
-                    <label for="firstName">First Name</label>
-                    <label class="validationError hide" id="firstNameValidationError">This field is required.</label>
-                    <input type="text" id="firstName" placeholder="Enter First Name">
-                </div>
-                <div class="formElement">
-                    <label for="lastName">Last Name</label>
-                    <label class="validationError hide" id="lastNameValidationError">This field is required.</label>
-                    <input type="text" id="lastName" placeholder="Enter Last Name">
-                </div>
-                <div class="formElement">
-                    <label for="phone">Phone</label>
-                    <label class="validationError hide" id="phoneValidationError">This field is required.</label>
-                    <label class="validationError hide" id="invalidPhoneNumber">Invalid phone number.</label>
-                    <input type="text" id="phone" placeholder="Enter Phone (XXX-XXX-XXXX)">
-                </div>
-                <div class="formElement">
-                    <label for="email">Email</label>
-                    <label class="validationError hide" id="emailValidationError">This field is required.</label>
-                    <label class="validationError hide" id="invalidEmail">Invalid email.</label>
-                    <input type="text" id="email" placeholder="Enter Email">
-                </div>
-                <div class="formElement">
-                    <button id="addContactFormButton">Add Contact</button>
-                </div>
-            </div>
-        </div>
-        
-        <!-- pop up form for editing contacts -->
-        <div class="editContactForm">
-            <button id="editContactCloseButton">X</button>
-            <div class="form4">
-                <h2 id="editContactFormTitle">Edit Contact</h2>
-                <div class="formElement">
-                    <label for="firstName">First Name</label>
-                    <label class="validationError hide" id="firstNameValidationError2">This field is required.</label>
-                    <input type="text" id="firstName2" placeholder="Enter First Name">
-                </div>
-                <div class="formElement">
-                    <label for="lastName">Last Name</label>
-                    <label class="validationError hide" id="lastNameValidationError2">This field is required.</label>
-                    <input type="text" id="lastName2" placeholder="Enter Last Name">
-                </div>
-                <div class="formElement">
-                    <label for="phone">Phone</label>
-                    <label class="validationError hide" id="phoneValidationError2">This field is required.</label>
-                    <label class="validationError hide" id="invalidPhoneNumber2">Invalid phone number.</label>
-                    <input type="text" id="phone2" placeholder="Enter Phone (XXX-XXX-XXXX)">
-                </div>
-                <div class="formElement">
-                    <label for="email">Email</label>
-                    <label class="validationError hide" id="emailValidationError2">This field is required.</label>
-                    <label class="validationError hide" id="invalidEmail2">Invalid email.</label>
-                    <input type="text" id="email2" placeholder="Enter Email">
-                </div>
-                <div class="formElement">
-                    <button id="editContactFormButton">Edit Contact</button>
-                </div>
-            </div>
-        </div>
+    }).then(function(data){
 
-        <!-- pop up for removing contacts -->
-        <div class="removeContactPopup">
-            <div>
-                <h2 id="removeContactFormTitle">Remove Contact</h2>
-            </div>
-            <div>
-                <p id="removeMessage">Are you sure you want to remove this contact?</p>
-            </div>
-            <div id="removeOptions">
-                <button id="cancelButton">Cancel</button>
-                <button id="removeContactFormButton">Remove Contact</button>
-            </div> 
-        </div>
-    </section>
-
-    <script type="application/javascript" src="js/contacts.js"></script>
-
-</body>
-</html>
+        console.log(data);
+        let info = JSON.parse(data);
+        registerFunction(info);
+    });
+});
+loginBtn.addEventListener('click', ()=>{
+    let userLogin = {};
+    userLogin.login = document.getElementById('username').value;
+    userLogin.password = document.getElementById('password').value;
+    if(userLogin.login == ""){
+        if(userLogin.password == ""){
+            let node = document.getElementById("error-message");
+            node.innerHTML = "All Fields Empty";
+        }
+        else{
+            let node = document.getElementById("error-message");
+            node.innerHTML = "Username Field Empty.";
+        }
+    }
+    else if(userLogin.password == ""){
+        let node = document.getElementById("error-message");
+        node.innerHTML = "Password Field Empty.";
+    }
+    else{
+        fetch("LAMPAPI/Login.php", {
+            "method": "POST",
+            "headers" :{
+                "Content-Type" : "application/json; charset=utf-8" 
+            },
+            "body": JSON.stringify(userLogin)
+        }).then(function(response){
+            return response.text();
+            
+        }).then(function(data){
+            console.log(data);
+            let info = JSON.parse(data);
+            loginFunction(info);    
+        });
+    }
+});
+function loginFunction(info){
+    console.log("hello");
+    if (info.error == ""){
+        localStorage.setItem("id", info.id);
+        localStorage.setItem("firstName", info.firstName);
+        localStorage.setItem("lastName", info.lastName);
+        location.href = 'contacts.html';
+    }else{
+        console.log(info.error);
+        let node = document.getElementById("error-message");
+        node.innerHTML = "No Record Found."
+    }
+}
+function registerFunction(info){
+    if(info.error == ""){
+        let node = document.getElementById("register-message");
+        node.innerHTML = "User Registration Successful."
+    }
+    else{
+        console.log(info.error);
+        let node = document.getElementById("error");
+        node.innerHTML = "Username Taken.";
+    }
+}
