@@ -440,11 +440,7 @@ function loadContacts(){
 
 //function to split name into first and last and return the dataset
 function nameSplit(info){
-    let retval = {
-        results: [{
-            
-        }]
-    }
+    let results = [{}]; 
 
     for(let i = 0; i < info.results.length; i++){
         let arr = info.results[i].name.split(" ");
