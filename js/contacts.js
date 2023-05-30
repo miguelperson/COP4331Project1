@@ -400,3 +400,55 @@ logoutButton.addEventListener("click", function() {
     // redirect the user to the login/register page
     window.location.href = "/index.html";
 });
+
+function loadContacts(){
+    let user = {};
+
+    user.id = sessionStorage.getItem("id");
+
+    fetch("LAMPAPI/LoadContacts.php", {
+        "method": "POST",
+        "headers" :{
+            "Content-Type" : "application/json; charset=utf-8" 
+        },
+
+        "body": JSON.stringify(user)
+
+    }).then(function(response){
+
+        return response.text();
+
+    }).then(function(data){
+        console.log(data);
+        let info = JSON.parse(data);
+        let newData = nameSplit(info);
+        for(let i= 0 ; i < info.results.length; i++){
+            console.log(newData[i]);
+            
+            insertNewRecord(newData[i]);
+            //let item = "" + i;
+            //sessionStorage.setItem(item, info.results[i].ID);
+        }
+
+        //sessionStorage.setItem("length", info.results.length);
+
+    });
+}
+
+//function to split name into first and last and return the dataset
+function nameSplit(info){
+    let retval = {
+        results: []
+    }
+
+    for(let i = 0; i < info.results.length; i++){
+        let arr = info.results[i].name.split(" ");
+        retval.results[i].firstName = arr[0];
+        retval.results[i].lastName = arr[1];
+        retval.results[i].email = info.results[i].email;
+        retval.results[i].phone = info.results[i].phone;
+        retval.results[i].UserID = info.results[i].UserID;
+        retval.results[i].ID = info.results[i].ID;
+    }
+    return retval;
+}
