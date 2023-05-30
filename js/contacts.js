@@ -23,6 +23,9 @@ const logoutButton = document.getElementById('logoutButton');
 // selected table row for edit/delete
 var selectedRow = null;
 
+//intial load contacts
+loadContacts();
+
 // searching a contact functions -------------------------------------------------------------------------------------------------
 function searchContact() {
     let tableRows = document.querySelectorAll('tbody tr');
