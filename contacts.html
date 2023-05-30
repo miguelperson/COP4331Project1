@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Contacts</title>
+    <title>My Contacts</title>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale = 1.0">
@@ -12,7 +12,7 @@
 
 <body>
     <header>
-        <h1 id="headerText">Contacts</h1>
+        <h1 id="headerText">My Contacts</h1>
     </header>
     <section>
         <!-- this panel displays the options to the user -->
@@ -20,7 +20,7 @@
             <div class="searchContact">
                 <form id="form1" action="javascript:searchContact()">
                     <button class="searchContactButton"> <img class="icon" src="/images/searching.png"></button>
-                    <input type="text" class="searchBox" placeholder="Search Contacts">
+                    <input type="text" id="search1" class="searchBox" placeholder="Search Contacts">
                 </form>
             </div>
             <div id="addContact">
@@ -39,9 +39,10 @@
 
         <!-- this panel displays info of all added/searched contacts -->
         <div id="contacts">
+            <!-- this search form is displayed if the width is too small -->
             <form id="form2" action="javascript:searchContact()">
                 <button class="searchContactButton"> <img class="icon" src="/images/searching.png"></button>
-                <input type="text" class="searchBox" placeholder="Search Contacts">
+                <input type="text" id="search2" class="searchBox" placeholder="Search Contacts">
             </form>
             <div id="contactInfo">
                 <div class="tableWrap">
@@ -58,7 +59,6 @@
                         </thead>
                         <tbody>
                             <!-- holds records -->
-
                         </tbody>                       
                     </table>
                 </div>

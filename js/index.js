@@ -23,26 +23,36 @@ switchSignupBtn.addEventListener('click', ()=>{
 
 signupBtn.addEventListener('click', ()=>{
     let signup = {};
-    signup.login = document.getElementById('username').value;
-    signup.password = document.getElementById('password').value;
+    signup.login = document.getElementById('createusername').value;
+    signup.password = document.getElementById('createpassword').value;
     signup.firstName = document.getElementById('firstname').value;
     signup.lastName = document.getElementById('lastname').value;
 
-    fetch("LAMPAPI/Registration.php",{
-        "method": "POST",
-        "headers": {
-            "Content-Type" : "application/json; charset=utf-8"
-        },
+    if(signup.login == "" || signup.password == "" || signup.firstName == "" || signup.lastName == ""){
+        let node = document.getElementById("error");
+        node.innerHTML = "Missing Field.";
+    }
+    else{
+        fetch("LAMPAPI/Registration.php",{
+            "method": "POST",
+            "headers": {
+                "Content-Type" : "application/json; charset=utf-8"
+            },
 
-        "body" : JSON.stringify(signup)
-    }).then(function(response){
-        return response.text();
-    }).then(function(data){
-        console.log(data);
-        let info = JSON.parse(data);
-        registerFunction(info);
+            "body" : JSON.stringify(signup)
 
-    });
+        }).then(function(response){
+            console.log("hello");
+            return response.text();
+            
+        }).then(function(data){
+
+            console.log(data);
+            let info = JSON.parse(data);
+            registerFunction(info);
+
+        });
+    }
 
 
 
@@ -95,9 +105,9 @@ loginBtn.addEventListener('click', ()=>{
 function loginFunction(info){
     console.log("hello");
     if (info.error == ""){
-        localStorage.setItem("id", info.id);
-        localStorage.setItem("firstName", info.firstName);
-        localStorage.setItem("lastName", info.lastName);
+        sessionStorage.setItem("id", info.id);
+        sessionStorage.setItem("firstName", info.firstName);
+        sessionStorage.setItem("lastName", info.lastName);
         location.href = 'contacts.html';
     }else{
         console.log(info.error);
@@ -110,10 +120,14 @@ function registerFunction(info){
     if(info.error == ""){
         let node = document.getElementById("register-message");
         node.innerHTML = "User Registration Successful."
+        let otherNode = document.getElementById("error");
+        otherNode.innerHTML = "";
     }
     else{
         console.log(info.error);
         let node = document.getElementById("error");
         node.innerHTML = "Username Taken.";
+        let otherNode = document.getElementById("register-message");
+        otherNode.innerHTML = "";
     }
 }
