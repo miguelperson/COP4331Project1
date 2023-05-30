@@ -72,7 +72,7 @@ addContactFormButton.addEventListener("click", function() {
                 "Content-Type": "application/json; charset=utf-8"
             },
 
-            "body": JSON.stringify(removeContactRecord)
+            "body": JSON.stringify(addContactRecord)
         }).then(function(response){
             return response.text();
         }).then(function(data){
@@ -353,19 +353,19 @@ function removeContact(td) {
 
     console.log(removeContactRecord);
 
-    // fetch("LAMPAPI/AddContact.php", {
-    //     "method": "POST",
+    fetch("LAMPAPI/AddContact.php", {
+        "method": "POST",
 
-    //     "headers": {
-    //         "Content-Type": "application/json; charset=utf-8"
-    //     },
+        "headers": {
+            "Content-Type": "application/json; charset=utf-8"
+        },
 
-    //     "body": JSON.stringify(addContactRecord)
-    // }).then(function(response){
-    //     return response.text();
-    // }).then(function(data){
-    //     console.log(data);
-    // })
+        "body": JSON.stringify(removeContactRecord)
+    }).then(function(response){
+        return response.text();
+    }).then(function(data){
+        console.log(data);
+    })
 
 
     document.querySelector(".removeContactPopup").style.display = "block";
