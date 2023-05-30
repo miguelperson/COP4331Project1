@@ -1,103 +1,43 @@
-//login/signin forms
-const loginForm = document.getElementById('login-block');
-const signupForm = document.getElementById('signup-block');
-//The buttons to switch between signin and login
-const switchLoginBtn = document.getElementById('loginSlider');
-const switchSignupBtn = document.getElementById('registerSlider');
-//signin and login buttons
-const signupBtn = document.getElementById('signup');
-const loginBtn = document.getElementById('login');
-signupForm.style.display = "none";
-switchLoginBtn.addEventListener('click', ()=>{
-    signupForm.style.display = "none";
-    loginForm.style.display = "block";
-});
-switchSignupBtn.addEventListener('click', ()=>{
-    loginForm.style.display = "none";
-    signupForm.style.display = "block";
-});
-
-signupBtn.addEventListener('click', ()=>{
-    let signup = {};
-    signup.login = document.getElementById('username').value;
-    signup.password = document.getElementById('password').value;
-    signup.login = document.getElementById('createusername').value;
-    signup.password = document.getElementById('createpassword').value;
-    signup.firstName = document.getElementById('firstname').value;
-    signup.lastName = document.getElementById('lastname').value;
-
-@@ -35,9 +35,13 @@ signupBtn.addEventListener('click', ()=>{
-        },
-
-        "body" : JSON.stringify(signup)
-
-    }).then(function(response){
-
-        return response.text();
-
-    }).then(function(data){
-
-        console.log(data);
-        let info = JSON.parse(data);
-        registerFunction(info);
-    });
-});
-loginBtn.addEventListener('click', ()=>{
-    let userLogin = {};
-    userLogin.login = document.getElementById('username').value;
-    userLogin.password = document.getElementById('password').value;
-    if(userLogin.login == ""){
-        if(userLogin.password == ""){
-            let node = document.getElementById("error-message");
-            node.innerHTML = "All Fields Empty";
-        }
-        else{
-            let node = document.getElementById("error-message");
-            node.innerHTML = "Username Field Empty.";
-        }
-    }
-    else if(userLogin.password == ""){
-        let node = document.getElementById("error-message");
-        node.innerHTML = "Password Field Empty.";
-    }
-    else{
-        fetch("LAMPAPI/Login.php", {
-            "method": "POST",
-            "headers" :{
-                "Content-Type" : "application/json; charset=utf-8" 
-            },
-            "body": JSON.stringify(userLogin)
-        }).then(function(response){
-            return response.text();
+<html>
+    <head>
+        <link href="css/index.css" rel="stylesheet" type="text/css">
+        
+    </head>
+    <body>
+        
+        <div class="container">
             
-        }).then(function(data){
-            console.log(data);
-            let info = JSON.parse(data);
-            loginFunction(info);    
-        });
-    }
-});
-function loginFunction(info){
-    console.log("hello");
-    if (info.error == ""){
-        localStorage.setItem("id", info.id);
-        localStorage.setItem("firstName", info.firstName);
-        localStorage.setItem("lastName", info.lastName);
-        location.href = 'contacts.html';
-    }else{
-        console.log(info.error);
-        let node = document.getElementById("error-message");
-        node.innerHTML = "No Record Found."
-    }
-}
-function registerFunction(info){
-    if(info.error == ""){
-        let node = document.getElementById("register-message");
-        node.innerHTML = "User Registration Successful."
-    }
-    else{
-        console.log(info.error);
-        let node = document.getElementById("error");
-        node.innerHTML = "Username Taken.";
-    }
-}
+            <div class="button-box">
+                <button type="button" class="toggle-btn" id="loginSlider">Login</button>
+                <button type="button" class="toggle-btn" id="registerSlider">Signup</button>
+            </div>
+            <div class="wrapper" id="login-block">
+                <div id="page">
+                    <form id="login-side" class="form">
+                        <h1 class="logintitle">Login</h1>
+                        <input type = "text" id="username" name="username" placeholder="username"><br>
+                        <input type = "password" id="password" name="password" placeholder="password"><br>
+                        <input type = "button" id="login" name="login" placeholder="login" value="login">
+                    </form>
+                    <p id="error-message" class="error-message"></p>
+                </div>
+                
+            </div>
+            <div class="wrapper" id="signup-block">
+                <form id="signup-side" class="form">
+                    <h1 class="logintitle">Signup</h1>
+                    <input type = "text" id="firstname" name="firstname" placeholder="firstname"><br>
+                    <input type = "text" id="lastname" name="lastname" placeholder="lastname"><br>
+                    <input type = "text" id="username" name="username" placeholder="username"><br>
+                    <input type = "password" id="password" name="password" placeholder="password"><br>
+                    <input type = "button" id="signup" name="signup" placeholder="signup" value="signup">
+                </form>
+                <p id="register-message" class="useradded"></p>
+                <p id="error" class="error-message"></p>
+            </div>
+
+
+        </div>
+        <script src = "js/index.js"></script>
+    </body>
+</html>
