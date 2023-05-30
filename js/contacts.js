@@ -23,6 +23,11 @@ const logoutButton = document.getElementById('logoutButton');
 // selected table row for edit/delete
 var selectedRow = null;
 
+//array of contact id objects {"id" : 34}
+var contactID = [];
+
+
+
 //intial load contacts
 loadContacts();
 
@@ -56,7 +61,7 @@ addContactFormButton.addEventListener("click", function() {
         // proceed with adding the contact record
         var formData = readAddContactFormData();
         if (selectedRow == null) {
-            insertNewRecord(formData);
+            loadContacts();
         } else {
             updateRecord(formData);
         }
@@ -216,7 +221,7 @@ editContactFormButton.addEventListener("click", function() {
     if (editValidate()) {
         var formData = readEditContactFormData();
         if (selectedRow == null) {
-            insertNewRecord(formData);
+            loadContacts();
         }
         else {
             updateRecord(formData);
@@ -427,7 +432,12 @@ function loadContacts(){
         let newData = nameSplit(info);
         for(let i= 0 ; i < info.results.length; i++){
             console.log(newData[i]);
-            
+
+            //stores contact id based on row number
+            contactID[i] = {
+                "id" : newData[i].ID    
+            }
+
             insertNewRecord(newData[i]);
             //let item = "" + i;
             //sessionStorage.setItem(item, info.results[i].ID);
