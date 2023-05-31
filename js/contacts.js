@@ -322,7 +322,7 @@ function editValidate() {
     return isValid;
 }
 
-function edit(td, rownum) {
+function edit(td, rownumber) {
     // disable add contact button to prevent menu overlapping
     document.querySelector("#addContactButton").disabled = true;
     document.querySelector("#addContactButton").style.cursor = "default";
@@ -345,8 +345,8 @@ function edit(td, rownum) {
                 updateRecord(formData);
             }*/
             let data= {};
-            data.contactID = contactID[rownum];
-            console.log(data.contactID+"    bruh     bruh" + rownum);
+            data.contactID = contactID[rownumber];
+            console.log(data.contactID+"    bruh     bruh" + rownumber);
             data.name = document.getElementById("firstName2").value + " " + document.getElementById("lastName2");
             data.phone = document.getElementById("phone2");
             data.email = document.getElementById("email2");
@@ -400,7 +400,7 @@ function validateEmail(email) {
 }
 
 // removing a contact functions -------------------------------------------------------------------------------------------------
-function removeContact(td, rownum) {
+function removeContact(td, rownumber) {
     let selectedRow = td.parentElement.parentElement;
 
     let removeContactRecord = {};
