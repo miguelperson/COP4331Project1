@@ -203,6 +203,7 @@ function insertNewRecord(data) {
     cell4 = newRow.insertCell(3);
     cell4.innerHTML = data.email;
     cell6 = newRow.insertCell(4);
+    console.log(table.length);
     cell6.innerHTML = `<a onClick="edit(this, ${table.length})">Edit</a> <a onClick="removeContact(this, ${table.length})">Remove</a>`;
 }
 
