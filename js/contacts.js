@@ -23,7 +23,7 @@ const logoutButton = document.getElementById('logoutButton');
 // selected table row for edit/delete
 var selectedRow = null;
 
-//array of contact id objects {"id" : 34}
+//array of contact id's rownum of table as index. The val is the contactid
 var contactID = [];
 
 
@@ -176,7 +176,7 @@ function insertNewRecord(data) {
     // create a row in the table and add data into the cells
     var table = document.getElementById("contactsList").getElementsByTagName('tbody')[0];
     var newRow = table.insertRow(table.length);
-
+    
     cell1 = newRow.insertCell(0);
     cell1.innerHTML = data.firstName;
     cell2 = newRow.insertCell(1);
@@ -188,7 +188,7 @@ function insertNewRecord(data) {
     cell5 = newRow.insertCell(4);
     cell5.innerHTML = data.dateCreated;
     cell6 = newRow.insertCell(5);
-    cell6.innerHTML = `<a onClick="edit(this)">Edit</a> <a onClick="removeContact(this)">Remove</a>`;
+    cell6.innerHTML = `<a onClick="edit(this,${table.length})">Edit</a> <a onClick="removeContact(this, ${table.length})">Remove</a>`;
 }
 
 function resetAddContactForm() {
@@ -312,7 +312,7 @@ function editValidate() {
     return isValid;
 }
 
-function edit(td) {
+function edit(td, rownum) {
     // disable add contact button to prevent menu overlapping
     document.querySelector("#addContactButton").disabled = true;
     document.querySelector("#addContactButton").style.cursor = "default";
@@ -349,7 +349,7 @@ function validateEmail(email) {
 }
 
 // removing a contact functions -------------------------------------------------------------------------------------------------
-function removeContact(td) {
+function removeContact(td, rownum) {
     let selectedRow = td.parentElement.parentElement;
 
     let removeContactRecord = {};
@@ -433,10 +433,8 @@ function loadContacts(){
         for(let i= 0 ; i < info.results.length; i++){
             console.log(newData[i]);
 
-            //stores contact id based on row number
-            contactID[i] = {
-                "id" : newData[i].ID    
-            }
+            //stores contact id based on name
+            contactID[i] = newData[i].ID;
 
             insertNewRecord(newData[i]);
             //let item = "" + i;
