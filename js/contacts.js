@@ -29,7 +29,7 @@ var selectedRow = null;
 var contactID = [];
 
 // initial load contacts
-loadContacts();
+loadContacts(); 
 
 // searching a contact functions -------------------------------------------------------------------------------------------------
 function searchContact() {
@@ -37,17 +37,17 @@ function searchContact() {
     // get the input from the search form
     let searchInput1 = document.getElementById("search1").value;
     let searchInput2 = document.getElementById("search2").value;
-    let searchInput3;
     
     // send as string to api
+    let searchInput3 = {};
     if (searchInput2 == "") {
-        searchInput3 = searchInput1;
+        searchInput3.search = searchInput1;
     } else {
-        searchInput3 = searchInput2;
+        searchInput3.search = searchInput2;
     }
-    
+
     fetch("LAMPAPI/SearchContacts.php", {
-        "method": "GET",
+        "method": "POST",
 
         "headers": {
             "Content-Type": "application/json; charset=utf-8"
@@ -59,6 +59,9 @@ function searchContact() {
     }).then(function(data){
         console.log(data);
     })
+
+    // update html table to show searched contacts
+
 }
 
 // adding a contact functions -------------------------------------------------------------------------------------------------
