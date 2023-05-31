@@ -19,16 +19,6 @@ if($conn -> connect_error) // checks if connection is successful
 	$statment->bind_param("ssss", $newName, $newEmail, $newPhoneNumber, $contactID);
 	$statment->execute();
 	
-	$sqlQuery = "SELECT * FROM Contacts WHERE ID = ?";
-	$stat = $conn->prepare($sql);
-	$stat->bind_param("s", $contactID);
-	$stat->execute();
-	$result = $stat->get_result();
-	while($row = $result->fetch_assoc()){
-		echo '{"name":"'. $row["Name"].'", "email":"'.$row["Email"].'", "phone":"'.$row["Phone"],'", "userID":"'.$row["UserID"].'", "contactID":"'.$row["ID"].'"}';
-	}
-	$statment->close();
-	$conn -> close();
 }
 
 
