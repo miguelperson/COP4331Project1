@@ -34,7 +34,9 @@ if($conn -> connect_error) // checks if connection is successful
 
 	if(($sqlQuery = $conn->query($sqlUpdate)) === TRUE)
 	{
-		$returnString = '{"name":"' . $name . '","userID":"' . $userID . '","phone":"' . $phoneNumber . '","email":"' . $email . '"}';
+		$result = $sqlQuery->get_result();
+		$row = $result->fetch_assoc();
+		$returnString = '{"name":"' . $name . '","userID":"' . $row["UserID"] . '","phone":"' . $phoneNumber . '","email":"' . $email . '"}';
 		echo $returnString;
 	}
 	else 
