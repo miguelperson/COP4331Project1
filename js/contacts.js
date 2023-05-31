@@ -27,6 +27,7 @@ var selectedRow = null;
 
 //array of contact id objects {"id" : 34}
 var contactID = [];
+var rownum = 0;
 
 // initial load contacts
 loadContacts(); 
@@ -203,7 +204,7 @@ function insertNewRecord(data) {
     // create a row in the table and add data into the cells
     var table = document.getElementById("contactsList").getElementsByTagName('tbody')[0];
     var newRow = table.insertRow(table.length);
-    
+    rownum++;
     cell1 = newRow.insertCell(0);
     cell1.innerHTML = data.firstName;
     cell2 = newRow.insertCell(1);
@@ -213,7 +214,8 @@ function insertNewRecord(data) {
     cell4 = newRow.insertCell(3);
     cell4.innerHTML = data.email;
     cell6 = newRow.insertCell(4);
-    cell6.innerHTML = `<a onClick="edit(this, ${table.length})">Edit</a> <a onClick="removeContact(this, ${table.length})">Remove</a>`;
+    console.log(table.length);
+    cell6.innerHTML = `<a onClick="edit(this, ${rownum})">Edit</a> <a onClick="removeContact(this, ${rownum})">Remove</a>`;
 }
 
 function resetAddContactForm() {
@@ -472,6 +474,7 @@ function loadContacts(){
         let info = JSON.parse(data);
         let newData = nameSplit(info);
         contactTable.innerHTML = "";
+        rownum = 0;
         for(let i= 0 ; i < info.results.length; i++){
             console.log(newData[i]);
 
