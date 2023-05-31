@@ -477,6 +477,7 @@ function loadContacts(){
         let newData = nameSplit(info);
         contactTable.innerHTML = "";
         rownum = 0;
+        contactID= [];
         for(let i= 0 ; i < info.results.length; i++){
             //console.log(newData[i]);
 
