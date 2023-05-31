@@ -317,6 +317,26 @@ function edit(td, rownum) {
     document.getElementById("lastName2").value = selectedRow.cells[1].innerHTML;
     document.getElementById("phone2").value = selectedRow.cells[2].innerHTML;
     document.getElementById("email2").value = selectedRow.cells[3].innerHTML;
+    
+    //setup data to send to api
+    let data= {};
+    data.contactID = contactID[rownum];
+    data.name = selectedRow.cells[0].innerHTML + " " + selectedRow.cells[1].innerHTML;
+    data.phone = selectedRow.cells[2].innerHTML;
+    data.email = selectedRow.cells[3].innerHTML;
+
+    //send to api and receive info
+    fetch("LAMPAPI/UpdateContact.php", {
+        "method" : "POST",
+        "headers":{
+            "Content-Type": "application/json; charset=utf-8"
+        },
+        "body": JSON.stringify(data)
+    }).then(function(response){
+        return response.text();
+    }).then(function(data){
+        loadContacts();
+    });
 
     // display the edit contact form
     document.querySelector(".editContactForm").style.display = "block";
