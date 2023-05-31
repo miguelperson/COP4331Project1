@@ -154,7 +154,7 @@ editContactFormButton.addEventListener("click", function() {
             return response.text();
         }).then(function(data){
             //console.log(data);
-            loadContacts();
+            //loadContacts();
         });
 
         resetAddContactForm();
