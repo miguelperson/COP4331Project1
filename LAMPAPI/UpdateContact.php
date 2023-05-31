@@ -24,8 +24,9 @@ if($conn -> connect_error) // checks if connection is successful
 	$stat->bind_param("s", $contactID);
 	$stat->execute();
 	$result = $stat->get_result();
-	$row = $result->fetch_assoc();
-	echo '{"name":"'. $row["Name"].'", "email":"'.$row["Email"].'", "phone":"'.$row["Phone"],'", "userID":"'.$row["UserID"].'", "contactID":"'.$row["ID"].'"}';
+	while($row = $result->fetch_assoc()){
+		echo '{"name":"'. $row["Name"].'", "email":"'.$row["Email"].'", "phone":"'.$row["Phone"],'", "userID":"'.$row["UserID"].'", "contactID":"'.$row["ID"].'"}';
+	}
 	$statment->close();
 	$conn -> close();
 }
