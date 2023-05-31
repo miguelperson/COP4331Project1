@@ -57,7 +57,6 @@ addContactFormButton.addEventListener("click", function() {
         // proceed with adding the contact record
         var formData = readAddContactFormData();
         if (selectedRow == null) {
-            insertNewRecord(formData);
             loadContacts();
         } else {
             updateRecord(formData);
@@ -215,7 +214,6 @@ editContactFormButton.addEventListener("click", function() {
     if (editValidate()) {
         var formData = readEditContactFormData();
         if (selectedRow == null) {
-            insertNewRecord(formData);
             loadContacts();
         }
         else {
