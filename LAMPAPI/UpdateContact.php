@@ -1,10 +1,9 @@
 <?php
 $inData = json_decode(file_get_contents('php://input'), true);
 $contactID = $inData["contactID"];
-    $name = $inData["name"];
-	$email = $inData["email"];
-	$phoneNumber = $inData["phone"];
-	$userID = $inData["userID"];
+    $newName = $inData["name"];
+	$newEmail = $inData["email"];
+	$newPhoneNumber = $inData["phone"];
 
 
 // create connection
@@ -14,48 +13,22 @@ if($conn -> connect_error) // checks if connection is successful
 {
 	returnWithError( $conn->connect_error );
 }else{
-	// $sqlCommand = "SELECT Email, Name,  FROM Contacts WHERE ID = '$contactID'";
+
+	$sql = "UPDATE Contacts SET Name = ? , Email = ?, Phone = ? WHERE ID = ?";
+	$statement = $conn->prepare($sql);
+	$statment->bind_param("ssss", $newName, $newEmail, $newPhoneNumber, $contactID);
+	$statment->execute();
 	
-	// if (($result = $conn->query($sqlCommand)) === TRUE) 
-	// {
-	// 	echo "Users found";
-	// }
-	// else 
-	// {
-	// 	echo "Users not found";
-	// }
-
-//UPDATE Customers
-//SET ContactName = 'Alfred Schmidt', City= 'Frankfurt'
-//WHERE CustomerID = 1;
-
-	$sqlUpdate = "UPDATE Contacts SET Name = '$name' , Email = '$email', Phone = '$phoneNumber' WHERE ID = '$contactID'";
-	
-
-	if(($sqlQuery = $conn->query($sqlUpdate)) === TRUE)
-	{
-		$returnString = '{"name":"' . $name . '","userID":"' . $userID . '","phone":"' . $phoneNumber . '","email":"' . $email . '"}';
-		echo $returnString;
+	$sqlQuery = "SELECT * FROM Contacts WHERE ID = ?";
+	$stat = $conn->prepare($sql);
+	$stat->bind_param("s", $contactID);
+	$stat->execute();
+	$result = $stat->get_result();
+	while($row = $result->fetch_assoc()){
+		echo '{"name":"'. $row["Name"].'", "email":"'.$row["Email"].'", "phone":"'.$row["Phone"],'", "userID":"'.$row["UserID"].'", "contactID":"'.$row["ID"].'"}';
 	}
-	else 
-	{
-		echo "Error: Did not update";
-	}
-
+	$statment->close();
 	$conn -> close();
-
-	  //  function sendResultInfoAsJson( $obj )
-	//{
-		//header('Content-type: application/json');
-		//echo $obj;
-	//}
-
-
-//	function returnWithInfo($name, $phoneNumber, $userID, $email) 
-//	{
-//		$retValue = '{"name":"' . $name . '","userID":"' . $userID . '","phone":"' . $phoneNumber . '","email":"' . $email . '"}';
-//		sendResultInfoAsJson( $retValue );
-//	}
 }
 
 
