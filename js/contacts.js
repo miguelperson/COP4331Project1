@@ -37,13 +37,28 @@ function searchContact() {
     // get the input from the search form
     let searchInput1 = document.getElementById("search1").value;
     let searchInput2 = document.getElementById("search2").value;
-
+    let searchInput3;
+    
     // send as string to api
     if (searchInput2 == "") {
-
+        searchInput3 = searchInput1;
     } else {
-        
+        searchInput3 = searchInput2;
     }
+    
+    fetch("LAMPAPI/SearchContacts.php", {
+        "method": "GET",
+
+        "headers": {
+            "Content-Type": "application/json; charset=utf-8"
+        },
+
+        "body": JSON.stringify(searchInput3)
+    }).then(function(response){
+        return response.text();
+    }).then(function(data){
+        console.log(data);
+    })
 }
 
 // adding a contact functions -------------------------------------------------------------------------------------------------
