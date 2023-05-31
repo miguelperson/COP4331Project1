@@ -23,6 +23,12 @@ const logoutButton = document.getElementById('logoutButton');
 // selected table row for edit/delete
 var selectedRow = null;
 
+// array of contact id objects {"id" : 34}
+var contactID = [];
+
+// initial load contacts
+loadContacts();
+
 // searching a contact functions -------------------------------------------------------------------------------------------------
 function searchContact() {
     let tableRows = document.querySelectorAll('tbody tr');
@@ -30,11 +36,9 @@ function searchContact() {
     let searchInput1 = document.getElementById("search1").value;
     let searchInput2 = document.getElementById("search2").value;
 
+    // send as string to api
     if (searchInput2 == "") {
-        tableRows.forEach((row,i)=> {
-            let tableData = row.textContent;
-            row.classList.toggle('hide');
-        })
+
     } else {
         
     }
@@ -54,6 +58,7 @@ addContactFormButton.addEventListener("click", function() {
         var formData = readAddContactFormData();
         if (selectedRow == null) {
             insertNewRecord(formData);
+            loadContacts();
         } else {
             updateRecord(formData);
         }
@@ -62,7 +67,6 @@ addContactFormButton.addEventListener("click", function() {
         addContactRecord.name = formData.firstName + " " + formData.lastName;
         addContactRecord.phone = formData.phone;
         addContactRecord.email = formData.email;
-        //addContactRecord.dateCreated = new Date().toLocaleString().split(',')[0];
         addContactRecord.id = sessionStorage.getItem("id");
 
         fetch("LAMPAPI/AddContact.php", {
@@ -95,7 +99,6 @@ function readAddContactFormData() {
     formData["lastName"] = document.getElementById("lastName").value;
     formData["phone"] = document.getElementById("phone").value;
     formData["email"] = document.getElementById("email").value;
-    formData["dateCreated"] = new Date().toLocaleString().split(',')[0];
     return formData;
 }
 
@@ -179,9 +182,7 @@ function insertNewRecord(data) {
     cell4 = newRow.insertCell(3);
     cell4.innerHTML = data.email;
     cell5 = newRow.insertCell(4);
-    cell5.innerHTML = data.dateCreated;
-    cell6 = newRow.insertCell(5);
-    cell6.innerHTML = `<a onClick="edit(this)">Edit</a> <a onClick="removeContact(this)">Remove</a>`;
+    cell5.innerHTML = `<a onClick="edit(this)">Edit</a> <a onClick="removeContact(this)">Remove</a>`;
 }
 
 function resetAddContactForm() {
@@ -215,6 +216,7 @@ editContactFormButton.addEventListener("click", function() {
         var formData = readEditContactFormData();
         if (selectedRow == null) {
             insertNewRecord(formData);
+            loadContacts();
         }
         else {
             updateRecord(formData);
@@ -235,7 +237,6 @@ function readEditContactFormData() {
     formData["lastName"] = document.getElementById("lastName2").value;
     formData["phone"] = document.getElementById("phone2").value;
     formData["email"] = document.getElementById("email2").value;
-    formData["dateCreated"] = new Date().toLocaleString().split(',')[0];
     return formData;
 }
 
@@ -349,7 +350,6 @@ function removeContact(td) {
     removeContactRecord.name = selectedRow.cells[0].innerHTML + " " + selectedRow.cells[1].innerHTML;
     removeContactRecord.phoneNumber = selectedRow.cells[2].innerHTML;
     removeContactRecord.email = selectedRow.cells[3].innerHTML;
-    removeContactRecord.dateCreated = selectedRow.cells[4].innerHTML;
     removeContactRecord.id = sessionStorage.getItem("id");
 
     console.log(removeContactRecord);
@@ -401,3 +401,51 @@ logoutButton.addEventListener("click", function() {
     // redirect the user to the login/register page
     window.location.href = "/index.html";
 });
+
+function loadContacts(){
+    let user = {};
+    user.id = sessionStorage.getItem("id");
+    fetch("LAMPAPI/LoadContacts.php", {
+        "method": "POST",
+        "headers" :{
+            "Content-Type" : "application/json; charset=utf-8" 
+        },
+        "body": JSON.stringify(user)
+    }).then(function(response){
+        return response.text();
+    }).then(function(data){
+        console.log(data);
+        let info = JSON.parse(data);
+        let newData = nameSplit(info);
+        for(let i= 0 ; i < info.results.length; i++){
+            console.log(newData[i]);
+
+
+            //stores contact id based on row number
+            contactID[i] = {
+                "id" : newData[i].ID    
+            }
+
+            insertNewRecord(newData[i]);
+            //let item = "" + i;
+            //sessionStorage.setItem(item, info.results[i].ID);
+        }
+        //sessionStorage.setItem("length", info.results.length);
+    });
+}
+//function to split name into first and last and return the dataset
+function nameSplit(info){
+    let retval = []; 
+    for(let i = 0; i < info.results.length; i++){
+        let arr = info.results[i].name.split(" ");
+        retval[i] = {
+            "firstName": arr[0],
+            "lastName": arr[1],
+            "email": info.results[i].email,
+            "phone": info.results[i].phone,
+            "UserID": info.results[i].UserID,
+            "ID": info.results[i].ID
+        }
+    }
+    return retval;
+}

@@ -5,7 +5,7 @@
 	$name = $contactInfo["name"];
 	$email = $contactInfo["email"];
 	$phoneNumber = $contactInfo["phone"];
-	$userID = $contactInfo["userID"];
+	$userID = $contactInfo["id"];
 
 	// create connection
 	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331"); 	
