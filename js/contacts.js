@@ -347,7 +347,7 @@ function edit(td, rownumber) {
             }*/
             let data= {};
             data.contactID = contactID[rownumber];
-            console.log(data.contactID+"    bruh     bruh" + rownumber);
+            console.log(data.contactID+"    bruh     bruh " + rownumber);
             data.name = document.getElementById("firstName2").value + " " + document.getElementById("lastName2").value;
             data.phone = document.getElementById("phone2").value;
             data.email = document.getElementById("email2").value;
@@ -362,7 +362,7 @@ function edit(td, rownumber) {
             }).then(function(response){
                 return response.text();
             }).then(function(data){
-                console.log(data);
+                //console.log(data);
                 loadContacts();
             });
 
@@ -410,7 +410,7 @@ function removeContact(td, rownumber) {
     removeContactRecord.email = selectedRow.cells[3].innerHTML;
     removeContactRecord.id = sessionStorage.getItem("id");
 
-    console.log(removeContactRecord);
+    //console.log(removeContactRecord);
 
     fetch("LAMPAPI/DeleteContact.php", {
         "method": "POST",
@@ -472,13 +472,13 @@ function loadContacts(){
     }).then(function(response){
         return response.text();
     }).then(function(data){
-        console.log(data);
+        //console.log(data);
         let info = JSON.parse(data);
         let newData = nameSplit(info);
         contactTable.innerHTML = "";
         rownum = 0;
         for(let i= 0 ; i < info.results.length; i++){
-            console.log(newData[i]);
+            //console.log(newData[i]);
 
             //stores contact id based on row number
             contactID[i] = newData[i].ID;
