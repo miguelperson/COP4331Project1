@@ -20,7 +20,7 @@ const removeContactFormButton = document.getElementById('removeContactFormButton
 
 const logoutButton = document.getElementById('logoutButton');
 
-const contactTable = document.getElementsByTagName("tbody");
+const contactTable = document.getElementsById("contactTable");
 
 // selected table row for edit/delete
 var selectedRow = null;
