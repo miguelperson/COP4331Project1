@@ -28,6 +28,7 @@ var selectedRow = null;
 //array of contact id objects {"id" : 34}
 var contactID = [];
 var rownum = 0;
+var currentRow = 0;
 
 // initial load contacts
 loadContacts(); 
@@ -125,6 +126,46 @@ addContactFormButton.addEventListener("click", function() {
     }
 });
 
+editContactFormButton.addEventListener("click", function() {
+    // validate the input (non-empty/correct format)
+    if (editValidate()) {
+        /*var formData = readEditContactFormData();
+        if (selectedRow == null) {
+            loadContacts();
+        }
+        else {
+            updateRecord(formData);
+        }*/
+        let data= {};
+        data.contactID = contactID[currentRow];
+        console.log(data.contactID+"    bruh     bruh " + currentRow);
+        data.name = document.getElementById("firstName2").value + " " + document.getElementById("lastName2").value;
+        data.phone = document.getElementById("phone2").value;
+        data.email = document.getElementById("email2").value;
+
+        //send to api and receive info
+        fetch("LAMPAPI/UpdateContact.php", {
+            "method" : "POST",
+            "headers":{
+                "Content-Type": "application/json; charset=utf-8"
+            },
+            "body": JSON.stringify(data)
+        }).then(function(response){
+            return response.text();
+        }).then(function(data){
+            //console.log(data);
+            loadContacts();
+        });
+
+        resetAddContactForm();
+    
+        // close the edit contact form
+        document.querySelector(".editContactForm").style.display = "none";
+        document.querySelector("#addContactButton").disabled = false;
+        document.querySelector("#addContactButton").style.cursor = "pointer";
+    }
+});
+
 function readAddContactFormData() {
     // get the input from the add contact form
     var formData = {};
@@ -215,7 +256,7 @@ function insertNewRecord(data) {
     cell4 = newRow.insertCell(3);
     cell4.innerHTML = data.email;
     cell6 = newRow.insertCell(4);
-    console.log(table.length);
+    //console.log(table.length);
     cell6.innerHTML = `<a onClick="edit(this, ${rownum})">Edit</a> <a onClick="removeContact(this, ${rownum})">Remove</a>`;
     rownum++;
 }
@@ -335,45 +376,7 @@ function edit(td, rownumber) {
     document.getElementById("phone2").value = selectedRow.cells[2].innerHTML;
     document.getElementById("email2").value = selectedRow.cells[3].innerHTML;
     
-    editContactFormButton.addEventListener("click", function() {
-        // validate the input (non-empty/correct format)
-        if (editValidate()) {
-            /*var formData = readEditContactFormData();
-            if (selectedRow == null) {
-                loadContacts();
-            }
-            else {
-                updateRecord(formData);
-            }*/
-            let data= {};
-            data.contactID = contactID[rownumber];
-            console.log(data.contactID+"    bruh     bruh " + rownumber);
-            data.name = document.getElementById("firstName2").value + " " + document.getElementById("lastName2").value;
-            data.phone = document.getElementById("phone2").value;
-            data.email = document.getElementById("email2").value;
-
-            //send to api and receive info
-            fetch("LAMPAPI/UpdateContact.php", {
-                "method" : "POST",
-                "headers":{
-                    "Content-Type": "application/json; charset=utf-8"
-                },
-                "body": JSON.stringify(data)
-            }).then(function(response){
-                return response.text();
-            }).then(function(data){
-                //console.log(data);
-                loadContacts();
-            });
-
-            resetAddContactForm();
-        
-            // close the edit contact form
-            document.querySelector(".editContactForm").style.display = "none";
-            document.querySelector("#addContactButton").disabled = false;
-            document.querySelector("#addContactButton").style.cursor = "pointer";
-        }
-    });
+    currentRow = rownumber;
     
 
     // display the edit contact form
