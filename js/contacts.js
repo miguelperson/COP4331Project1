@@ -204,7 +204,7 @@ function insertNewRecord(data) {
     // create a row in the table and add data into the cells
     var table = document.getElementById("contactsList").getElementsByTagName('tbody')[0];
     var newRow = table.insertRow(table.length);
-    rownum++;
+    
     cell1 = newRow.insertCell(0);
     cell1.innerHTML = data.firstName;
     cell2 = newRow.insertCell(1);
@@ -216,6 +216,7 @@ function insertNewRecord(data) {
     cell6 = newRow.insertCell(4);
     console.log(table.length);
     cell6.innerHTML = `<a onClick="edit(this, ${rownum})">Edit</a> <a onClick="removeContact(this, ${rownum})">Remove</a>`;
+    rownum++;
 }
 
 function resetAddContactForm() {
