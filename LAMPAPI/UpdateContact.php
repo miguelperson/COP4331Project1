@@ -14,10 +14,12 @@ if($conn -> connect_error) // checks if connection is successful
 	returnWithError( $conn->connect_error );
 }else{
 
-	$sql = "UPDATE Contacts SET Name = ? , Email = ?, Phone = ? WHERE ID = ?";
-	$statement = $conn->prepare($sql);
-	$statment->bind_param("ssss", $newName, $newEmail, $newPhoneNumber, $contactID);
-	$statment->execute();
+	$sql = "UPDATE Contacts SET Email=". $newEmail .", Name = ". $newName .", Phone = ". $newPhoneNumber . " WHERE ID=". $contactID.";" ;
+		if(mysqli_query($conn, $sql)){
+			echo "Records were updated successfully.";
+		} else {
+			echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
+		}
 	
 }
 
