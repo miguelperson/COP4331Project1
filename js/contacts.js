@@ -20,6 +20,8 @@ const removeContactFormButton = document.getElementById('removeContactFormButton
 
 const logoutButton = document.getElementById('logoutButton');
 
+const contactTable = document.getElementsByTagName("tbody");
+
 // selected table row for edit/delete
 var selectedRow = null;
 
@@ -56,11 +58,11 @@ addContactFormButton.addEventListener("click", function() {
     if (addValidate()) {
         // proceed with adding the contact record
         var formData = readAddContactFormData();
-        if (selectedRow == null) {
+        /*if (selectedRow == null) {
             loadContacts();
         } else {
             updateRecord(formData);
-        }
+        }*/
 
         let addContactRecord = {};
         addContactRecord.name = formData.firstName + " " + formData.lastName;
@@ -80,6 +82,7 @@ addContactFormButton.addEventListener("click", function() {
             return response.text();
         }).then(function(data){
             console.log(data);
+            loadContacts();
         })
 
         resetAddContactForm();
@@ -435,6 +438,7 @@ function loadContacts(){
         console.log(data);
         let info = JSON.parse(data);
         let newData = nameSplit(info);
+        contactTable.innerHTML = "";
         for(let i= 0 ; i < info.results.length; i++){
             console.log(newData[i]);
 
