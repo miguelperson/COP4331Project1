@@ -212,24 +212,7 @@ editContactCloseButton.addEventListener("click", function() {
     document.querySelector("#addContactButton").style.cursor = "pointer";
 });
 
-editContactFormButton.addEventListener("click", function() {
-    // validate the input (non-empty/correct format)
-    if (editValidate()) {
-        var formData = readEditContactFormData();
-        if (selectedRow == null) {
-            loadContacts();
-        }
-        else {
-            updateRecord(formData);
-        }
-        resetAddContactForm();
-    
-        // close the edit contact form
-        document.querySelector(".editContactForm").style.display = "none";
-        document.querySelector("#addContactButton").disabled = false;
-        document.querySelector("#addContactButton").style.cursor = "pointer";
-    }
-});
+
 
 function readEditContactFormData() {
     // get the input from the edit contact form
@@ -319,25 +302,44 @@ function edit(td, rownum) {
     document.getElementById("phone2").value = selectedRow.cells[2].innerHTML;
     document.getElementById("email2").value = selectedRow.cells[3].innerHTML;
     
-    //setup data to send to api
-    let data= {};
-    data.contactID = contactID[rownum];
-    data.name = document.getElementById("firstName2").value + " " + document.getElementById("lastName2");
-    data.phone = document.getElementById("phone2");
-    data.email = document.getElementById("email2");
+    editContactFormButton.addEventListener("click", function() {
+        // validate the input (non-empty/correct format)
+        if (editValidate()) {
+            /*var formData = readEditContactFormData();
+            if (selectedRow == null) {
+                loadContacts();
+            }
+            else {
+                updateRecord(formData);
+            }*/
+            let data= {};
+            data.contactID = contactID[rownum];
+            data.name = document.getElementById("firstName2").value + " " + document.getElementById("lastName2");
+            data.phone = document.getElementById("phone2");
+            data.email = document.getElementById("email2");
 
-    //send to api and receive info
-    fetch("LAMPAPI/UpdateContact.php", {
-        "method" : "POST",
-        "headers":{
-            "Content-Type": "application/json; charset=utf-8"
-        },
-        "body": JSON.stringify(data)
-    }).then(function(response){
-        return response.text();
-    }).then(function(data){
-        loadContacts();
+            //send to api and receive info
+            fetch("LAMPAPI/UpdateContact.php", {
+                "method" : "POST",
+                "headers":{
+                    "Content-Type": "application/json; charset=utf-8"
+                },
+                "body": JSON.stringify(data)
+            }).then(function(response){
+                return response.text();
+            }).then(function(data){
+                loadContacts();
+            });
+
+            resetAddContactForm();
+        
+            // close the edit contact form
+            document.querySelector(".editContactForm").style.display = "none";
+            document.querySelector("#addContactButton").disabled = false;
+            document.querySelector("#addContactButton").style.cursor = "pointer";
+        }
     });
+    
 
     // display the edit contact form
     document.querySelector(".editContactForm").style.display = "block";
