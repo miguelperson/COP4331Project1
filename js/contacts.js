@@ -322,9 +322,9 @@ function edit(td, rownum) {
     //setup data to send to api
     let data= {};
     data.contactID = contactID[rownum];
-    data.name = selectedRow.cells[0].innerHTML + " " + selectedRow.cells[1].innerHTML;
-    data.phone = selectedRow.cells[2].innerHTML;
-    data.email = selectedRow.cells[3].innerHTML;
+    data.name = document.getElementById("firstName2").value + " " + document.getElementById("lastName2");
+    data.phone = document.getElementById("phone2");
+    data.email = document.getElementById("email2");
 
     //send to api and receive info
     fetch("LAMPAPI/UpdateContact.php", {
