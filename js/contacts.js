@@ -181,9 +181,7 @@ function insertNewRecord(data) {
     cell3.innerHTML = data.phone;
     cell4 = newRow.insertCell(3);
     cell4.innerHTML = data.email;
-    cell5 = newRow.insertCell(4);
-    cell5.innerHTML = data.dateCreated;
-    cell6 = newRow.insertCell(5);
+    cell6 = newRow.insertCell(4);
     cell6.innerHTML = `<a onClick="edit(this, ${table.length})">Edit</a> <a onClick="removeContact(this, ${table.length})">Remove</a>`;
 }
 
