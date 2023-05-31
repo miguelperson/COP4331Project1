@@ -47,20 +47,30 @@ function searchContact() {
         searchInput3.search = searchInput2;
     }
 
-    fetch("LAMPAPI/SearchContacts.php", {
-        "method": "POST",
+    // fetch("LAMPAPI/SearchContacts.php", {
+    //     "method": "POST",
 
-        "headers": {
-            "Content-Type": "application/json; charset=utf-8"
-        },
+    //     "headers": {
+    //         "Content-Type": "application/json; charset=utf-8"
+    //     },
 
-        "body": JSON.stringify(searchInput3)
-    }).then(function(response){
-        return response.text();
-    }).then(function(data){
-        console.log(data);
-        loadContacts();
+    //     "body": JSON.stringify(searchInput3)
+    // }).then(function(response){
+    //     return response.text();
+    // }).then(function(data){
+    //     console.log(data);
+    //     loadContacts();
+    // })
+
+    const params = new URLSearchParams({
+        query: searchInput3
     })
+
+    const url = `searchContacts.php?${params.toString()}`
+
+    fetch(url)
+        .then(response => response.text())
+        .then(console.log)
 
     // update html table to show searched contacts
 
