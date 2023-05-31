@@ -66,7 +66,7 @@ function searchContact() {
         query: 'hello'
     })
 
-    const url = `SearchContacts.php?${params.toString()}`
+    const url = `/LAMPAPI/SearchContacts.php?${params.toString()}`
 
     fetch(url)
         .then(response => response.text())
