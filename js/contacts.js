@@ -184,7 +184,7 @@ function insertNewRecord(data) {
     cell5 = newRow.insertCell(4);
     cell5.innerHTML = data.dateCreated;
     cell6 = newRow.insertCell(5);
-    cell6.innerHTML = `<a onClick="edit(this)">Edit</a> <a onClick="removeContact(this)">Remove</a>`;
+    cell6.innerHTML = `<a onClick="edit(this, ${table.length})">Edit</a> <a onClick="removeContact(this, ${table.length})">Remove</a>`;
 }
 
 function resetAddContactForm() {
@@ -423,9 +423,7 @@ function loadContacts(){
             console.log(newData[i]);
 
             //stores contact id based on row number
-            contactID[i] = {
-                "id" : newData[i].ID    
-            }
+            contactID[i] = newData[i].ID;
 
             insertNewRecord(newData[i]);
             //let item = "" + i;
