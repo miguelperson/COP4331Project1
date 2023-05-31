@@ -58,6 +58,7 @@ function searchContact() {
         return response.text();
     }).then(function(data){
         console.log(data);
+        loadContacts();
     })
 
     // update html table to show searched contacts
