@@ -63,7 +63,7 @@ function searchContact() {
     // })
 
     const params = new URLSearchParams({
-        query: searchInput3
+        query: searchInput3.toString()
     })
 
     const url = `SearchContacts.php?${params.toString()}`
