@@ -314,7 +314,7 @@ function edit(td, rownum) {
             }*/
             let data= {};
             data.contactID = contactID[rownum];
-            console.log(data.contactID+"    bruh     bruh");
+            console.log(data.contactID+"    bruh     bruh" + rownum);
             data.name = document.getElementById("firstName2").value + " " + document.getElementById("lastName2");
             data.phone = document.getElementById("phone2");
             data.email = document.getElementById("email2");
