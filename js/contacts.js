@@ -63,7 +63,7 @@ function searchContact() {
     // })
 
     const params = new URLSearchParams({
-        query: searchInput3
+        query: searchInput3.search
     })
 
     const url = `/LAMPAPI/SearchContacts.php?${params.toString()}`
