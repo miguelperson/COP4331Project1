@@ -5,7 +5,7 @@ $contactID = $inData["contactID"];
 	$newEmail = $inData["email"];
 	$newPhoneNumber = $inData["phone"];
 
-
+//
 // create connection
 $conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331"); 
 
