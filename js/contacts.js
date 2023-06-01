@@ -407,11 +407,26 @@ function validateEmail(email) {
 function removeContact(td, rownumber) {
     let selectedRow = td.parentElement.parentElement;
 
+    currentRow = rownumber;
+    
+    document.querySelector(".removeContactPopup").style.display = "block";
+    document.querySelector("#addContactButton").disabled = true;
+    document.querySelector("#addContactButton").style.cursor = "default";
+
+    
+}
+
+// ask if user is sure 
+removeContactFormButton.addEventListener("click", function(e) {
+        
+    // delete the row
+    e.stopImmediatePropagation();
+    let row = td.parentElement.parentElement;
+    document.getElementById("contactsList").deleteRow(row.rowIndex);
+    selectedRow = null;
+
     let removeContactRecord = {};
-    removeContactRecord.name = selectedRow.cells[0].innerHTML + " " + selectedRow.cells[1].innerHTML;
-    removeContactRecord.phoneNumber = selectedRow.cells[2].innerHTML;
-    removeContactRecord.email = selectedRow.cells[3].innerHTML;
-    removeContactRecord.id = sessionStorage.getItem("id");
+    removeContactRecord.id = contactID[currentRow];
 
     console.log(removeContactRecord);
 
@@ -430,26 +445,11 @@ function removeContact(td, rownumber) {
         loadContacts();
     })
 
-
-    document.querySelector(".removeContactPopup").style.display = "block";
-    document.querySelector("#addContactButton").disabled = true;
-    document.querySelector("#addContactButton").style.cursor = "default";
-
-    // ask if user is sure 
-    removeContactFormButton.addEventListener("click", function(e) {
-        
-        // delete the row
-        e.stopImmediatePropagation();
-        let row = td.parentElement.parentElement;
-        document.getElementById("contactsList").deleteRow(row.rowIndex);
-        selectedRow = null;
-
-        // close the delete contact popup
-        document.querySelector(".removeContactPopup").style.display = "none";
-        document.querySelector("#addContactButton").disabled = false;
-        document.querySelector("#addContactButton").style.cursor = "pointer";  
-    });
-}
+    // close the delete contact popup
+    document.querySelector(".removeContactPopup").style.display = "none";
+    document.querySelector("#addContactButton").disabled = false;
+    document.querySelector("#addContactButton").style.cursor = "pointer";  
+});
 
 cancelButton.addEventListener("click", function() {
     // close the delete contact popup

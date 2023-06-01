@@ -1,11 +1,7 @@
 <?php
     $contactInfo = json_decode(file_get_contents('php://input'), true);
 
-    $name = $contactInfo["name"];
-	$email = $contactInfo["email"];
-	$phoneNumber = $contactInfo["phone"];
-	$userID = $contactInfo["userID"];
-
+    $contactID = $contactInfo["id"];
     // create connection
 	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331"); 	
 	// check connection 
@@ -15,12 +11,11 @@
 	}
     else 
     {
-        $checksql = "SELECT * FROM Contacts WHERE UserID = '$userID' AND Name = '$name' AND 
-        Phone = '$phoneNumber' AND Email = '$email'";
+        $checksql = "SELECT * FROM Contacts WHERE ID = '$contactID'";
         $result = $conn->query($checksql);
 
-        $sql = "DELETE FROM Contacts WHERE UserID = '$userID' AND Name = '$name' AND 
-        Phone = '$phoneNumber' AND Email = '$email'";
+        $sql = "DELETE FROM Contacts WHERE ID = '$contactID'";
+        $conn->query($sql);
         // echo "line 38";
         if ($result->num_rows > 0) 
         {
