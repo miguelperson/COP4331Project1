@@ -75,7 +75,7 @@ function searchContact() {
         .then(console.log)
 
     // update html table to show searched contacts
-
+    loadContacts();
 }
 
 // adding a contact functions -------------------------------------------------------------------------------------------------
@@ -427,6 +427,7 @@ function removeContact(td, rownumber) {
         return response.text();
     }).then(function(data){
         console.log(data);
+        loadContacts();
     })
 
 
