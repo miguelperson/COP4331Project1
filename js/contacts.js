@@ -413,7 +413,7 @@ function removeContact(td, rownumber) {
     removeContactRecord.email = selectedRow.cells[3].innerHTML;
     removeContactRecord.id = sessionStorage.getItem("id");
 
-    //console.log(removeContactRecord);
+    console.log(removeContactRecord);
 
     fetch("LAMPAPI/DeleteContact.php", {
         "method": "POST",
