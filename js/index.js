@@ -34,7 +34,7 @@ signupBtn.addEventListener('click', ()=>{
         let node = document.getElementById("error");
         node.innerHTML = "Missing Field.";
     }
-    else if(regex.exec(pass) == null){
+    else if(regex.exec(signup.password) == null){
         let node = document.getElementById("error");
         node.innerHTML = "Password must be 8 chars long and contain one uppercase, one lowercase, one digit, and one special character."
     }
