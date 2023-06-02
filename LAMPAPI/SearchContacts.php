@@ -1,6 +1,7 @@
 <?php
     $search = $_GET['query'];
 
+    echo $search;
     
     // create connection
 	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331"); 	
