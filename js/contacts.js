@@ -407,6 +407,12 @@ function validateEmail(email) {
 function removeContact(td, rownumber) {
     let selectedRow = td.parentElement.parentElement;
 
+    // delete the row
+    e.stopImmediatePropagation();
+    let row = td.parentElement.parentElement;
+    document.getElementById("contactsList").deleteRow(row.rowIndex);
+    selectedRow = null;
+
     currentRow = rownumber;
     
     document.querySelector(".removeContactPopup").style.display = "block";
@@ -419,11 +425,7 @@ function removeContact(td, rownumber) {
 // ask if user is sure 
 removeContactFormButton.addEventListener("click", function(e) {
         
-    // delete the row
-    e.stopImmediatePropagation();
-    let row = td.parentElement.parentElement;
-    document.getElementById("contactsList").deleteRow(row.rowIndex);
-    selectedRow = null;
+    
 
     let removeContactRecord = {};
     removeContactRecord.id = contactID[currentRow];
