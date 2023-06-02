@@ -41,41 +41,44 @@ function searchContact() {
     let searchInput2 = document.getElementById("search2").value;
     
     // send as string to api
-    let searchInput3 = {};
-    if (searchInput2 == "") {
-        searchInput3.search = searchInput1;
-    } else {
-        searchInput3.search = searchInput2;
+    if (searchInput1 != ""|| searchInput2 != "") {
+        let searchInput3 = {};
+        if (searchInput2 == "") {
+            searchInput3.search = searchInput1;
+        } else {
+            searchInput3.search = searchInput2;
+        }
+    
+        // fetch("LAMPAPI/SearchContacts.php", {
+        //     "method": "POST",
+    
+        //     "headers": {
+        //         "Content-Type": "application/json; charset=utf-8"
+        //     },
+    
+        //     "body": JSON.stringify(searchInput3)
+        // }).then(function(response){
+        //     return response.text();
+        // }).then(function(data){
+        //     console.log(data);
+        //     loadContacts();
+        // })
+    
+        const params = new URLSearchParams({
+            query: searchInput3.search
+        })
+    
+        const url = `/LAMPAPI/SearchContacts.php?${params.toString()}`
+    
+        console.log(url);
+        fetch(url)
+            .then(response => response.text())
+            .then(console.log)
+    
+        // update html table to show searched contacts
+        loadContacts();
     }
 
-    // fetch("LAMPAPI/SearchContacts.php", {
-    //     "method": "POST",
-
-    //     "headers": {
-    //         "Content-Type": "application/json; charset=utf-8"
-    //     },
-
-    //     "body": JSON.stringify(searchInput3)
-    // }).then(function(response){
-    //     return response.text();
-    // }).then(function(data){
-    //     console.log(data);
-    //     loadContacts();
-    // })
-
-    const params = new URLSearchParams({
-        query: searchInput3.search
-    })
-
-    const url = `/LAMPAPI/SearchContacts.php?${params.toString()}`
-
-    console.log(url);
-    fetch(url)
-        .then(response => response.text())
-        .then(console.log)
-
-    // update html table to show searched contacts
-    loadContacts();
 }
 
 // adding a contact functions -------------------------------------------------------------------------------------------------
