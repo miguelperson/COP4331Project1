@@ -28,9 +28,15 @@ signupBtn.addEventListener('click', ()=>{
     signup.firstName = document.getElementById('firstname').value;
     signup.lastName = document.getElementById('lastname').value;
 
+    let regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$";
+
     if(signup.login == "" || signup.password == "" || signup.firstName == "" || signup.lastName == ""){
         let node = document.getElementById("error");
         node.innerHTML = "Missing Field.";
+    }
+    else if(regex.exec(pass) == null){
+        let node = document.getElementById("error");
+        node.innerHTML = "Password must be 8 chars long and contain one uppercase, one lowercase, one digit, and one special character."
     }
     else{
         fetch("LAMPAPI/Registration.php",{
