@@ -1,5 +1,6 @@
 <?php
-    $search = $_GET['query'];
+    $searchQuery = $_GET['query'];
+    $id = $_GET['UserID'];
 
     
     // create connection
@@ -11,12 +12,12 @@
 	}
     else 
     {
-        $sql = "SELECT * FROM Contacts WHERE Name LIKE ? OR Email LIKE ? OR Phone LIKE ?";
+        $sql = "SELECT * FROM Contacts WHERE (Name LIKE ?) AND UserID= ?";
         $stmt = $conn->prepare($sql);
 
         $searchValue = "%{$searchQuery}%";
 
-        $stmt->bind_param("sss", $searchValue, $searchValue, $searchValue);
+        $stmt->bind_param("ss", $searchValue, $id);
 
         $stmt->execute();
 
