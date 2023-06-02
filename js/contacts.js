@@ -41,7 +41,7 @@ function searchContact() {
     let searchInput2 = document.getElementById("search2").value;
     
     // send as string to api
-    if (searchInput1 != ""|| serachInput2 != "") {
+    if (searchInput1 != ""|| searchInput2 != "") {
         let searchInput3 = {};
         if (searchInput2 == "") {
             searchInput3.search = searchInput1;
