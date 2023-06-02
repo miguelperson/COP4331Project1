@@ -28,7 +28,7 @@ signupBtn.addEventListener('click', ()=>{
     signup.firstName = document.getElementById('firstname').value;
     signup.lastName = document.getElementById('lastname').value;
 
-    let regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$";
+    let regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
     if(signup.login == "" || signup.password == "" || signup.firstName == "" || signup.lastName == ""){
         let node = document.getElementById("error");
