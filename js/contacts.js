@@ -408,10 +408,10 @@ function removeContact(td, rownumber) {
     let selectedRow = td.parentElement.parentElement;
 
     // delete the row
-    e.stopImmediatePropagation();
+    /*e.stopImmediatePropagation();
     let row = td.parentElement.parentElement;
     document.getElementById("contactsList").deleteRow(row.rowIndex);
-    selectedRow = null;
+    selectedRow = null;*/
 
     currentRow = rownumber;
     
