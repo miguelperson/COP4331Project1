@@ -65,9 +65,10 @@ function searchContact() {
         // })
     
         const params = new URLSearchParams({
-            query: searchInput3.search
+            query: searchInput3.search,
+            userID: sessionStorage.getItem("id")
         })
-    
+
         const url = `/LAMPAPI/SearchContacts.php?${params.toString()}`
     
         console.log(url);
