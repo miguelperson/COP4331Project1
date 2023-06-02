@@ -36,7 +36,7 @@ signupBtn.addEventListener('click', ()=>{
     }
     else if(regex.exec(signup.password) == null){
         let node = document.getElementById("error");
-        node.innerHTML = "Password must be 8 chars long and contain one uppercase, one lowercase, one digit, and one special character."
+        node.innerHTML = "Invalid Password. One upper, lower, digit, and special character."
     }
     else{
         fetch("LAMPAPI/Registration.php",{
