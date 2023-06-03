@@ -70,7 +70,7 @@ searchContactButton1.addEventListener("click", function() {
             .then(console.log)
     
         // update html table to show searched contacts
-        loadContacts();
+        //loadContacts();
     }
 })
 
@@ -110,7 +110,7 @@ searchContactButton2.addEventListener("click", function() {
             .then(console.log)
     
         // update html table to show searched contacts
-        loadContacts();
+        //loadContacts();
     }
 })
 
