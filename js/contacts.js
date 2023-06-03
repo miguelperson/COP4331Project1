@@ -61,7 +61,6 @@ function searchContact1() {
             userID: sessionStorage.getItem("id")
         })
     
-
         const url = `/LAMPAPI/SearchContacts.php?${params.toString()}`
 
         console.log(url);
@@ -74,6 +73,7 @@ function searchContact1() {
     }
 }
 
+// this function is only used when the search field is changed due to viewport size
 function searchContact2() {
     let tableRows = document.querySelectorAll('tbody tr');
     // get the input from the search form
@@ -101,7 +101,6 @@ function searchContact2() {
             userID: sessionStorage.getItem("id")
         })
     
-
         const url = `/LAMPAPI/SearchContacts.php?${params.toString()}`
 
         console.log(url);
