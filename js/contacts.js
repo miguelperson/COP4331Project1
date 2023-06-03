@@ -61,7 +61,7 @@ searchContactButton1.addEventListener("click", function() {
         // })
     
         const params = new URLSearchParams({
-            query: searchInput1.search,
+            query: searchInput1,
             userID: sessionStorage.getItem("id")
         })
 
@@ -101,7 +101,7 @@ searchContactButton2.addEventListener("click", function() {
         // })
     
         const params = new URLSearchParams({
-            query: searchInput2.search,
+            query: searchInput2,
             userID: sessionStorage.getItem("id")
         })
 
