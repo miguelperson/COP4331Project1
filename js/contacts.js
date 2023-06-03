@@ -78,7 +78,7 @@ searchContactButton2.addEventListener("click", function() {
     let tableRows = document.querySelectorAll('tbody tr');
 
     // get the input from the search form
-    let searchInput2 = document.getElementById("search1").value;
+    let searchInput2 = document.getElementById("search2").value;
     // send as string to api
     if (searchInput2 != "") {
 
