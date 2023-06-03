@@ -8,6 +8,9 @@
 
 
 // form/option buttons
+const searchContactButton1 = document.getElementById("searchContactButton1");
+const searchContactButton2 = document.getElementById("searchContactButton2");
+
 const addContactButton = document.getElementById("addContactButton");
 const addContactFormButton = document.getElementById("addContactFormButton");
 const closeAddContactButton = document.getElementById("addContactCloseButton");
@@ -72,7 +75,7 @@ searchContactButton1.addEventListener("click", function() {
         // update html table to show searched contacts
         //loadContacts();
     }
-})
+});
 
 searchContactButton2.addEventListener("click", function() {
     let tableRows = document.querySelectorAll('tbody tr');
@@ -112,7 +115,7 @@ searchContactButton2.addEventListener("click", function() {
         // update html table to show searched contacts
         //loadContacts();
     }
-})
+});
 
 // adding a contact functions -------------------------------------------------------------------------------------------------
 addContactButton.addEventListener("click", function() {
