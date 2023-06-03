@@ -8,9 +8,6 @@
 
 
 // form/option buttons
-const searchContactButton1 = document.getElementById("searchContactButton1");
-const searchContactButton2 = document.getElementById("searchContactButton2");
-
 const addContactButton = document.getElementById("addContactButton");
 const addContactFormButton = document.getElementById("addContactFormButton");
 const closeAddContactButton = document.getElementById("addContactCloseButton");
@@ -61,6 +58,46 @@ function searchContact1() {
 
         const params = new URLSearchParams({
             query: searchInput1,
+            userID: sessionStorage.getItem("id")
+        })
+    
+
+        const url = `/LAMPAPI/SearchContacts.php?${params.toString()}`
+
+        console.log(url);
+        fetch(url)
+            .then(response => response.text())
+            .then(console.log)
+    
+        // update html table to show searched contacts
+        loadContacts();
+    }
+}
+
+function searchContact2() {
+    let tableRows = document.querySelectorAll('tbody tr');
+    // get the input from the search form
+    let searchInput2 = document.getElementById("search2").value;
+    
+    // send as string to api
+    if (searchInput2 != "") {
+        // fetch("LAMPAPI/SearchContacts.php", {
+        //     "method": "POST",
+    
+        //     "headers": {
+        //         "Content-Type": "application/json; charset=utf-8"
+        //     },
+    
+        //     "body": JSON.stringify(searchInput3)
+        // }).then(function(response){
+        //     return response.text();
+        // }).then(function(data){
+        //     console.log(data);
+        //     loadContacts();
+        // })
+
+        const params = new URLSearchParams({
+            query: searchInput2,
             userID: sessionStorage.getItem("id")
         })
     
