@@ -18,8 +18,8 @@
         <!-- this panel displays the options to the user -->
         <div id="options">
             <div class="searchContact">
-                <form id="form1">
-                    <button class="searchContactButton" id="searchContactButton1"> <img class="icon" src="/images/searching.png"></button>
+                <form id="form1" action="javascript:searchContact1()">
+                    <button class="searchContactButton"> <img class="icon" src="/images/searching.png"></button>
                     <input type="text" id="search1" class="searchBox" placeholder="Search Contacts">
                 </form>
             </div>
@@ -40,8 +40,8 @@
         <!-- this panel displays info of all added/searched contacts -->
         <div id="contacts">
             <!-- this search form is displayed if the width is too small -->
-            <form id="form2">
-                <button class="searchContactButton" id="searchContactButton2"> <img class="icon" src="/images/searching.png"></button>
+            <form id="form2" action="javascript:searchContact2()">
+                <button class="searchContactButton"> <img class="icon" src="/images/searching.png"></button>
                 <input type="text" id="search2" class="searchBox" placeholder="Search Contacts">
             </form>
             <div id="contactInfo">

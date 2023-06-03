@@ -37,14 +37,13 @@ var currentRow = 0;
 loadContacts(); 
 
 // searching a contact functions -------------------------------------------------------------------------------------------------
-searchContactButton1.addEventListener("click", function() {
+function searchContact1() {
     let tableRows = document.querySelectorAll('tbody tr');
-
     // get the input from the search form
     let searchInput1 = document.getElementById("search1").value;
+    
     // send as string to api
     if (searchInput1 != "") {
-
         // fetch("LAMPAPI/SearchContacts.php", {
         //     "method": "POST",
     
@@ -59,63 +58,24 @@ searchContactButton1.addEventListener("click", function() {
         //     console.log(data);
         //     loadContacts();
         // })
-    
+
         const params = new URLSearchParams({
             query: searchInput1,
             userID: sessionStorage.getItem("id")
         })
+    
 
         const url = `/LAMPAPI/SearchContacts.php?${params.toString()}`
-    
+
         console.log(url);
         fetch(url)
             .then(response => response.text())
             .then(console.log)
     
         // update html table to show searched contacts
-        // loadContacts();
+        loadContacts();
     }
-});
-
-searchContactButton2.addEventListener("click", function() {
-    let tableRows = document.querySelectorAll('tbody tr');
-
-    // get the input from the search form
-    let searchInput2 = document.getElementById("search2").value;
-    // send as string to api
-    if (searchInput2 != "") {
-
-        // fetch("LAMPAPI/SearchContacts.php", {
-        //     "method": "POST",
-    
-        //     "headers": {
-        //         "Content-Type": "application/json; charset=utf-8"
-        //     },
-    
-        //     "body": JSON.stringify(searchInput3)
-        // }).then(function(response){
-        //     return response.text();
-        // }).then(function(data){
-        //     console.log(data);
-        //     loadContacts();
-        // })
-    
-        const params = new URLSearchParams({
-            query: searchInput2,
-            userID: sessionStorage.getItem("id")
-        })
-
-        const url = `/LAMPAPI/SearchContacts.php?${params.toString()}`
-    
-        console.log(url);
-        fetch(url)
-            .then(response => response.text())
-            .then(console.log)
-    
-        // update html table to show searched contacts
-        // loadContacts();
-    }
-});
+}
 
 // adding a contact functions -------------------------------------------------------------------------------------------------
 addContactButton.addEventListener("click", function() {
