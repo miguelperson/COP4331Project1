@@ -26,13 +26,14 @@
         $stmt->execute();
 
         $result = $stmt->get_result();
+        
+        print $result;
 
         $rows = $result->fetch_all(MYSQLI_ASSOC);
 
         $stmt->close();
         $conn->close();
-
-        // Return the rows as JSON
+        
         // Return the rows as JSON
         echo json_encode($rows);
     }
