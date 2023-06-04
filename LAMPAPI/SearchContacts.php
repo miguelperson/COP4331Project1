@@ -17,7 +17,7 @@
 
         $searchValue = "%". $searchQuery. "%";
 
-        $stmt->bind_param("sss", $searchValue, $searchValue, $userID);
+        $stmt->bind_param("sss", $searchValue, $userID);
 
         $stmt->execute();
 
