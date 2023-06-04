@@ -37,37 +37,27 @@ loadContacts();
 function searchContact1() {
     let tableRows = document.querySelectorAll('tbody tr');
     // get the input from the search form
-    let searchInput1 = document.getElementById("search1").value;
+    let searchInput1 = {};
+    searchInput1.name = document.getElementById("search1").value;
+    searchInput1.userId = sessionStorage.getItem("id");
     
     // send as string to api
     if (searchInput1.name != "") {
-        // fetch("LAMPAPI/SearchContacts.php", {
-        //     "method": "POST",
+        fetch("LAMPAPI/SearchContacts.php", {
+            "method": "POST",
     
-        //     "headers": {
-        //         "Content-Type": "application/json; charset=utf-8"
-        //     },
+            "headers": {
+                "Content-Type": "application/json; charset=utf-8"
+            },
     
-        //     "body": JSON.stringify(searchInput1)
-        // }).then(function(response){
-        //     return response.text();
-        // }).then(function(data){
-        //     console.log(data);
-        //     loadContacts();
-        // })
-
-        const params = new URLSearchParams({
-            query: searchInput1,
-            userID: sessionStorage.getItem("id")
+            "body": JSON.stringify(searchInput1)
+        }).then(function(response){
+            return response.text();
+        }).then(function(data){
+            console.log(data);
+            loadContacts();
         })
-    
-        const url = `/LAMPAPI/SearchContacts.php?${params.toString()}`
 
-        console.log(url);
-        fetch(url)
-            .then(response => response.text())
-            .then(console.log)
-    
         // update html table to show searched contacts
         loadContacts();
     }
@@ -77,37 +67,27 @@ function searchContact1() {
 function searchContact2() {
     let tableRows = document.querySelectorAll('tbody tr');
     // get the input from the search form
-    let searchInput2 = document.getElementById("search2").value;
+    let searchInput2 = {};
+    searchInput2.name = document.getElementById("search2").value;
+    searchInput2.userId = sessionStorage.getItem("id");
     
     // send as string to api
-    if (searchInput2 != "") {
-        // fetch("LAMPAPI/SearchContacts.php", {
-        //     "method": "POST",
+    if (searchInput2.name != "") {
+        fetch("LAMPAPI/SearchContacts.php", {
+            "method": "POST",
     
-        //     "headers": {
-        //         "Content-Type": "application/json; charset=utf-8"
-        //     },
+            "headers": {
+                "Content-Type": "application/json; charset=utf-8"
+            },
     
-        //     "body": JSON.stringify(searchInput3)
-        // }).then(function(response){
-        //     return response.text();
-        // }).then(function(data){
-        //     console.log(data);
-        //     loadContacts();
-        // })
-
-        const params = new URLSearchParams({
-            query: searchInput2,
-            userID: sessionStorage.getItem("id")
+            "body": JSON.stringify(searchInput2)
+        }).then(function(response){
+            return response.text();
+        }).then(function(data){
+            console.log(data);
+            loadContacts();
         })
-    
-        const url = `/LAMPAPI/SearchContacts.php?${params.toString()}`
 
-        console.log(url);
-        fetch(url)
-            .then(response => response.text())
-            .then(console.log)
-    
         // update html table to show searched contacts
         loadContacts();
     }
