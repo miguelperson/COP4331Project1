@@ -7,6 +7,9 @@
     $userID = $inData["userID"];
     $searchQuery = $inData["query"];
 
+    $searchResults = "";
+	$searchCount = 0;
+
     // create connection
 	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331"); 	
 	// check connection 
