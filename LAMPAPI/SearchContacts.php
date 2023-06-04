@@ -1,6 +1,7 @@
 <?php
-    $search = $_GET['query'];
-
+    $inData = json_decode(file_get_contents('php://input'), true);
+    $userID = $inData["userID"];
+    $searchQuery = $inData["query"];
 
     // create connection
 	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331"); 	
@@ -11,12 +12,12 @@
 	}
     else 
     {
-        $sql = "SELECT * FROM Contacts WHERE Name LIKE ? OR Email LIKE ? OR Phone LIKE ?";
+        $sql = "SELECT * FROM Contacts WHERE (FirstName LIKE ? OR LastName LIKE ?) AND UserID=?";
         $stmt = $conn->prepare($sql);
 
         $searchValue = "%{$searchQuery}%";
 
-        $stmt->bind_param("sss", $searchValue, $searchValue, $searchValue);
+        $stmt->bind_param("sss", $searchValue, $searchValue, $userID);
 
         $stmt->execute();
 
