@@ -45,8 +45,6 @@
         $stmt->close();
         $conn->close();
         
-        // Return the rows as JSON
-        echo json_encode($rows);
     }
 
 
@@ -63,5 +61,10 @@
 		sendResultInfoAsJson( $retValue );
 	}
 
+    function sendResultInfoAsJson( $obj )
+	{
+		header('Content-type: application/json');
+		echo $obj;
+	}
 
 ?>
