@@ -43,35 +43,35 @@ function searchContact1() {
     
     // send as string to api
     if (searchInput1.name != "") {
-        fetch("LAMPAPI/SearchContacts.php", {
-            "method": "POST",
+        // fetch("LAMPAPI/SearchContacts.php", {
+        //     "method": "POST",
     
-            "headers": {
-                "Content-Type": "application/json; charset=utf-8"
-            },
+        //     "headers": {
+        //         "Content-Type": "application/json; charset=utf-8"
+        //     },
     
-            "body": JSON.stringify(searchInput1)
-        }).then(function(response){
-            return response.text();
-        }).then(function(data){
-            console.log(data);
-            loadContacts();
-        })
-
-        // const params = new URLSearchParams({
-        //     query: searchInput1,
-        //     userID: sessionStorage.getItem("id")
+        //     "body": JSON.stringify(searchInput1)
+        // }).then(function(response){
+        //     return response.text();
+        // }).then(function(data){
+        //     console.log(data);
+        //     loadContacts();
         // })
-    
-        // const url = `/LAMPAPI/SearchContacts.php?${params.toString()}`
 
-        // console.log(url);
-        // fetch(url)
-        //     .then(response => response.text())
-        //     .then(console.log)
+        const params = new URLSearchParams({
+            query: searchInput1,
+            userID: sessionStorage.getItem("id")
+        })
     
-        // // update html table to show searched contacts
-        // loadContacts();
+        const url = `/LAMPAPI/SearchContacts.php?${params.toString()}`
+
+        console.log(url);
+        fetch(url)
+            .then(response => response.text())
+            .then(console.log)
+    
+        // update html table to show searched contacts
+        loadContacts();
     }
 }
 
@@ -98,20 +98,20 @@ function searchContact1() {
 //         //     loadContacts();
 //         // })
 
-//         // const params = new URLSearchParams({
-//         //     query: searchInput2,
-//         //     userID: sessionStorage.getItem("id")
-//         // })
+        const params = new URLSearchParams({
+            query: searchInput2,
+            userID: sessionStorage.getItem("id")
+        })
     
-//         // const url = `/LAMPAPI/SearchContacts.php?${params.toString()}`
+        const url = `/LAMPAPI/SearchContacts.php?${params.toString()}`
 
-//         // console.log(url);
-//         // fetch(url)
-//         //     .then(response => response.text())
-//         //     .then(console.log)
+        console.log(url);
+        fetch(url)
+            .then(response => response.text())
+            .then(console.log)
     
-//         // update html table to show searched contacts
-//         loadContacts();
+        update html table to show searched contacts
+        loadContacts();
 //     }
 // }
 
