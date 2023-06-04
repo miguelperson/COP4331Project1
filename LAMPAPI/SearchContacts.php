@@ -17,8 +17,8 @@
 		
 		$stmt = $conn->prepare("SELECT * FROM Contacts WHERE Name like ? AND UserID=?");
 		$colorName = "%" . $inData["search"] . "%";
-		$echo "1";
 		$stmt->bind_param("sss", $colorName, $colorName, $inData["userId"]);
+		$echo "1";
 		$stmt->execute();
 
         $result = $stmt->get_result();
