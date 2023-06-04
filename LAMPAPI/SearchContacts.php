@@ -2,9 +2,6 @@
     // get json from contacts.js
     $search = json_decode(file_get_contents('php://input'), true);
 
-    // for debugging
-    echo $search;
-
     $searchResults = "";
     $searchCount = 0;
 
