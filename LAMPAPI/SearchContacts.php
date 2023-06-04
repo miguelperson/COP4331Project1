@@ -30,8 +30,7 @@
         
 
         $rows = $result->fetch_all(MYSQLI_ASSOC);
-        print $rows;
-        
+
         $stmt->close();
         $conn->close();
         
