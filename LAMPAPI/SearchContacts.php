@@ -26,11 +26,12 @@
         $stmt->execute();
 
         $result = $stmt->get_result();
+
         
-        print $result;
 
         $rows = $result->fetch_all(MYSQLI_ASSOC);
-
+        print $rows;
+        
         $stmt->close();
         $conn->close();
         
