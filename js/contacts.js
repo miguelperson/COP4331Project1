@@ -69,7 +69,7 @@ function searchContact1() {
             .then(console.log)
     
         // update html table to show searched contacts
-        loadContacts();
+        // loadContacts();
     }
 }
 
