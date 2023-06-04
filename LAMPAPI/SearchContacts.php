@@ -12,7 +12,7 @@
 	}
     else 
     {
-        $sql = "SELECT * FROM Contacts WHERE (FirstName LIKE ? OR LastName LIKE ?) AND UserID=?";
+        $sql = "SELECT * FROM Contacts WHERE Name LIKE ? AND UserID=?";
         $stmt = $conn->prepare($sql);
 
         $searchValue = "%". $searchQuery. "%";
