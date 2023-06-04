@@ -5,8 +5,6 @@
     $searchResults = "";
     $searchCount = 0;
 
-	$echo search;
-
     // create connection
 	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331"); 	
 	// check connection 
@@ -16,8 +14,9 @@
 	}
     else 
     {
+		
+		$stmt = $conn->prepare("SELECT * FROM Contacts WHERE Name like ? AND UserID=?");
 		$echo "1";
-		$stmt = $conn->prepare("SELECT * FROM Contacts WHERE Name like? AND UserID=?");
 		$colorName = "%" . $inData["search"] . "%";
 		$stmt->bind_param("sss", $colorName, $colorName, $inData["userId"]);
 		$stmt->execute();
