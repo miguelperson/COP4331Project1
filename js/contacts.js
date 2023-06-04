@@ -55,11 +55,24 @@ function searchContact1() {
             return response.text();
         }).then(function(data){
             console.log(data);
-            loadContacts();
-        })
+            let info = JSON.parse(data);
+            let newData = nameSplitSearch(info);
+            contactTable.innerHTML = "";
+            rownum = 0;
+            contactID= [];
+            for(let i= 0 ; i < info.length; i++){
+                //console.log(newData[i]);
 
-        // update html table to show searched contacts
-        loadContacts();
+                //stores contact id based on row number
+                contactID[i] = newData[i].ID;
+
+                insertNewRecord(newData[i]);
+                //let item = "" + i;
+                //sessionStorage.setItem(item, info.results[i].ID);
+            }
+            
+        });
+        
     }
 }
 
@@ -85,11 +98,24 @@ function searchContact2() {
             return response.text();
         }).then(function(data){
             console.log(data);
-            loadContacts();
-        })
+            let info = JSON.parse(data);
+            let newData = nameSplitSearch(info);
+            contactTable.innerHTML = "";
+            rownum = 0;
+            contactID= [];
+            for(let i= 0 ; i < info.length; i++){
+                //console.log(newData[i]);
 
-        // update html table to show searched contacts
-        loadContacts();
+                //stores contact id based on row number
+                contactID[i] = newData[i].ID;
+
+                insertNewRecord(newData[i]);
+                //let item = "" + i;
+                //sessionStorage.setItem(item, info.results[i].ID);
+            }
+        });
+
+        
     }
 }
 
@@ -524,6 +550,22 @@ function nameSplit(info){
             "phone": info.results[i].phone,
             "UserID": info.results[i].UserID,
             "ID": info.results[i].ID
+        }
+    }
+    return retval;
+}
+
+function nameSplitSearch(info){
+    let retval = []; 
+    for(let i = 0; i < info.length; i++){
+        let arr = info[i].Name.split(" ");
+        retval[i] = {
+            "firstName": arr[0],
+            "lastName": arr[1],
+            "email": info[i].Email,
+            "phone": info[i].Phone,
+            "UserID": info[i].UserID,
+            "ID": info[i].ID
         }
     }
     return retval;
