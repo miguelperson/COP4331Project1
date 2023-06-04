@@ -15,7 +15,7 @@
         $sql = "SELECT * FROM Contacts WHERE Name LIKE ? AND UserID=?";
         $stmt = $conn->prepare($sql);
 
-        $searchValue = "%". $searchQuery. "%";
+        $searchValue = "'%". $searchQuery. "%'";
 
         $stmt->bind_param("sss", $searchValue, $userID);
 
