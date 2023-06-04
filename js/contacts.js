@@ -37,9 +37,7 @@ loadContacts();
 function searchContact1() {
     let tableRows = document.querySelectorAll('tbody tr');
     // get the input from the search form
-    let searchInput1 = {};
-    searchInput1.name = document.getElementById("search1").value;
-    searchInput1.userId = sessionStorage.getItem("id");
+    let searchInput1 = document.getElementById("search1").value;
     
     // send as string to api
     if (searchInput1.name != "") {
@@ -76,27 +74,27 @@ function searchContact1() {
 }
 
 // this function is only used when the search field is changed due to viewport size
-// function searchContact2() {
-//     let tableRows = document.querySelectorAll('tbody tr');
-//     // get the input from the search form
-//     let searchInput2 = document.getElementById("search2").value;
+function searchContact2() {
+    let tableRows = document.querySelectorAll('tbody tr');
+    // get the input from the search form
+    let searchInput2 = document.getElementById("search2").value;
     
-//     // send as string to api
-//     if (searchInput2 != "") {
-//         // fetch("LAMPAPI/SearchContacts.php", {
-//         //     "method": "POST",
+    // send as string to api
+    if (searchInput2 != "") {
+        // fetch("LAMPAPI/SearchContacts.php", {
+        //     "method": "POST",
     
-//         //     "headers": {
-//         //         "Content-Type": "application/json; charset=utf-8"
-//         //     },
+        //     "headers": {
+        //         "Content-Type": "application/json; charset=utf-8"
+        //     },
     
-//         //     "body": JSON.stringify(searchInput3)
-//         // }).then(function(response){
-//         //     return response.text();
-//         // }).then(function(data){
-//         //     console.log(data);
-//         //     loadContacts();
-//         // })
+        //     "body": JSON.stringify(searchInput3)
+        // }).then(function(response){
+        //     return response.text();
+        // }).then(function(data){
+        //     console.log(data);
+        //     loadContacts();
+        // })
 
         const params = new URLSearchParams({
             query: searchInput2,
@@ -112,8 +110,8 @@ function searchContact1() {
     
         // update html table to show searched contacts
         loadContacts();
-//     }
-// }
+    }
+}
 
 // adding a contact functions -------------------------------------------------------------------------------------------------
 addContactButton.addEventListener("click", function() {
