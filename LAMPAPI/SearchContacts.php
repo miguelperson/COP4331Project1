@@ -19,8 +19,8 @@
 		$colorName = "%" . $inData["search"] . "%";
 		$stmt->bind_param("sss", $colorName, $colorName, $inData["userId"]);
 		$stmt->execute();
-		$echo "1";
         $result = $stmt->get_result();
+		$echo "1";
 		$echo "2";
         while($row = $result->fetch_assoc())
 		{
