@@ -29,7 +29,18 @@
 
         
 
-        $rows = $result->fetch_all(MYSQLI_ASSOC);
+        while($row = $result->fetch_assoc()){
+            
+            if( $searchCount > 0 )
+			{
+				$searchResults .= ",";
+			}
+            $searchCount++;
+
+            $searchResults .= '{"name": "' .$row["Name"].'", "phone" : "' . $row["Phone"]. '", "email" : "' . $row["Email"]. '", "UserID" : "' . $row["UserID"].'", "ID" : "' . $row["ID"]. '"}';
+        }
+
+        returnWithInfo($searchResults);
 
         $stmt->close();
         $conn->close();
@@ -43,6 +54,12 @@
     function returnWithError( $err )
 	{
 		$retValue = '{"id":0,"name":"","phone":"","email":"","userID":"","error":"' . $err . '"}';
+		sendResultInfoAsJson( $retValue );
+	}
+
+    function returnWithInfo( $searchResults )
+	{
+		$retValue = '{"results":[' . $searchResults . '],"error":""}';
 		sendResultInfoAsJson( $retValue );
 	}
 

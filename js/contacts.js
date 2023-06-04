@@ -54,13 +54,12 @@ function searchContact1() {
         }).then(function(response){
             return response.text();
         }).then(function(data){
-            console.log(data);
             let info = JSON.parse(data);
-            let newData = nameSplitSearch(info);
+            let newData = nameSplit(info);
             contactTable.innerHTML = "";
             rownum = 0;
             contactID= [];
-            for(let i= 0 ; i < info.length; i++){
+            for(let i= 0 ; i < info.results.length; i++){
                 //console.log(newData[i]);
 
                 //stores contact id based on row number
@@ -97,13 +96,12 @@ function searchContact2() {
         }).then(function(response){
             return response.text();
         }).then(function(data){
-            console.log(data);
             let info = JSON.parse(data);
-            let newData = nameSplitSearch(info);
+            let newData = nameSplit(info);
             contactTable.innerHTML = "";
             rownum = 0;
             contactID= [];
-            for(let i= 0 ; i < info.length; i++){
+            for(let i= 0 ; i < info.results.length; i++){
                 //console.log(newData[i]);
 
                 //stores contact id based on row number
