@@ -4,8 +4,8 @@
     error_reporting(E_ALL);
     
     $inData = json_decode(file_get_contents('php://input'), true);
-    $userID = $inData["userID"];
-    $searchQuery = $inData["query"];
+    $userID = $inData["userId"];
+    $searchQuery = $inData["name"];
 
     $searchResults = "";
 	$searchCount = 0;
