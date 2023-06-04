@@ -110,7 +110,7 @@ function searchContact1() {
             .then(response => response.text())
             .then(console.log)
     
-        update html table to show searched contacts
+        // update html table to show searched contacts
         loadContacts();
 //     }
 // }
