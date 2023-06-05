@@ -52,9 +52,10 @@ function searchContact1() {
     
             "body": JSON.stringify(searchInput1)
         }).then(function(response){
-            console.log(response);
+            
             return response.text();
         }).then(function(data){
+            console.log(data);
             let info = JSON.parse(data);
             let newData = nameSplit(info);
             contactTable.innerHTML = "";
@@ -95,9 +96,10 @@ function searchContact2() {
     
             "body": JSON.stringify(searchInput2)
         }).then(function(response){
-            console.log(response);
+            
             return response.text();
         }).then(function(data){
+            console.log(data);
             let info = JSON.parse(data);
             let newData = nameSplit(info);
             contactTable.innerHTML = "";
