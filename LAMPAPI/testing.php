@@ -18,7 +18,7 @@
 	}
     else
     {
-        debug_to_console($userID);
+        debug_to_console($inData);
     }
 
 
