@@ -11,6 +11,11 @@
     debug_to_console($userID);
     debug_to_console($searchQuery);
 
+    $conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
+
+
+
+
 function debug_to_console($data) {
     $output = $data;
     if (is_array($output))
