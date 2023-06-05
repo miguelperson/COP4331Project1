@@ -23,7 +23,7 @@
         $stmt = $conn->prepare($sql);
 
         $searchValue = "'%". $searchQuery. "%'";
-        debug_to_console($searchQuery);
+        debug_to_console($searchValue);
         
 
         $stmt->bind_param("ss", $searchValue, $userID);
