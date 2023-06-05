@@ -27,7 +27,6 @@
         
 
         $stmt->bind_param("ss", $searchValue, $userID);
-        debug_to_console($stmt);
         $stmt->execute();
 
         $result = $stmt->get_result();
