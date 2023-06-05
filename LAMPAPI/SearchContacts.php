@@ -24,7 +24,7 @@
 
         $searchValue = "'%". $searchQuery. "%'";
         debug_to_console($searchValue);
-        debug_to_console($userID);
+        //debug_to_console($userID);
 
         $stmt->bind_param("ss", $searchValue, $userID);
         $stmt->execute();
