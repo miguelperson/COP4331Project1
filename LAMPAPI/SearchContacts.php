@@ -30,7 +30,7 @@
         $stmt->execute();
 
         $result = $stmt->get_result();
-
+        debug_to_console($result);
         debug_to_console("hello");
         
         
