@@ -18,7 +18,7 @@
 	}
     else
     {
-        debug_to_console($inData);
+        debug_to_console("connected");
     }
 
 
