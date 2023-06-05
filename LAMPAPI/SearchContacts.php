@@ -20,7 +20,7 @@
     else 
     {
         $searchValue = "'%". $searchQuery. "%'";
-        $sql = "SELECT * FROM Contacts WHERE Name LIKE ". $searchValue ." AND UserID=".$userID";";
+        $sql = "SELECT * FROM Contacts WHERE Name LIKE ". $searchValue ." AND UserID=".$userID. ";";
 
         debug_to_console($sql);
         
