@@ -24,7 +24,7 @@
 
         $searchValue = "'%". $searchQuery. "%'";
 
-        $stmt->bind_param("si", $searchValue, $userID);
+        $stmt->bind_param("ss", $searchValue, $userID);
 
         $stmt->execute();
 
@@ -42,6 +42,7 @@
             
             $searchResults .= '{"name": "' .$row["Name"].'", "phone" : "' . $row["Phone"]. '", "email" : "' . $row["Email"]. '", "UserID" : "' . $row["UserID"].'", "ID" : "' . $row["ID"]. '"}';
         }
+        debug_to_console($searchResults);
         
         returnWithInfo($searchResults);
 
@@ -70,4 +71,11 @@
 		echo $obj;
 	}
 
+    function debug_to_console($data) {
+        $output = $data;
+        if (is_array($output))
+            $output = implode(',', $output);
+    
+        echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
+    }
 ?>
