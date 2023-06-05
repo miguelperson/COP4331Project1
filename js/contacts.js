@@ -52,6 +52,7 @@ function searchContact1() {
     
             "body": JSON.stringify(searchInput1)
         }).then(function(response){
+            console.log(response);
             return response.text();
         }).then(function(data){
             let info = JSON.parse(data);
