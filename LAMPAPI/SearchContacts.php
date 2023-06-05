@@ -46,8 +46,7 @@
         debug_to_console($searchCount);
         
         returnWithInfo($searchResults);
-
-        $stmt->close();
+        
         $conn->close();
         
     }
