@@ -1,8 +1,15 @@
 <?php
-    $searchQuery = $_GET['query'];
-    $id = $_GET['UserID'];
-
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
     
+    $inData = json_decode(file_get_contents('php://input'), true);
+    $userID = $inData["userId"];
+    $searchQuery = $inData["name"];
+
+    $searchResults = "";
+	$searchCount = 0;
+
     // create connection
 	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331"); 	
 	// check connection 
@@ -12,25 +19,35 @@
 	}
     else 
     {
-        $sql = "SELECT * FROM Contacts WHERE (Name LIKE ?) AND UserID= ?";
+        $sql = "SELECT * FROM Contacts WHERE Name LIKE ? AND UserID=?";
         $stmt = $conn->prepare($sql);
 
-        $searchValue = "%{$searchQuery}%";
+        $searchValue = "'%". $searchQuery. "%'";
 
-        $stmt->bind_param("ss", $searchValue, $id);
+        $stmt->bind_param("ss", $searchValue, $userID);
 
         $stmt->execute();
 
         $result = $stmt->get_result();
 
-        $rows = $result->fetch_all(MYSQLI_ASSOC);
+        
+
+        while($row = $result->fetch_assoc()){
+            
+            if( $searchCount > 0 )
+			{
+				$searchResults .= ",";
+			}
+            $searchCount++;
+
+            $searchResults .= '{"name": "' .$row["Name"].'", "phone" : "' . $row["Phone"]. '", "email" : "' . $row["Email"]. '", "UserID" : "' . $row["UserID"].'", "ID" : "' . $row["ID"]. '"}';
+        }
+
+        returnWithInfo($searchResults);
 
         $stmt->close();
         $conn->close();
-
-        // Return the rows as JSON
-        // Return the rows as JSON
-        echo json_encode($rows);
+        
     }
 
 
@@ -41,5 +58,16 @@
 		sendResultInfoAsJson( $retValue );
 	}
 
+    function returnWithInfo( $searchResults )
+	{
+		$retValue = '{"results":[' . $searchResults . '],"error":""}';
+		sendResultInfoAsJson( $retValue );
+	}
+
+    function sendResultInfoAsJson( $obj )
+	{
+		header('Content-type: application/json');
+		echo $obj;
+	}
 
 ?>

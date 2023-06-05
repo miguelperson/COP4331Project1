@@ -34,51 +34,87 @@ var currentRow = 0;
 loadContacts(); 
 
 // searching a contact functions -------------------------------------------------------------------------------------------------
-function searchContact() {
+function searchContact1() {
     let tableRows = document.querySelectorAll('tbody tr');
     // get the input from the search form
-    let searchInput1 = document.getElementById("search1").value;
-    let searchInput2 = document.getElementById("search2").value;
+    let searchInput1 = {};
+    searchInput1.name = document.getElementById("search1").value;
+    searchInput1.userId = sessionStorage.getItem("id");
     
     // send as string to api
-    if (searchInput1 != ""|| searchInput2 != "") {
-        let searchInput3 = {};
-        if (searchInput2 == "") {
-            searchInput3.search = searchInput1;
-        } else {
-            searchInput3.search = searchInput2;
-        }
+    if (searchInput1.name != "") {
+        fetch("LAMPAPI/SearchContacts.php", {
+            "method": "POST",
     
-        // fetch("LAMPAPI/SearchContacts.php", {
-        //     "method": "POST",
+            "headers": {
+                "Content-Type": "application/json; charset=utf-8"
+            },
     
-        //     "headers": {
-        //         "Content-Type": "application/json; charset=utf-8"
-        //     },
-    
-        //     "body": JSON.stringify(searchInput3)
-        // }).then(function(response){
-        //     return response.text();
-        // }).then(function(data){
-        //     console.log(data);
-        //     loadContacts();
-        // })
-    
-        const params = new URLSearchParams({
-            query: searchInput3.search
-        })
-    
-        const url = `/LAMPAPI/SearchContacts.php?${params.toString()}`
-    
-        console.log(url);
-        fetch(url)
-            .then(response => response.text())
-            .then(console.log)
-    
-        // update html table to show searched contacts
-        loadContacts();
-    }
+            "body": JSON.stringify(searchInput1)
+        }).then(function(response){
+            return response.text();
+        }).then(function(data){
+            let info = JSON.parse(data);
+            let newData = nameSplit(info);
+            contactTable.innerHTML = "";
+            rownum = 0;
+            contactID= [];
+            for(let i= 0 ; i < info.results.length; i++){
+                //console.log(newData[i]);
 
+                //stores contact id based on row number
+                contactID[i] = newData[i].ID;
+
+                insertNewRecord(newData[i]);
+                //let item = "" + i;
+                //sessionStorage.setItem(item, info.results[i].ID);
+            }
+            
+        });
+        
+    }
+}
+
+// this function is only used when the search field is changed due to viewport size
+function searchContact2() {
+    let tableRows = document.querySelectorAll('tbody tr');
+    // get the input from the search form
+    let searchInput2 = {};
+    searchInput2.name = document.getElementById("search2").value;
+    searchInput2.userId = sessionStorage.getItem("id");
+    
+    // send as string to api
+    if (searchInput2.name != "") {
+        fetch("LAMPAPI/SearchContacts.php", {
+            "method": "POST",
+    
+            "headers": {
+                "Content-Type": "application/json; charset=utf-8"
+            },
+    
+            "body": JSON.stringify(searchInput2)
+        }).then(function(response){
+            return response.text();
+        }).then(function(data){
+            let info = JSON.parse(data);
+            let newData = nameSplit(info);
+            contactTable.innerHTML = "";
+            rownum = 0;
+            contactID= [];
+            for(let i= 0 ; i < info.results.length; i++){
+                //console.log(newData[i]);
+
+                //stores contact id based on row number
+                contactID[i] = newData[i].ID;
+
+                insertNewRecord(newData[i]);
+                //let item = "" + i;
+                //sessionStorage.setItem(item, info.results[i].ID);
+            }
+        });
+
+        
+    }
 }
 
 // adding a contact functions -------------------------------------------------------------------------------------------------
@@ -512,6 +548,22 @@ function nameSplit(info){
             "phone": info.results[i].phone,
             "UserID": info.results[i].UserID,
             "ID": info.results[i].ID
+        }
+    }
+    return retval;
+}
+
+function nameSplitSearch(info){
+    let retval = []; 
+    for(let i = 0; i < info.length; i++){
+        let arr = info[i].Name.split(" ");
+        retval[i] = {
+            "firstName": arr[0],
+            "lastName": arr[1],
+            "email": info[i].Email,
+            "phone": info[i].Phone,
+            "UserID": info[i].UserID,
+            "ID": info[i].ID
         }
     }
     return retval;
