@@ -24,13 +24,14 @@
 
         $searchValue = "'%". $searchQuery. "%'";
         debug_to_console($searchValue);
-        
+        debug_to_console($userID);
 
         $stmt->bind_param("ss", $searchValue, $userID);
         $stmt->execute();
 
         $result = $stmt->get_result();
-        debug_to_console($result);
+        $row= $result->fetch_assoc()
+        debug_to_console($row["Name"]);
         debug_to_console("hello");
         
         
