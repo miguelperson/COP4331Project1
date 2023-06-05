@@ -94,6 +94,7 @@ function searchContact2() {
     
             "body": JSON.stringify(searchInput2)
         }).then(function(response){
+            console.log(response);
             return response.text();
         }).then(function(data){
             let info = JSON.parse(data);
