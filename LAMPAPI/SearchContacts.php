@@ -30,8 +30,7 @@
         $stmt->execute();
 
         $result = $stmt->get_result();
-        $row= $result->fetch_assoc()
-        debug_to_console($row["Name"]);
+        $row = $result->fetch_assoc()
         debug_to_console("hello");
         
         
