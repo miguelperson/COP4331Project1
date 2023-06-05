@@ -102,7 +102,7 @@ function searchContact2() {
             rownum = 0;
             contactID= [];
             for(let i= 0 ; i < info.results.length; i++){
-                //console.log(newData[i]);
+                console.log(newData[i]);
 
                 //stores contact id based on row number
                 contactID[i] = newData[i].ID;
