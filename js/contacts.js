@@ -73,7 +73,8 @@ function searchContact1() {
             }
             
         });
-        
+    } else {
+        loadContacts();
     }
 }
 
@@ -115,9 +116,9 @@ function searchContact2() {
                 //let item = "" + i;
                 //sessionStorage.setItem(item, info.results[i].ID);
             }
-        });
-
-        
+        });  
+    } else {
+        loadContacts();
     }
 }
 
