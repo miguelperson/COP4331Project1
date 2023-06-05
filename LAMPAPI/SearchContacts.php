@@ -30,8 +30,9 @@
 
         $result = $stmt->get_result();
 
+        debug_to_console("hello");
         
-
+        
         while($row = $result->fetch_assoc()){
             
             if( $searchCount > 0 )
@@ -42,7 +43,7 @@
             
             $searchResults .= '{"name": "' .$row["Name"].'", "phone" : "' . $row["Phone"]. '", "email" : "' . $row["Email"]. '", "UserID" : "' . $row["UserID"].'", "ID" : "' . $row["ID"]. '"}';
         }
-        debug_to_console($searchResults);
+        debug_to_console($searchCount);
         
         returnWithInfo($searchResults);
 
