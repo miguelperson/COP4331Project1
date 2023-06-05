@@ -1,7 +1,7 @@
 <?php
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
+    //ini_set('display_errors', 1);
+    //ini_set('display_startup_errors', 1);
+    //error_reporting(E_ALL);
     
     $inData = json_decode(file_get_contents('php://input'), true);
     $userID = $inData["userId"];
@@ -22,15 +22,15 @@
         $searchValue = "'%". $searchQuery. "%'";
         $sql = "SELECT * FROM Contacts WHERE Name LIKE ". $searchValue ." AND UserID=".$userID. ";";
 
-        debug_to_console($sql);
+        //debug_to_console($sql);
         
-        debug_to_console($searchValue);
-        debug_to_console($userID);
+        //debug_to_console($searchValue);
+        //debug_to_console($userID);
 
       
 
         $result = $conn->query($sql);
-        debug_to_console("hello");
+        //debug_to_console("hello");
         
         
         while($row = $result->fetch_assoc()){
@@ -43,10 +43,10 @@
             
             $searchResults .= '{"name": "' .$row["Name"].'", "phone" : "' . $row["Phone"]. '", "email" : "' . $row["Email"]. '", "UserID" : "' . $row["UserID"].'", "ID" : "' . $row["ID"]. '"}';
         }
-        debug_to_console($searchCount);
+        //debug_to_console($searchCount);
         
         returnWithInfo($searchResults);
-        
+
         $conn->close();
         
     }
