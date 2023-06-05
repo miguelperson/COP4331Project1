@@ -19,18 +19,17 @@
 	}
     else 
     {
-        $sql = "SELECT * FROM Contacts WHERE Name LIKE ? AND UserID=?";
-        $stmt = $conn->prepare($sql);
-
         $searchValue = "'%". $searchQuery. "%'";
+        $sql = "SELECT * FROM Contacts WHERE Name LIKE ". $searchValue ." AND UserID=".$userID. ";";
+
+        debug_to_console($sql);
+        
         debug_to_console($searchValue);
-        //debug_to_console($userID);
+        debug_to_console($userID);
 
-        $stmt->bind_param("ss", $searchValue, $userID);
-        $stmt->execute();
+      
 
-        $result = $stmt->get_result();
-        $row = $result->fetch_assoc()
+        $result = $conn->query($sql);
         debug_to_console("hello");
         
         
@@ -47,8 +46,7 @@
         debug_to_console($searchCount);
         
         returnWithInfo($searchResults);
-
-        $stmt->close();
+        
         $conn->close();
         
     }
