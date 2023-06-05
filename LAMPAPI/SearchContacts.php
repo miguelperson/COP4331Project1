@@ -23,15 +23,17 @@
         $stmt = $conn->prepare($sql);
 
         $searchValue = "'%". $searchQuery. "%'";
+        debug_to_console($searchValue);
+        debug_to_console($userID);
 
         $stmt->bind_param("ss", $searchValue, $userID);
-
         $stmt->execute();
 
         $result = $stmt->get_result();
-
+        $row = $result->fetch_assoc()
+        debug_to_console("hello");
         
-
+        
         while($row = $result->fetch_assoc()){
             
             if( $searchCount > 0 )
@@ -39,10 +41,11 @@
 				$searchResults .= ",";
 			}
             $searchCount++;
-
+            
             $searchResults .= '{"name": "' .$row["Name"].'", "phone" : "' . $row["Phone"]. '", "email" : "' . $row["Email"]. '", "UserID" : "' . $row["UserID"].'", "ID" : "' . $row["ID"]. '"}';
         }
-
+        debug_to_console($searchCount);
+        
         returnWithInfo($searchResults);
 
         $stmt->close();
@@ -70,4 +73,11 @@
 		echo $obj;
 	}
 
+    function debug_to_console($data) {
+        $output = $data;
+        if (is_array($output))
+            $output = implode(',', $output);
+    
+        echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
+    }
 ?>
