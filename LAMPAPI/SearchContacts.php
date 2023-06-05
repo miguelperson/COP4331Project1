@@ -39,10 +39,11 @@
 				$searchResults .= ",";
 			}
             $searchCount++;
-
+            
             $searchResults .= '{"name": "' .$row["Name"].'", "phone" : "' . $row["Phone"]. '", "email" : "' . $row["Email"]. '", "UserID" : "' . $row["UserID"].'", "ID" : "' . $row["ID"]. '"}';
+            print $searchResults;
         }
-
+        
         returnWithInfo($searchResults);
 
         $stmt->close();
